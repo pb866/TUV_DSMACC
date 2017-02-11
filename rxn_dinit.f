@@ -2,7 +2,7 @@
 *= the product (cross section) x (quantum yield) for photo-reactions of
 *= organic dinitrates in MCM-GECKO, which where not yet present in TUV5.2:
 *=
-*=     md01 through md06
+*=     md01 through md07
 
 *=============================================================================*
 
@@ -802,6 +802,103 @@
         DO i = 1, nz
           sq(j-1,i,iw) = sig * qy1
           sq(j  ,i,iw) = sig * qy2
+        ENDDO
+      ENDDO
+
+      END
+
+* ============================================================================*
+
+      SUBROUTINE md07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! uDINIT
+
+*-----------------------------------------------------------------------------*
+*=  PURPOSE:                                                                 =*
+*=  Provide the product (cross section) x (quantum yield) for                =*
+*=  generic unsaturated dinitrate photolysis:                                =*
+*=        RNO3 + hv -> RO + NO2                                              =*
+*=                                                                           =*
+*=  Cross section:  Average of 1,4-dinitroxy-2-butene and                    =*
+*=                  3,4-dinitroxy-1-butene (Barnes et al., 1993)             =*
+*=  Quantum yield:  assumed unity                                            =*
+*-----------------------------------------------------------------------------*
+
+      IMPLICIT NONE
+      INCLUDE 'params'
+
+* input
+
+      INTEGER nw
+      REAL wl(kw), wc(kw)
+
+      INTEGER nz
+
+      REAL tlev(kz)
+      REAL airden(kz)
+
+* weighting functions
+
+      CHARACTER(lcl) jlabel(kj)
+      REAL sq(kj,kz,kw)
+
+* input/output:
+
+      INTEGER j
+
+* data arrays
+
+      INTEGER kdata
+      PARAMETER(kdata=580)
+
+      INTEGER i, n
+      REAL x1(kdata)
+      REAL y1(kdata)
+
+* local
+
+      REAL yg(kw)
+!      REAL qy
+      REAL sig
+      INTEGER ierr
+      INTEGER iw
+
+      j = j+1
+      jlabel(j) = 'uDINIT -> RO. + NO2'
+
+
+      OPEN(UNIT=kin,FILE='DATAJ1/MCMext/DINIT/uDINIT.abs',
+     $     STATUS='old')
+      do i = 1, 7
+        read(kin,*)
+      enddo
+
+      n  = 20
+      DO i = 1, n
+        READ(kin,*) x1(i), y1(i)
+      ENDDO
+      CLOSE(kin)
+
+      CALL addpnt(x1,y1,kdata,n,x1(1)*(1.-deltax),0.)
+      CALL addpnt(x1,y1,kdata,n,               0.,0.)
+      CALL addpnt(x1,y1,kdata,n,x1(n)*(1.+deltax),0.)
+      CALL addpnt(x1,y1,kdata,n,           1.e+38,0.)
+      CALL inter2(nw,wl,yg,n,x1,y1,ierr)
+      IF (ierr .NE. 0) THEN
+        WRITE(*,*) ierr, jlabel(j)
+        STOP
+      ENDIF
+
+
+* quantum yields
+
+!      qy = 1.0
+
+
+* combine:
+
+      DO iw = 1, nw - 1
+        sig = yg(iw)
+        DO i = 1, nz
+          sq(j,i,iw) = sig! * qy
         ENDDO
       ENDDO
 

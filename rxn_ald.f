@@ -3995,7 +3995,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE ma19(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) !≥C8 n-aldehydes
+      SUBROUTINE ma19(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) !C8 n-aldehyde
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*

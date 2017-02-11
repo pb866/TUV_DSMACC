@@ -1,4 +1,4 @@
-# Makefile for TUV 5.2.1
+# Makefile for TUV 5.2.1 as subroutine of DSMACC
 # Use with disort (discrete ordinate), or ps2str (2 stream approximation,
 # pseudo-spherical correction)
 #----------
@@ -12,22 +12,22 @@ EXC = tuv
 
 INCLUDES = params
 
-USE_INCL = tuv.o \
-           grids.o \
-           rdinp.o rdetfl.o rdxs.o \
-           swphys.o swbiol.o swchem.o mcmext.o\
-           rxn_mcm.o rxn_ald.o rxn_ket.o rxn_dicar.o\
-           rxn_nit.o rxn_dinit.o rxn_rooh.o\
-           rxn_mult.o rxn_rad.o qys.o \
-           wshift.o \
-	   vpair.o vptmp.o vpo3.o \
-	   odrl.o odo3.o \
-           setaer.o setalb.o setcld.o setsnw.o \
-           setno2.o seto2.o setso2.o \
-           sphers.o  \
-	   la_srb.o \
-           rtrans.o \
-	   savout.o
+USE_INCL = TUV521.o \
+		   grids.o \
+		   rdinp.o rdetfl.o rdxs.o \
+		   swphys.o swbiol.o swchem.o mcmext.o\
+		   rxn_mcm.o rxn_ald.o rxn_ket.o rxn_dicar.o\
+		   rxn_nit.o rxn_dinit.o rxn_rooh.o\
+		   rxn_mult.o rxn_rad.o rxn_test.o qys.o \
+		   wshift.o \
+		   vpair.o vptmp.o vpo3.o \
+		   odrl.o odo3.o \
+		   setaer.o setalb.o setcld.o setsnw.o \
+		   setno2.o seto2.o setso2.o \
+		   sphers.o  \
+		   la_srb.o \
+		   rtrans.o \
+		   savout.o
 
 FOBJS = numer.o functs.o orbit.o
 
@@ -41,7 +41,7 @@ FC = ifort
 
 # FFLAGS : command line options to compiler call (if not set, default is
 #          probably some basic optimization level)
-# FFLAGS = -fcheck=all #-Wall -cpp -mcmodel medium -fpp 
+# FFLAGS = -fcheck=all #-Wall -cpp -mcmodel medium -fpp
 FFLAGS = -cpp -fpp -fp-model strict -O3 -no-prec-div -static -xHost
 
 # LIBS  : libraries required
@@ -59,3 +59,6 @@ $(USE_INCL):	$(INCLUDES)
 
 clean:
 		rm -f core $(EXC) $(USE_INCL) $(FOBJS)
+
+tidy: clean
+		rm -f *~ fort.*

@@ -146,12 +146,16 @@
 
       REAL yg(kw)
 !      REAL qy
-!      REAL sig
+      REAL ssig,asig
       INTEGER ierr
       INTEGER iw
 
       j = j+1
       jlabel(j) = 'CH3CHOO -> CH3CHO + O(3P)'
+      j = j+1
+      jlabel(j) = 'synCH3CHOO -> CH3CHO + O(3P)'
+      j = j+1
+      jlabel(j) = 'antiCH3CHOO -> CH3CHO + O(3P)'
 
 * cross sections
       OPEN(UNIT=kin,FILE='DATAJ1/MCMext/RAD/CH3CHOO_Smi14.abs',
@@ -181,8 +185,12 @@
 
 * combine:
       DO iw = 1, nw - 1
+        ssig = 1.253e-17*exp(-6.079e-4*(324.11-wc(iw))**2)
+        asig = 1.228e-17*exp(-3.727e-4*(365.53-wc(iw))**2)
         DO i = 1, nz
-          sq(j  ,i,iw) = yg(iw)! xs * qy
+          sq(j-2,i,iw) = yg(iw)! xs * qy
+          sq(j-1,i,iw) = ssig! xs * qy
+          sq(j  ,i,iw) = asig! xs * qy
         ENDDO
       ENDDO
 

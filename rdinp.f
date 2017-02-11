@@ -131,7 +131,7 @@ CSM         PAUSE
       IF(inpfil .EQ. '5') inpfil = 'defin5'
 
  12   CONTINUE
-      INQUIRE(file='./src/'//inpfil,exist=lexist)
+      INQUIRE(file='TUV_5.2.1/INPUTS/'//inpfil,exist=lexist)
       IF(.NOT. lexist) THEN
          WRITE(*,*) '****** file does not exist: ', inpfil
          GO TO 10
@@ -139,9 +139,9 @@ CSM         PAUSE
 
       IF(inpfil .EQ. 'defin1' .OR. inpfil .EQ. 'defin2' .OR.
      $     inpfil .EQ. 'defin3') THEN
-         OPEN(UNIT=kin,FILE='./src/'//inpfil,STATUS='OLD')
+         OPEN(UNIT=kin,FILE='TUV_5.2.1/INPUTS/'//inpfil,STATUS='OLD')
       ELSE
-         OPEN(UNIT=kin,FILE='./src/'//inpfil,STATUS='UNKNOWN')
+         OPEN(UNIT=kin,FILE='TUV_5.2.1/INPUTS/'//inpfil,STATUS='UNKNOWN')
       ENDIF
       READ(kin,130) avar
  130  FORMAT(A7)
@@ -289,7 +289,8 @@ CSM         PAUSE
          WRITE(*,*) '****** Cannot overwrite default input files'
          GO TO 70
       ENDIF
-      OPEN(UNIT=20,FILE='INPUTS/'//trim(finame),STATUS='UNKNOWN',ERR=70)
+      OPEN(UNIT=20,FILE='TUV_5.2.1/INPUTS/'//trim(finame),
+     &     STATUS='UNKNOWN',ERR=70)
       GO TO 75
  70   CONTINUE
       CLOSE(20)
@@ -313,7 +314,7 @@ CSM         PAUSE
 
  99   CONTINUE
 
-      WRITE(*,*) 'done: loading inputs'
+!     WRITE(*,*) 'done: loading inputs'
 
       CALL write1(kout,
      $     inpfil, outfil, nstr,   lat,    lon,    tmzone,

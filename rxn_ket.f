@@ -1,8 +1,8 @@
 *= This file contains the following subroutines, related to reading/loading
 *= the product (cross section) x (quantum yield) for photo-reactions of
-*= dicarbonyls in MCM-GECKO, which were not yet present in TUV5.2:
+*= ketones in MCM-GECKO, which were not yet present in TUV5.2:
 *=
-*=     mk01 through mk21
+*=     mk01 through mk23
 
 *=============================================================================*
 
@@ -2123,12 +2123,12 @@
 
 *=============================================================================*
 
-      SUBROUTINE mk16(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! methyl 1-hydroxyethyl ketone
+      SUBROUTINE mk16(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! acetoin
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
-*=  methyl 1-hydroxethyl ketone (CH3COCH(OH)CH3) photolysis:                 =*
+*=  acetoin (CH3COCH(OH)CH3) photolysis:                                      =*
 *=           CH3COCH(OH)CH3  + hv -> CH3CO + CH3CHOH                         =*
 *=                                                                           =*
 *=  Cross section:  Messaadia et al. (2012)                                  =*
@@ -2268,13 +2268,13 @@
 
 *=============================================================================*
 
-      SUBROUTINE mk17(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 3-hydroxy-3-methyl-2-butanone
+      SUBROUTINE mk17(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! CH3COC(CH3)2OH -> CH3CO + (CH3)2COH
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
-*=  3-hydroxy-3-methyl-2-butanone (CH3COC(CH3)2OH) photolysis:               =*
-*=           CH3COCH(OH)CH3  + hv -> CH3CO + CH3CHOH                         =*
+*=  methylacetoin (CH3COC(CH3)2OH) photolysis:                               =*
+*=           CH3COC(CH3)2(OH)  + hv -> CH3CO + (CH3)2COH                     =*
 *=                                                                           =*
 *=  Cross section:  Messaadia et al. (2012)                                  =*
 *=  Quantum yield:  estimates based on hydroxyacetone, MEK, 2-pentanone,     =*
@@ -2646,16 +2646,28 @@
 
 *=============================================================================*
 
-      SUBROUTINE mk20(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! Generic unbranched ketones
+      SUBROUTINE mk20(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! Generic unbranched or cyclic ketones
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  RCOR'  photolysis:                                                       =*
-*=           RCOR'+ hv -> R + R'CO                                           =*
+*=           RCOR'+ hv -> R' + RCO                                           =*
+*=  and alpha-hydroxy substituted equivalents.                               =*
+*=  Routine calculates j values for unbranched ketones with or without OH    =*
+*=  substitutions or for ketones with "external" ring structures.            =*
 *=                                                                           =*
-*=  Cross section:  Chong and Kistiakowsky (1964)                            =*
-*=  Quantum yield:  Calvert et al. (2011)                                    =*
+*=  Cross section:  Parameterisations sig = A*exp(-((lambda-lambda_c)/w)**2) =*
+*=  Quantum yield:  estimate (0.75) with equal branching for NorI and NorII  =*
+*=                  for unbranched ketones and estimate (0.14) for ketones   =*
+*=                  with external rings.                                     =*
+*=                                                                           =*
+*-----------------------------------------------------------------------------*
+*=                                                                           =*
+*= Only C3 compounds are computed explicitly. Higher unbranched ketones are  =*
+*= fitted with fit functions:                                                =*
+*= j(unsubst)  = j(C3)*(1.25*exp(CN/11.39)-0.55)                             =*
+*= j(alpha-OH) = j(C3)*(0.73*exp(CN/9.74)-0.09)                              =*
 *=                                                                           =*
 *-----------------------------------------------------------------------------*
 *=  PARAMETERS:                                                              =*
@@ -2675,7 +2687,7 @@
 *=  JLABEL - CHARACTER*lcl, string identifier for each photolysis         (O)=*
 *=           reaction defined                                                =*
 *=  lcl    - INTEGER, length of character for labels                         =*
-*-----------------------------------------------------------------------------*
+*-----------------------------------------------------------------------------*'
 
       IMPLICIT NONE
       INCLUDE 'params'
@@ -2701,49 +2713,24 @@
 
 * local
 
-      REAL    qy,sig
-      REAL    A,lc,w
-      INTEGER CN
+      REAL    qy,sig,sigOH,sigtOH,qy1,qy2,qyc
+      REAL    A,lc,w,AOH,lcOH,wOH,AtOH,lctOH,wtOH
       INTEGER iz,iw
 
 ************************* CH3COCH(OH)CH3 photolysis
 
       j = j+1
-      jlabel(j) = 'C3-Ketone -> products'
+      jlabel(j) = 'lKet -> products'
       j = j+1
-      jlabel(j) = 'C4-Ketone -> products'
+      jlabel(j) = 'lKet(OH) -> NI products'
       j = j+1
-      jlabel(j) = 'C5-Ketone -> products'
+      jlabel(j) = 'lKet(OH) -> NII products'
       j = j+1
-      jlabel(j) = 'C6-Ketone -> products'
+      jlabel(j) = 'cKet -> products'
       j = j+1
-      jlabel(j) = 'C7-Ketone -> products'
+      jlabel(j) = 'cKet(OH) -> products'
       j = j+1
-      jlabel(j) = 'C8-Ketone -> products'
-      j = j+1
-      jlabel(j) = 'C9-Ketone -> products'
-      j = j+1
-      jlabel(j) = 'C10-Ketone -> products'
-      j = j+1
-      jlabel(j) = 'C11-Ketone -> products'
-      j = j+1
-      jlabel(j) = 'C12-Ketone -> products'
-      j = j+1
-      jlabel(j) = 'C13-Ketone -> products'
-      j = j+1
-      jlabel(j) = 'C14-Ketone -> products'
-      j = j+1
-      jlabel(j) = 'C15-Ketone -> products'
-      j = j+1
-      jlabel(j) = 'C16-Ketone -> products'
-      j = j+1
-      jlabel(j) = 'C17-Ketone -> products'
-      j = j+1
-      jlabel(j) = 'C18-Ketone -> products'
-      j = j+1
-      jlabel(j) = 'C19-Ketone -> products'
-      j = j+1
-      jlabel(j) = 'C20-Ketone -> products'
+      jlabel(j) = 'cKet(t-OH) -> products'
 
 
 * cross sections are parameterised with Gaussian fit
@@ -2755,24 +2742,51 @@
 * with (A(CN, T) / 1E-20 cm2) = 4.845e-3 * (T/K) + 2.364*ln(CN) + 1.035
 *      (lc(CN, T) / nm)       = 1.71e-2  * (T/K) + 1.718 * CN   + 265.344
 *       w(CN, T)              = 9.8e-3   * (T/K) - 0.728 * CN   + 29.367
+*
+* for alpha-OH subst. ketones, parameters are adjusted as follows:
+*
+* (A(OH) / 1E-20 cm2) = A + 1.75
+* (lc(OH) / nm)       = lc - 8.0
+* w(OH)               = w
+*
+* if OH is on quaternary carbon atom, parameters change to:
+*
+* (A(t-OH) / 1E-20 cm2) = A + 1.75
+* (lc(t-OH) / nm)       = lc - 8.0
+* w(t-OH)               = w
 
 
 * quantum yields
-
-      qy = 0.75
+! factor of 0.5 is used to represent the equal branching between NI and NII reactions
+! Output has to be applied to every Norrish channel separately
+      qy  = 0.75*0.5
+      qy1 = 0.34
+      qy2 = 0.28
+      qyc = 0.14
 
 
 * combine
       DO iw = 1, nw - 1
          DO iz = 1, nz
-           DO CN = 3,20
-             A   = (4.845e-3 * tlev(iz) + 2.364*log(float(CN)) + 1.035)
-     &             *1.e-20
-             lc  = 1.71e-2   * tlev(iz) + 1.718 * CN   + 265.344
-             w   = 9.8e-3    * tlev(iz) - 0.728 * CN   + 29.367
-             sig = A*exp(-((wc(iw) - lc) / w)**2)
-             sq(j-20+CN,iz,iw) = sig * qy
-           ENDDO
+             A     = 4.845e-3 * tlev(iz) + 2.364*log(3.) + 1.035
+             A     = A*1.e-20
+             lc    = 1.71e-2   * tlev(iz) + 1.718 * 3.   + 265.344
+             w     = 9.8e-3    * tlev(iz) - 0.728 * 3.   + 29.367
+             AOH   = A + 1.75e-20
+             lcOH  = lc - 8.
+             wOH   = w
+             AtOH   = A*0.86
+             lctOH  = lc - 8.
+             wtOH   = w
+             sig   = A*exp(-((wc(iw) - lc) / w)**2)
+             sigOH = AOH*exp(-((wc(iw) - lcOH) / wOH)**2)
+             sigtOH = AtOH*exp(-((wc(iw) - lctOH) / wtOH)**2)
+             sq(j-5,iz,iw) = sig * qy
+             sq(j-4,iz,iw) = sigOH * qy1
+             sq(j-3,iz,iw) = sigOH * qy2
+             sq(j-2,iz,iw) = sig * qyc
+             sq(j-1,iz,iw) = sigOH * qyc
+             sq(j  ,iz,iw) = sigtOH * qyc
          ENDDO
       ENDDO
 
@@ -2780,15 +2794,15 @@
 
 *=============================================================================*
 
-      SUBROUTINE mk21(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! alpha-branched ketones (with Norish II)
+      SUBROUTINE mk21(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! alpha-branched ketones (with Norrish II and OH-subst.)
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  alpha-branched ketone photolysis:                                        =*
 *=                                                                           =*
-*=  Cross section:  same as DIPK                                             =*
-*=  Quantum yield:  same as MIBK                                             =*
+*=  Cross section:  parameterised DIPK cross sections (scaled for OH-subst.) =*
+*=  Quantum yield:  estimate                                                 =*
 *-----------------------------------------------------------------------------*
 
 
@@ -2814,76 +2828,228 @@
 
       INTEGER j
 
-* data arrays
-
-      INTEGER kdata
-      PARAMETER(kdata=580)
-
-      INTEGER i, n
-      REAL x1(kdata)
-      REAL y1(kdata)
-
 * local
 
-      REAL yg(kw)
-      REAL qy1, qy2, qy3, qy4
-      REAL sig
-      INTEGER ierr
+      INTEGER i
+      REAL    A,lc,w,AOH,lcOH,wOH,AtOH,lctOH,wtOH
+      REAL    sig, sigOH, sigtOH
+      REAL    qy1, qy2
       INTEGER iw
 
       j = j+1
-      jlabel(j) = 'a-br. Ket. -> R1CO + R2'
+      jlabel(j) = 'a-br. Ket -> NI products'
       j = j+1
-      jlabel(j) = 'a-br. Ket. -> R2CO + R1'
+      jlabel(j) = 'a-br. Ket -> NII products'
+
       j = j+1
-      jlabel(j) = 'a-br. Ket. -> R1 + R2 + CO'
+      jlabel(j) = 'a-br. Ket(OH) -> NI products'
       j = j+1
-      jlabel(j) = 'a-br. Ket. -> enol + 1-alkene'
+      jlabel(j) = 'a-br. Ket(OH) -> NII products'
+
+      j = j+1
+      jlabel(j) = 'a-br. Ket(t-OH) -> NI products'
+      j = j+1
+      jlabel(j) = 'a-br. Ket(t-OH) -> NII products'
 
 
-* cross sections
-
-      OPEN(UNIT=kin,FILE='DATAJ1/MCMext/KET/di-isopropylket.abs',
-     $     STATUS='old')
-      do i = 1,6
-         read(kin,*)
-      enddo
-
-      n = 111
-      DO i = 1, n
-         READ(kin,*) x1(i), y1(i)
-      ENDDO
-      CLOSE(kin)
-
-      CALL addpnt(x1,y1,kdata,n,x1(1)*(1.-deltax),0.)
-      CALL addpnt(x1,y1,kdata,n,               0.,0.)
-      CALL addpnt(x1,y1,kdata,n,x1(n)*(1.+deltax),0.)
-      CALL addpnt(x1,y1,kdata,n,           1.e+38,0.)
-      CALL inter2(nw,wl,yg,n,x1,y1,ierr)
-      IF (ierr .NE. 0) THEN
-          WRITE(*,*) ierr, jlabel(j)
-          STOP
-      ENDIF
+* cross sections are parameterised as given below
 
 * quantum yields
-
-      qy1 = 0.035
-      qy2 = 0.035
-      qy3 = 0.08
-      qy4 = 0.35
+      qy1 = 0.34
+      qy2 = 0.28
 
 
 * combine xs and qy:
       DO iw = 1, nw - 1
-        sig = yg(iw)
+        A     = 7.9e-20
+        lc    = 288.1
+        w     = 25.4
+        AOH   = A + 1.75e-20
+        lcOH  = lc - 8.
+        wOH   = w
+        AtOH  = A*0.86
+        lctOH = lc - 8.
+        wtOH  = w
+        sig   = A*exp(-((wc(iw) - lc) / w)**2)
+        sigOH = AOH*exp(-((wc(iw) - lcOH) / wOH)**2)
+        sigtOH = AtOH*exp(-((wc(iw) - lctOH) / wtOH)**2)
         DO i = 1, nz
-          sq(j-3,i,iw) = sig * qy1
-          sq(j-2,i,iw) = sig * qy2
-          sq(j-1,i,iw) = sig * qy3
-          sq(j  ,i,iw) = sig * qy4
+          sq(j-5,i,iw) = sig * qy1
+          sq(j-4,i,iw) = sig * qy2
+          sq(j-3,i,iw) = sigOH * qy1
+          sq(j-2,i,iw) = sigOH * qy2
+          sq(j-1,i,iw) = sigtOH * qy1
+          sq(j  ,i,iw) = sigtOH * qy2
         ENDDO
       ENDDO
 
       END
 
 * ============================================================================*
+
+      SUBROUTINE mk22(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! OH-subst. bKet
+
+*-----------------------------------------------------------------------------*
+*=  PURPOSE:                                                                 =*
+*=  Provide the product (cross section) x (quantum yield) for                =*
+*=  beta-branched ketone photolysis:                                         =*
+*=                                                                           =*
+*=  Cross section:  parameterised MIBK cross sections (scaled for OH-subst.) =*
+*=  Quantum yield:  estimate                                                 =*
+*-----------------------------------------------------------------------------*
+
+
+      IMPLICIT NONE
+      INCLUDE 'params'
+
+* input
+
+      INTEGER nw
+      REAL wl(kw), wc(kw)
+
+      INTEGER nz
+
+      REAL tlev(kz)
+      REAL airden(kz)
+
+* weighting functions
+
+      CHARACTER(lcl) jlabel(kj)
+      REAL sq(kj,kz,kw)
+
+* input/output:
+
+      INTEGER j
+
+* local
+
+      INTEGER i
+      REAL    A,lc,w,AOH,lcOH,wOH
+      REAL    sigOH
+      REAL    qy, qy1, qy2, qy3
+      INTEGER iw
+
+      j = j+1
+      jlabel(j) = 'b-br. Ket(OH) -> NI products'
+      j = j+1
+      jlabel(j) = 'b-br. Ket(OH) -> NII products'
+
+
+* cross sections are parameterised as given below
+
+* quantum yields
+      qy1 = 0.34
+      qy2 = 0.28
+
+* combine xs and qy:
+      DO iw = 1, nw - 1
+        A     = 6.38e-20
+        lc    = 281.22
+        w     = 29.16
+        AOH   = A + 1.75e-20
+        lcOH  = lc - 8.
+        wOH   = w
+        sigOH = AOH*exp(-((wc(iw) - lcOH) / wOH)**2)
+        DO i = 1, nz
+          sq(j-1,i,iw) = sigOH * qy1
+          sq(j  ,i,iw) = sigOH * qy2
+        ENDDO
+      ENDDO
+
+      END
+
+*=============================================================================*
+
+      SUBROUTINE mk23(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! OH-subst. uKet
+
+*-----------------------------------------------------------------------------*
+*=  PURPOSE:                                                                 =*
+*=  Provide the product (cross section) x (quantum yield) for                =*
+*=  beta-branched ketone photolysis:                                         =*
+*=                                                                           =*
+*=  Cross section:  parameterised MIBK cross sections (scaled for OH-subst.) =*
+*=  Quantum yield:  estimate                                                 =*
+*-----------------------------------------------------------------------------*
+
+
+      IMPLICIT NONE
+      INCLUDE 'params'
+
+* input
+
+      INTEGER nw
+      REAL wl(kw), wc(kw)
+
+      INTEGER nz
+
+      REAL tlev(kz)
+      REAL airden(kz)
+
+* weighting functions
+
+      CHARACTER(lcl) jlabel(kj)
+      REAL sq(kj,kz,kw)
+
+* input/output:
+
+      INTEGER j
+
+* local
+
+      INTEGER i
+      REAL    A,lc,w,AOH,lcOH,wOH,AtOH,lctOH,wtOH
+      REAL    sigOH,sigtOH
+      REAL    qy, qy1, qy2, qy3
+      INTEGER iw
+
+      j = j+1
+      jlabel(j) = 'uKet(OH) -> RdCO + ROH'
+      j = j+1
+      jlabel(j) = 'uKet(OH) -> ROHCO + Rd'
+      j = j+1
+      jlabel(j) = 'uKet(OH) -> alkene + CO'
+      j = j+1
+      jlabel(j) = 'uKet(t-OH) -> RdCO + ROH'
+      j = j+1
+      jlabel(j) = 'uKet(t-OH) -> ROHCO + Rd'
+      j = j+1
+      jlabel(j) = 'uKet(t-OH) -> alkene + CO'
+
+
+* cross sections are parameterised as given below
+
+* quantum yields
+
+
+* combine xs and qy:
+      DO iw = 1, nw - 1
+        A     = 6.4e-20
+        lc    = 324.8
+        w     = 36.4
+        AOH   = A + 1.75e-20
+        lcOH  = lc - 8.
+        wOH   = w
+        AtOH  = A*0.86
+        lctOH = lc - 8.
+        wtOH  = w
+        sigOH = AOH*exp(-((wc(iw) - lcOH) / wOH)**2)
+        sigtOH = AtOH*exp(-((wc(iw) - lctOH) / wtOH)**2)
+        DO i = 1, nz
+          qy  = exp(-0.055*(wc(iw)-308.)) /
+     $         (5.5 + 9.2e-19*airden(i))
+          qy  = min(qy, 1.)
+          qy1 = 0.2 * qy
+          qy2 = 0.2 * qy
+          qy3 = 0.6 * qy
+          sq(j-5,i,iw) = sigOH * qy1
+          sq(j-4,i,iw) = sigOH * qy2
+          sq(j-3,i,iw) = sigOH * qy3
+          sq(j-2,i,iw) = sigtOH * qy1
+          sq(j-1,i,iw) = sigtOH * qy2
+          sq(j  ,i,iw) = sigtOH * qy3
+        ENDDO
+      ENDDO
+
+      END
+
+*=============================================================================*
