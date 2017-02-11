@@ -178,14 +178,21 @@
 *mk16.  CH3COCH(OH)CH3  + hv -> CH3CO + CH3CHOH
       CALL mk16(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mk17.  CH3COCH(OH)CH3  + hv -> CH3CO + CH3CHOH
+*mk17.  methylacetoin
       CALL mk17(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 *mk20.  RCOR' + hv -> products
+*       RCOR(OH) + hv -> products
       CALL mk20(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 *mk21.  alpha-branched ketones + hv -> products
       CALL mk21(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*mk22.  OH-subst. alpha-branched ketones + hv -> NI + NII products
+      CALL mk22(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*mk22.  OH-subst. unsaturated ketones + hv -> products
+      CALL mk23(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
 ******** Ketene Photochemistry
@@ -232,6 +239,24 @@
 *mn06.  (CH3)2CHCH2CH2ONO2 + hv -> i-C5H11O + NO2
       CALL mn06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
+*mn07.  C1 OH-subst. alkyl nitrates
+      CALL mn07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*mn08.  C≥3 OH-subst. alkyl nitrates
+      CALL mn08(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*mn09.  OH-subst. iNIT
+      CALL mn09(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*mn10.  OH-subst. tNIT
+      CALL mn10(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+
+******** PAN Photochemistry
+
+*mn01.  PANs + hv -> products
+      CALL mn11(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
 
 ******** Dinitrate Photochemistry
 
@@ -249,6 +274,9 @@
 
 *md05.  CH2=CHCH(NO3)CH2NO3 + hv -> products (both channels)
       CALL md05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*md07.  generic unsaturated dinitrates
+      CALL md07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 *md06.  1-methyl-cyclohexyl-1,2-dinitrate + hv -> products (both channels)
       CALL md06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
@@ -291,6 +319,12 @@
 
 *mr04.  (CH3)2COO + hv -> CH3COCH3 + O(3P)
       CALL mr04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+
+******** Sensitivity studies / Tests
+
+*mr01.  Ketone parameterisations
+!     CALL t01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
 ****************************************************************

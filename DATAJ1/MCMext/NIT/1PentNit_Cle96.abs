@@ -1,9 +1,9 @@
-Absorption cross sections for n-pentyl nitrate measured by
-Clemitshaw et al., J Photochem Photobiol A 102, 117-126, 1997.
-taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
-last checked: 28.01.2016
-
-λ / nm	σ / cm2
+# Absorption cross sections for n-pentyl nitrate measured by
+# Clemitshaw et al., J Photochem Photobiol A 102, 117-126, 1997.
+# taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
+# last checked: 28.01.2016
+#
+# λ / nm	σ / cm2
 270    3.28e-20
 275    2.76e-20
 280    2.30e-20

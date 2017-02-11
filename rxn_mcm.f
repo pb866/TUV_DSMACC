@@ -13280,7 +13280,7 @@ c            sq(j,iz,iw) = yg(iw)
         ENDIF
         DO i = 1, nz
 
-          sig = yg(iw) * EXP(yg2(iw)*(tlev(i)-298.))
+          sig = yg(iw) * EXP(yg1(iw)*(tlev(i)-298.))
 
           sq(j-1,i,iw) = qyNO2 * sig
           sq(j,i,iw)   = qyNO3 * sig
@@ -15246,6 +15246,8 @@ c            sq(j,iz,iw) = yg(iw)
       jlabel(j) = 'CH3(OONO2) -> CH3(OO) + NO2'
       j = j + 1
       jlabel(j) = 'CH3(OONO2) -> CH3(O) + NO3'
+      j = j + 1
+      jlabel(j) = 'ROONO2 -> products'
 
 * cross section from
 *= I. Bridier, R. Lesclaux, and B. Veyret, "Flash photolysis kinetic study
@@ -15308,8 +15310,9 @@ c            sq(j,iz,iw) = yg(iw)
       DO iw = 1, nw-1
         DO i = 1, nz
 
-          sq(j-1,i,iw) = qy1 * yg(iw)
-          sq(j  ,i,iw) = qy2 * yg(iw)
+          sq(j-2,i,iw) = qy1 * yg(iw)
+          sq(j-1,i,iw) = qy2 * yg(iw)
+          sq(j  ,i,iw) = (qy1+qy2) * yg(iw)
 
         ENDDO
       ENDDO

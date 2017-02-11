@@ -1,9 +1,9 @@
-Absorption cross sections for 2-pentyl nitrate from least square fit by
-Roberts and Fajer, Environ Sci Technol 23, 945-951, 1989.
-taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
-last checked: 28.01.2016
-
-λ / nm	σ / cm2
+# Absorption cross sections for 2-pentyl nitrate from least square fit by
+# Roberts and Fajer, Environ Sci Technol 23, 945-951, 1989.
+# taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
+# last checked: 28.01.2016
+#
+# λ / nm	σ / cm2
 270    4.35e-20
 272    4.16e-20
 274    3.95e-20
