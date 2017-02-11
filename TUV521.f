@@ -397,7 +397,7 @@ c      izfix = 0
      $        nstr, '-stream radiative transfer'
       ENDIF
 
-      WRITE(*,*) 'calculating....'
+      WRITE(*,*) 'TUV 5.2.1: Calculating photolysis rates...'
 
 * ___ SECTION 2: SET GRIDS _________________________________________________
 
@@ -462,7 +462,7 @@ C      zpbl = 3.
          ENDDO
  19      CONTINUE
          ipbl = iz - 1
-         write(*,*) 'top of PBL index, height (km) ', ipbl, z(ipbl)
+!        write(*,*) 'top of PBL index, height (km) ', ipbl, z(ipbl)
 
 * specify pbl concetrations, in parts per billion
 
@@ -569,7 +569,7 @@ C      zpbl = 3.
       CALL swbiol(nw,wl,wc, ns,sw,slabel)
       CALL swchem(nw,wl,nz,tlev,aircon, nj,sj,jlabel)
       CALL mcmext(nw,wl,nz,tlev,aircon, nj,sj,jlabel)
-      WRITE(*,'(A,I4)') " Number of photoreactions in database:", nj
+!     WRITE(*,'(A,I4)') " Number of photoreactions in database:", nj
 
       wrfchm = .FALSE.
       IF (inpfil .EQ. 'defin5') wrfchm = .TRUE.
@@ -716,7 +716,7 @@ c       STOP
 
          zen = sza(it)
 
-         WRITE(*,200) it, zen, esfact(it)
+!        WRITE(*,200) it, zen, esfact(it)
          WRITE(kout,200) it, zen, esfact(it)
  200     FORMAT('step = ', I4,' sza = ', F9.3,
      $        ' Earth-sun factor = ', F10.7)
@@ -860,10 +860,10 @@ c 444  format(1pe11.4,1x,a50)
          IF(again .EQ. 'y' .OR. again .EQ. 'Y') GO TO 1000
       ENDIF
 
-      WRITE(rnm,"(3A)") 'cd ..; mv tuvlog.txt ', trim(outfil), '.log'
-      CALL SYSTEM (rnm)
-
-      CLOSE(iout)
+!     WRITE(rnm,"(3A)") 'cd ..; mv tuvlog.txt ', trim(outfil), '.log'
+!     CALL SYSTEM (rnm)
+!
+!     CLOSE(iout)
       CLOSE(kout)
       END
 

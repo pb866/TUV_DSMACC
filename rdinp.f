@@ -314,7 +314,7 @@ CSM         PAUSE
 
  99   CONTINUE
 
-      WRITE(*,*) 'done: loading inputs'
+!     WRITE(*,*) 'done: loading inputs'
 
       CALL write1(kout,
      $     inpfil, outfil, nstr,   lat,    lon,    tmzone,
