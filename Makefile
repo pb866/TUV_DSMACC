@@ -18,7 +18,7 @@ USE_INCL = TUV521.o \
 		   swphys.o swbiol.o swchem.o mcmext.o\
 		   rxn_mcm.o rxn_ald.o rxn_ket.o rxn_dicar.o\
 		   rxn_nit.o rxn_dinit.o rxn_rooh.o\
-		   rxn_mult.o rxn_rad.o rxn_test.o qys.o \
+		   rxn_mult.o rxn_rad.o qys.o \
 		   wshift.o \
 		   vpair.o vptmp.o vpo3.o \
 		   odrl.o odo3.o \
@@ -28,6 +28,7 @@ USE_INCL = TUV521.o \
 		   la_srb.o \
 		   rtrans.o \
 		   savout.o
+# Include in list above, if needed: rxn_test.o
 
 FOBJS = numer.o functs.o orbit.o
 
