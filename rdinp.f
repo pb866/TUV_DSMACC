@@ -141,7 +141,8 @@ CSM         PAUSE
      $     inpfil .EQ. 'defin3') THEN
          OPEN(UNIT=kin,FILE='TUV_5.2.1/INPUTS/'//inpfil,STATUS='OLD')
       ELSE
-         OPEN(UNIT=kin,FILE='TUV_5.2.1/INPUTS/'//inpfil,STATUS='UNKNOWN')
+         OPEN(UNIT=kin,FILE='TUV_5.2.1/INPUTS/'//inpfil,
+     $        STATUS='UNKNOWN')
       ENDIF
       READ(kin,130) avar
  130  FORMAT(A7)
