@@ -172,7 +172,7 @@
 
       END
 
-* ============================================================================*
+*=============================================================================*
 
       SUBROUTINE mk02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! methyl n-propyl ketone
 
@@ -365,7 +365,7 @@
 
       END
 
-* ============================================================================*
+*=============================================================================*
 
       SUBROUTINE mk03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! methyl n-butyl ketone
 
@@ -528,7 +528,7 @@
 
       END
 
-* ============================================================================*
+*=============================================================================*
 
       SUBROUTINE mk04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! ethyl n-propyl ketone
 
@@ -643,7 +643,7 @@
 
       END
 
-* ============================================================================*
+*=============================================================================*
 
       SUBROUTINE mk05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! MIPK
 
@@ -759,7 +759,7 @@
 
       END
 
-* ============================================================================*
+*=============================================================================*
 
       SUBROUTINE mk06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! MIBK
 
@@ -808,13 +808,17 @@
 * local
 
       REAL yg(kw)
-      REAL qy1, qy2, qy3, qy4
+      REAL qy, qy1, qy2, qy3, qy4
       REAL sig
       INTEGER ierr, idum
       INTEGER iw
 
       INTEGER myld
 
+! Now scaling final j value by effective quantum yields to derive
+! single channels of MIBK photolysis
+      j = j+1
+      jlabel(j) = 'MIBK -> products'
       j = j+1
       jlabel(j) = 'MIBK -> CH3CO + i-C4H9'
       j = j+1
@@ -827,9 +831,9 @@
       IF(vers==1)THEN
         myld = 1 !From GECKO-A TUV version (Bernard Aumont group), not TUV5.2
        ELSEIF(vers==2)THEN
-        myld = 2
+        myld = 4
        ELSEIF(vers==0) THEN
-        myld = 3
+        myld = 2
        ELSE
         STOP "'vers' not set. Choose value between 0 and 2 in 'params'."
       ENDIF
@@ -848,6 +852,9 @@
         WRITE(kout,'(2A)')
      &       ' MIBK quantum yields estimates (0.21/0.15)',
      &       ' based on Calvert et al. 2011 book.'
+       ELSEIF(myld.EQ.4) THEN
+        WRITE(kout,'(A)')
+     &       ' MIBK QY=1 with external scaling of effective QYs.'
        ELSE
         STOP "'myld' not defined for MIBK photolysis."
       ENDIF
@@ -882,20 +889,29 @@
 * quantum yields
 
       IF(myld==1) THEN
+        qy  = 0.
         qy1 = 0.34*0.3
         qy2 = 0.
         qy3 = 0.
         qy4 = 0.34*0.7
        ELSEIF(myld==2) THEN
+        qy  = 0.
         qy1 = 0.035
         qy2 = 0.035
         qy3 = 0.08
         qy4 = 0.35
        ELSEIF(myld==3) THEN
+        qy  = 0.
         qy1 = 0.035
         qy2 = 0.035
         qy3 = 0.08
         qy4 = 0.21
+       ELSEIF(myld==4) THEN
+        qy  = 1.
+        qy1 = 0.
+        qy2 = 0.
+        qy3 = 0.
+        qy4 = 0.
       ENDIF
 
 
@@ -903,6 +919,7 @@
       DO iw = 1, nw - 1
         sig = yg(iw)
         DO i = 1, nz
+          sq(j-4,i,iw) = sig * qy
           sq(j-3,i,iw) = sig * qy1
           sq(j-2,i,iw) = sig * qy2
           sq(j-1,i,iw) = sig * qy3
@@ -912,7 +929,7 @@
 
       END
 
-* ============================================================================*
+*=============================================================================*
 
       SUBROUTINE mk07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 4-Me-2-hexanone
 
@@ -975,6 +992,10 @@
 !     jlabel(j) = '4-Me-2-hexanone -> CH3CH2CH(CH3)CH2CO + CH3'
 !     j = j+1
 !     jlabel(j) = '4-Me-2-hexanone -> CH2CH(CH3)CH2CH3 + CO + CH3'
+! overall channel for external scaling:
+      j = j+1
+      jlabel(j) = '4-Me-2-hexanone -> products'
+! explicit channels:
       j = j+1
       jlabel(j) = '4-Me-2-hexanone -> CH3C(OH)=CH2 + 2-butene'
       j = j+1
@@ -983,7 +1004,7 @@
       IF(vers==1)THEN
         myld = 1 !From GECKO-A TUV version (Bernard Aumont group), not TUV5.2
        ELSEIF(vers==2)THEN
-        myld = 2
+        myld = 3
        ELSEIF(vers==0) THEN
         myld = 2
        ELSE
@@ -1034,9 +1055,9 @@
 * combine xs and qy:
       DO iw = 1, nw - 1
         sig = yg(iw)
-        IF(myld==1) THEN
+        yld: IF(myld==1) THEN
           qy  = 0.34*0.7
-         ELSEIF(myld==2) THEN
+         ELSEIF(myld==2) THEN yld
           IF(wc(iw)<=254.) THEN
             qy = 0.36
            ELSEIF(wc(iw)>313.) THEN
@@ -1044,7 +1065,7 @@
            ELSE
             qy = 0.36 - (wc(iw)-254.) * (0.35/59.)
           ENDIF
-        ENDIF
+        ENDIF yld
         DO i = 1, nz
           qyrat = (-2.11e-3*wc(iw) + 0.7745)
      &          * 10**(171.92 * (1/317. - 1/tlev(i)))
@@ -1055,6 +1076,7 @@
             qy1 = 0.
             qy2 = 0.
           ENDIF
+          sq(j-2,i,iw) = sig
           sq(j-1,i,iw) = sig * qy1
           sq(j  ,i,iw) = sig * qy2
         ENDDO
@@ -1062,7 +1084,7 @@
 
       END
 
-* ============================================================================*
+*=============================================================================*
 
       SUBROUTINE mk08(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 5-Me-2-hexanone
 
@@ -1111,13 +1133,17 @@
 * local
 
       REAL yg(kw)
-      REAL qyI, qy1, qy2, qy3, qy4, qydum
+      REAL qy, qyI, qy1, qy2, qy3, qy4, qydum
       REAL sig
       INTEGER ierr, idum
       INTEGER iw
 
       INTEGER myld
 
+! Now scaling final j value by effective quantum yields to derive
+! single channels of 5-Me-2-hexanone photolysis
+      j = j+1
+      jlabel(j) = '5-Me-2-hexanone -> products'
       j = j+1
       jlabel(j) = '5-Me-2-hexanone -> CH3CO + CH2CH2CH(CH3)2'
       j = j+1
@@ -1130,9 +1156,9 @@
       IF(vers==1)THEN
         myld = 1 !From GECKO-A TUV version (Bernard Aumont group), not TUV5.2
        ELSEIF(vers==2)THEN
-        myld = 3
+        myld = 5
        ELSEIF(vers==0) THEN
-        myld = 2
+        myld = 3
        ELSE
         STOP "'vers' not set. Choose value between 0 and 2 in 'params'."
       ENDIF
@@ -1155,6 +1181,9 @@
         WRITE(kout,'(2A)')
      &       ' 5-Me-2-hexanone quantum yields estimated',
      &       ' same as 4-Me-2-hexanone.'
+       ELSEIF(myld.EQ.5) THEN
+        WRITE(kout,'(A)')
+     &  ' 5-Me-2-hexanone QY=1 with external scaling of effective QYs.'
        ELSE
         STOP "'myld' not defined for 5-Me-2-hexanone photolysis."
       ENDIF
@@ -1190,17 +1219,20 @@
       DO iw = 1, nw - 1
         sig = yg(iw)
         DO i = 1, nz
-          IF(myld==1) THEN
+          yld: IF(myld==1) THEN
+            qy  = 0.
             qy1 = 0.34*0.3
             qy2 = 0.
             qy3 = 0.
             qy4 = 0.34*0.7
-           ELSEIF(myld==3) THEN
+          ELSEIF(myld==3) THEN yld
+            qy  = 0.
             qy1 = 0.035
             qy2 = 0.035
             qy3 = 0.08
             qy4 = 0.35
-           ELSEIF(myld==2 .OR. myld==4) THEN
+          ELSEIF(myld==2 .OR. myld==4) THEN yld
+            qy = 0.
             IF(wc(iw)<=254.) THEN
               qy4 = 0.36
              ELSEIF(wc(iw)>313.) THEN
@@ -1219,8 +1251,15 @@
               qy2 = 0.
               qy1 = 0.
             ENDIF
-          ENDIF
+           ELSEIF(myld==5) THEN yld
+            qy  = 1.
+            qy1 = 0.
+            qy2 = 0.
+            qy3 = 0.
+            qy4 = 0.
+          ENDIF yld
 
+          sq(j-4,i,iw) = sig * qy
           sq(j-3,i,iw) = sig * qy1
           sq(j-2,i,iw) = sig * qy2
           sq(j-1,i,iw) = sig * qy3
@@ -1231,7 +1270,7 @@
 
       END
 
-* ============================================================================*
+*=============================================================================*
 
       SUBROUTINE mk09(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! di-isopropyl ketone
 
@@ -1279,15 +1318,19 @@
 * local
 
       REAL yg(kw)
-      REAL qy1, qy2
+!     REAL qy1, qy2
       REAL sig
       INTEGER ierr
       INTEGER iw
 
+! Now scaling final j value by effective quantum yields to derive
+! single channels of DIPK photolysis
       j = j+1
-      jlabel(j) = 'CH3CH(CH3)COCH(CH3)2 -> i-C3H7CO + i-C3H7'
-      j = j+1
-      jlabel(j) = 'CH3CH(CH3)COCH(CH3)2 -> 2 i-C3H7 + CO'
+      jlabel(j) = 'CH3CH(CH3)COCH(CH3)2 -> products'
+!     j = j+1
+!     jlabel(j) = 'CH3CH(CH3)COCH(CH3)2 -> i-C3H7CO + i-C3H7'
+!     j = j+1
+!     jlabel(j) = 'CH3CH(CH3)COCH(CH3)2 -> 2 i-C3H7 + CO'
 
 
 * cross sections
@@ -1317,22 +1360,22 @@
 
 * quantum yields
 
-      qy1 = 0.5
-      qy2 = 0.5
+!     qy1 = 0.5
+!     qy2 = 0.5
 
 
 * combine xs and qy:
       DO iw = 1, nw - 1
         sig = yg(iw)
         DO i = 1, nz
-          sq(j-1,i,iw) = sig * qy1
-          sq(j  ,i,iw) = sig * qy2
+!         sq(j-1,i,iw) = sig * qy1
+          sq(j  ,i,iw) = sig!* qy2
         ENDDO
       ENDDO
 
       END
 
-* ============================================================================*
+*=============================================================================*
 
       SUBROUTINE mk10(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! c-C4H6O
 
@@ -1391,6 +1434,8 @@
       jlabel(j) = 'c-C4H6O + hv -> C3H6 + CO'
       j = j+1
       jlabel(j) = 'c-C4H6O + hv -> c-C3H6 + CO'
+      j = j+1
+      jlabel(j) = 'genC4cKet'
 
 
 * cross sections
@@ -1457,15 +1502,16 @@
         qy2   = qyII/(1.+1./qyrat)
         qy3   = qyII/(1.+ qyrat)
         DO i = 1, nz
-          sq(j-2,i,iw) = sig * qy1
-          sq(j-1,i,iw) = sig * qy2
-          sq(j  ,i,iw) = sig * qy3
+          sq(j-3,i,iw) = sig * qy1
+          sq(j-2,i,iw) = sig * qy2
+          sq(j-1,i,iw) = sig * qy3
+          sq(j  ,i,iw) = sig
         ENDDO
       ENDDO
 
       END
 
-* ============================================================================*
+*=============================================================================*
 
       SUBROUTINE mk11(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! c-C6H10O
 
@@ -1524,6 +1570,8 @@
       jlabel(j) = 'c-C6H10O + hv -> cyclopentane + CO'
       j = j+1
       jlabel(j) = 'c-C6H10O + hv -> 1-pentene + CO'
+      j = j+1
+      jlabel(j) = 'genC6cKet'
 
 
 * cross sections
@@ -1631,15 +1679,16 @@
           qy3 = max(0.,9.77e-3*wc(iw)-1.9646)
         ENDIF
         DO i = 1, nz
-          sq(j-2,i,iw) = sig * qy1
-          sq(j-1,i,iw) = sig * qy2
-          sq(j  ,i,iw) = sig * qy3
+          sq(j-3,i,iw) = sig * qy1
+          sq(j-2,i,iw) = sig * qy2
+          sq(j-1,i,iw) = sig * qy3
+          sq(j  ,i,iw) = sig
         ENDDO
       ENDDO
 
       END
 
-* ============================================================================*
+*=============================================================================*
 
       SUBROUTINE mk12(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! c-C5H8O
 
@@ -1698,6 +1747,8 @@
       jlabel(j) = 'c-C5H8O + hv -> c-C4H8 + CO'
       j = j+1
       jlabel(j) = 'c-C5H8O + hv -> CH2=CHCH2CH2CHO'
+      j = j+1
+      jlabel(j) = 'genC5cKet'
 
 
 * cross sections
@@ -1747,15 +1798,16 @@
         qy1   = qyI/(1.+ qyrat)
         qy2   = qyI/(1.+1./qyrat)
         DO i = 1, nz
-          sq(j-2,i,iw) = sig * qy1
-          sq(j-1,i,iw) = sig * qy2
-          sq(j  ,i,iw) = sig * qy3
+          sq(j-3,i,iw) = sig * qy1
+          sq(j-2,i,iw) = sig * qy2
+          sq(j-1,i,iw) = sig * qy3
+          sq(j  ,i,iw) = sig
         ENDDO
       ENDDO
 
       END
 
-* ============================================================================*
+*=============================================================================*
 
       SUBROUTINE mk13(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! c-C3H4O
 
@@ -1812,6 +1864,8 @@
       jlabel(j) = 'c-C3H4O + hv -> C2H4 + CO'
       j = j+1
       jlabel(j) = 'c-C3H4O + hv -> further products'
+      j = j+1
+      jlabel(j) = 'genC3cKet'
 
 
 * cross sections
@@ -1869,14 +1923,15 @@
         qy1 = yg1(iw)
         qy2 = qy - qy1
         DO i = 1, nz
-          sq(j-1,i,iw) = sig * qy1
-          sq(j  ,i,iw) = sig * qy2
+          sq(j-2,i,iw) = sig * qy1
+          sq(j-1,i,iw) = sig * qy2
+          sq(j  ,i,iw) = sig
         ENDDO
       ENDDO
 
       END
 
-* ============================================================================*
+*=============================================================================*
 
       SUBROUTINE mk14(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! EVK
 
@@ -1959,6 +2014,8 @@
       jlabel(j) = 'CH3CH2COCH=CH2 -> C2H3 + C2H5CO'
       j = j+1
       jlabel(j) = 'CH3CH2COCH=CH2 -> 1-C4H8 + CO'
+      j = j+1
+      jlabel(j) = 'genuKet(poly)'
 
 
       OPEN(UNIT=kin,FILE='DATAJ1/MCMext/KET/EVK.abs',
@@ -2000,9 +2057,10 @@
             qy1 = 0.2 * qy
             qy2 = 0.2 * qy
             qy3 = 0.6 * qy
-            sq(j-2,i,iw) = yg(iw) * qy1
-            sq(j-1,i,iw) = yg(iw) * qy2
-            sq(j  ,i,iw) = yg(iw) * qy3
+            sq(j-3,i,iw) = yg(iw) * qy1
+            sq(j-2,i,iw) = yg(iw) * qy2
+            sq(j-1,i,iw) = yg(iw) * qy3
+            sq(j  ,i,iw) = yg(iw)
          ENDDO
       ENDDO
 
@@ -2583,6 +2641,8 @@
 
       j = j+1
       jlabel(j) = 'CH3CH=C=O -> C2H4 + CO'
+      j = j+1
+      jlabel(j) = 'genKete(poly)'
 
 
 * cross sections
@@ -2638,7 +2698,8 @@
 * combine
       DO iw = 1, nw - 1
          DO i = 1, nz
-            sq(j,i,iw) = yg(iw) * yg1(iw)
+            sq(j-1,i,iw) = yg(iw) * yg1(iw)
+            sq(j  ,i,iw) = yg(iw)
          ENDDO
       ENDDO
 
@@ -2646,7 +2707,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE mk20(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! Generic unbranched or cyclic ketones
+      SUBROUTINE mk20(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! Generic unbranched or ext. cyclic ketones
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -2713,22 +2774,16 @@
 
 * local
 
-      REAL    qy,sig,sigOH,sigtOH,qy1,qy2,qyc
+      REAL    sig,sigOH,sigtOH !,qy,qy1,qy2,qyc
       REAL    A,lc,w,AOH,lcOH,wOH,AtOH,lctOH,wtOH
       INTEGER iz,iw
 
 ************************* CH3COCH(OH)CH3 photolysis
 
       j = j+1
-      jlabel(j) = 'lKet -> products'
+      jlabel(j) = 'lcKet -> products'
       j = j+1
-      jlabel(j) = 'lKet(OH) -> NI products'
-      j = j+1
-      jlabel(j) = 'lKet(OH) -> NII products'
-      j = j+1
-      jlabel(j) = 'cKet -> products'
-      j = j+1
-      jlabel(j) = 'cKet(OH) -> products'
+      jlabel(j) = 'lcKet(OH) -> products'
       j = j+1
       jlabel(j) = 'cKet(t-OH) -> products'
 
@@ -2757,12 +2812,12 @@
 
 
 * quantum yields
-! factor of 0.5 is used to represent the equal branching between NI and NII reactions
-! Output has to be applied to every Norrish channel separately
-      qy  = 0.75*0.5
-      qy1 = 0.34
-      qy2 = 0.28
-      qyc = 0.14
+! reaction pathways (NI and NII channels) are now represented by
+! scaling the final j value in the mechanism
+C      qy  = 0.75*0.5
+C      qy1 = 0.34
+C      qy2 = 0.28
+C      qyc = 0.14
 
 
 * combine
@@ -2781,12 +2836,9 @@
              sig   = A*exp(-((wc(iw) - lc) / w)**2)
              sigOH = AOH*exp(-((wc(iw) - lcOH) / wOH)**2)
              sigtOH = AtOH*exp(-((wc(iw) - lctOH) / wtOH)**2)
-             sq(j-5,iz,iw) = sig * qy
-             sq(j-4,iz,iw) = sigOH * qy1
-             sq(j-3,iz,iw) = sigOH * qy2
-             sq(j-2,iz,iw) = sig * qyc
-             sq(j-1,iz,iw) = sigOH * qyc
-             sq(j  ,iz,iw) = sigtOH * qyc
+             sq(j-2,iz,iw) = sig
+             sq(j-1,iz,iw) = sigOH
+             sq(j  ,iz,iw) = sigtOH
          ENDDO
       ENDDO
 
@@ -2833,30 +2885,28 @@
       INTEGER i
       REAL    A,lc,w,AOH,lcOH,wOH,AtOH,lctOH,wtOH
       REAL    sig, sigOH, sigtOH
-      REAL    qy1, qy2
+C      REAL    qy1, qy2, qy1OH, qy2OH
       INTEGER iw
 
       j = j+1
-      jlabel(j) = 'a-br. Ket -> NI products'
-      j = j+1
-      jlabel(j) = 'a-br. Ket -> NII products'
+      jlabel(j) = 'a-br. Ket -> products'
 
       j = j+1
-      jlabel(j) = 'a-br. Ket(OH) -> NI products'
-      j = j+1
-      jlabel(j) = 'a-br. Ket(OH) -> NII products'
+      jlabel(j) = 'a-br. Ket(OH) -> products'
 
       j = j+1
-      jlabel(j) = 'a-br. Ket(t-OH) -> NI products'
-      j = j+1
-      jlabel(j) = 'a-br. Ket(t-OH) -> NII products'
+      jlabel(j) = 'a-br. Ket(t-OH) -> products'
 
 
 * cross sections are parameterised as given below
 
 * quantum yields
-      qy1 = 0.34
-      qy2 = 0.28
+! Now scaling j values externally with effective quantum yields
+C      qy1   = 0.15
+C      qy2   = 0.35
+C      qy1OH = 0.34
+C      qy2OH = 0.28
+
 
 
 * combine xs and qy:
@@ -2874,12 +2924,9 @@
         sigOH = AOH*exp(-((wc(iw) - lcOH) / wOH)**2)
         sigtOH = AtOH*exp(-((wc(iw) - lctOH) / wtOH)**2)
         DO i = 1, nz
-          sq(j-5,i,iw) = sig * qy1
-          sq(j-4,i,iw) = sig * qy2
-          sq(j-3,i,iw) = sigOH * qy1
-          sq(j-2,i,iw) = sigOH * qy2
-          sq(j-1,i,iw) = sigtOH * qy1
-          sq(j  ,i,iw) = sigtOH * qy2
+          sq(j-2,i,iw) = sig
+          sq(j-1,i,iw) = sigOH
+          sq(j  ,i,iw) = sigtOH
         ENDDO
       ENDDO
 
@@ -2926,20 +2973,21 @@
       INTEGER i
       REAL    A,lc,w,AOH,lcOH,wOH
       REAL    sigOH
-      REAL    qy, qy1, qy2, qy3
+!     REAL    qy, qy1, qy2, qy3
       INTEGER iw
 
       j = j+1
-      jlabel(j) = 'b-br. Ket(OH) -> NI products'
-      j = j+1
-      jlabel(j) = 'b-br. Ket(OH) -> NII products'
+      jlabel(j) = 'b-br. Ket(OH) -> products'
+!     j = j+1
+!     jlabel(j) = 'b-br. Ket(OH) -> NII products'
 
 
 * cross sections are parameterised as given below
 
 * quantum yields
-      qy1 = 0.34
-      qy2 = 0.28
+! Now externally scaled
+!     qy1 = 0.34
+!     qy2 = 0.28
 
 * combine xs and qy:
       DO iw = 1, nw - 1
@@ -2951,8 +2999,8 @@
         wOH   = w
         sigOH = AOH*exp(-((wc(iw) - lcOH) / wOH)**2)
         DO i = 1, nz
-          sq(j-1,i,iw) = sigOH * qy1
-          sq(j  ,i,iw) = sigOH * qy2
+!         sq(j-1,i,iw) = sigOH * qy1
+          sq(j  ,i,iw) = sigOH!* qy2
         ENDDO
       ENDDO
 
@@ -3014,6 +3062,10 @@
       jlabel(j) = 'uKet(t-OH) -> ROHCO + Rd'
       j = j+1
       jlabel(j) = 'uKet(t-OH) -> alkene + CO'
+      j = j+1
+      jlabel(j) = 'genuKet(OHpoly)'
+      j = j+1
+      jlabel(j) = 'genuKet(t-OHpoly)'
 
 
 * cross sections are parameterised as given below
@@ -3041,12 +3093,14 @@
           qy1 = 0.2 * qy
           qy2 = 0.2 * qy
           qy3 = 0.6 * qy
-          sq(j-5,i,iw) = sigOH * qy1
-          sq(j-4,i,iw) = sigOH * qy2
-          sq(j-3,i,iw) = sigOH * qy3
-          sq(j-2,i,iw) = sigtOH * qy1
-          sq(j-1,i,iw) = sigtOH * qy2
-          sq(j  ,i,iw) = sigtOH * qy3
+          sq(j-7,i,iw) = sigOH * qy1
+          sq(j-6,i,iw) = sigOH * qy2
+          sq(j-5,i,iw) = sigOH * qy3
+          sq(j-4,i,iw) = sigtOH * qy1
+          sq(j-3,i,iw) = sigtOH * qy2
+          sq(j-2,i,iw) = sigtOH * qy3
+          sq(j-1,i,iw) = sigOH
+          sq(j  ,i,iw) = sigtOH
         ENDDO
       ENDDO
 

@@ -70,7 +70,7 @@
       REAL yg(kw),yg1(kw),ygoh(kw)
       REAL qy1, qy2, qy0, eta, qyoh
       REAL sig,sigoh
-      INTEGER ierr, idum
+      INTEGER ierr
       INTEGER iw
 
       INTEGER myld
@@ -100,8 +100,7 @@
 
       n = 106
       DO i = 1, n
-         READ(kin,*) idum, y1(i)
-         x1(i) = FLOAT(idum)
+         READ(kin,*) x1(i), y1(i)
          y1(i) = y1(i)*1.e-20
       ENDDO
       CLOSE(kin)
@@ -182,8 +181,7 @@
 
       n = 11
       DO i = 1, n
-         READ(kin,*) idum, y1(i)
-         x1(i) = FLOAT(idum)
+         READ(kin,*) x1(i), y1(i)
       ENDDO
       CLOSE(kin)
 
@@ -204,7 +202,6 @@
          sig = yg(iw)
          eta = MAX(0.,yg1(iw)/qy0-1.)
          sigoh = ygoh(iw)
-         WRITE(19,*) wc(iw),sig,sigoh
          DO i = 1, nz
            qy1 = qy0*(1.+eta)/(1.+eta*airden(i)/2.465e19)
            sq(j-5,i,iw) = sig * qy1
@@ -289,7 +286,7 @@
       REAL yg(kw), yg1(kw), dum
       REAL qy
       REAL sig
-      INTEGER ierr, idum
+      INTEGER ierr
       INTEGER iw
 
       INTEGER mabs, myld
@@ -375,8 +372,7 @@
 
         n = 121
         DO i = 1, n
-           READ(kin,*) idum, y1(i)
-           x1(i) = FLOAT(idum)
+           READ(kin,*) x1(i), y1(i)
            y1(i) = y1(i) * 1E-20
         ENDDO
         CLOSE(kin)
@@ -420,8 +416,7 @@
 
         n = 73
         DO i = 1, n
-           READ(kin,*) idum, dum, y1(i),y2(i)
-           x1(i) = FLOAT(idum)
+           READ(kin,*) x1(i), dum, y1(i),y2(i)
            x2(i) = x1(i)
         ENDDO
         CLOSE(kin)
@@ -436,8 +431,7 @@
 
         n = 11
         DO i = 1, n
-           READ(kin,*) idum, y1(i)
-           x1(i) = FLOAT(idum)
+           READ(kin,*) x1(i), y1(i)
         ENDDO
         CLOSE(kin)
 
@@ -682,7 +676,7 @@
       REAL yg(kw), yg1(kw), yg2(kw), ygoh(kw), dum
       REAL qy1, qy2, qy3, qy0, eta, ptorr,qyoh
       REAL sig, sigoh
-      INTEGER ierr, idum
+      INTEGER ierr
       INTEGER iw
 
       INTEGER mabs, myld
@@ -842,8 +836,7 @@
 
         n = 66
         DO i = 1, n
-          READ(kin,*) idum, y1(i)
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), y1(i)
         ENDDO
         CLOSE(kin)
       ENDIF
@@ -874,8 +867,7 @@
 
         n = 11
         DO i = 1, n
-          READ(kin,*) idum, y1(i)
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), y1(i)
         ENDDO
         CLOSE(kin)
 
@@ -980,7 +972,7 @@
       REAL yg(kw), yg1(kw), yg2(kw), dum
       REAL qy1, qy2, qy0, eta
       REAL sig
-      INTEGER ierr, idum
+      INTEGER ierr
       INTEGER iw
 
       INTEGER mabs, myld
@@ -1057,8 +1049,7 @@
 
         n = 23
         DO i = 1, n
-          READ(kin,*) idum, y1(i), dum
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), y1(i), dum
         ENDDO
         CLOSE(kin)
 
@@ -1073,8 +1064,7 @@
 
         n = 61
         DO i = 1, n
-          READ(kin,*) idum, y1(i), dum, dum
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), y1(i), dum, dum
           y1(i) = y1(i) * 1.E-20
         ENDDO
         CLOSE(kin)
@@ -1090,8 +1080,7 @@
 
         n = 88
         DO i = 1, n
-          READ(kin,*) idum, y1(i)
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), y1(i)
         ENDDO
         CLOSE(kin)
 
@@ -1106,8 +1095,7 @@
 
         n = 63
         DO i = 1, n
-          READ(kin,*) idum, y1(i)
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), y1(i)
           y1(i) = y1(i) * 1.E-20
         ENDDO
         CLOSE(kin)
@@ -1135,8 +1123,7 @@
 
         n = 23
         DO i = 1, n
-          READ(kin,*) idum, dum, y1(i)
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), dum, y1(i)
         ENDDO
         CLOSE(kin)
 
@@ -1164,8 +1151,7 @@
         n1 = n
         n2 = n
         DO i = 1, n
-          READ(kin,*) idum, dum, y2(i), y1(i)
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), dum, y2(i), y1(i)
           x2(i) = x1(i)
         ENDDO
         CLOSE(kin)
@@ -1268,7 +1254,7 @@
       REAL yg(kw), yg1(kw), dum
       REAL qy0, qy1, qy2
       REAL sig
-      INTEGER ierr, idum
+      INTEGER ierr
       INTEGER iw
 
       INTEGER mabs, myld
@@ -1342,8 +1328,7 @@
 
         n = 23
         DO i = 1, n
-          READ(kin,*) idum, y1(i), dum
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), y1(i), dum
         ENDDO
         CLOSE(kin)
 
@@ -1358,8 +1343,7 @@
 
         n = 63
         DO i = 1, n
-          READ(kin,*) idum, y1(i)
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), y1(i)
           y1(i) = y1(i) * 1.E-20
         ENDDO
         CLOSE(kin)
@@ -1392,8 +1376,7 @@
         enddo
         n = 18
         DO i = 1, n
-          READ(kin,*) idum, dum, y1(i)
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), dum, y1(i)
           y1(i) = y1(i)*1.E-21
         ENDDO
         CLOSE (kin)
@@ -1477,9 +1460,9 @@
 * local
 
       REAL yg(kw), yg1(kw), yg2(kw), ygoh(kw), dum
-      REAL qy, qy0, qyg1, qyg2, qyoh, eta
+      REAL qy, qy0, eta
       REAL sig, sigoh
-      INTEGER ierr, idum
+      INTEGER ierr
       INTEGER iw
 
       INTEGER mabs, myld
@@ -1487,17 +1470,9 @@
       j = j+1
       jlabel(j) = 't-C4H9CHO -> C4H9 + CHO'
       j = j+1
-      jlabel(j) = 'tALD -> NI products'
+      jlabel(j) = 'tALD -> products'
       j = j+1
-      jlabel(j) = 'tALD -> NII products'
-      j = j+1
-      jlabel(j) = 'tALDOHqy -> NI products'
-      j = j+1
-      jlabel(j) = 'tALDOHqy -> NII products'
-      j = j+1
-      jlabel(j) = 'tALDOHoh -> NI products'
-      j = j+1
-      jlabel(j) = 'tALDOHoh -> NII products'
+      jlabel(j) = 'tALDOH -> products'
 
 
       IF(vers==1)THEN
@@ -1566,8 +1541,7 @@
 
         n = 23
         DO i = 1, n
-          READ(kin,*) idum, y1(i), dum
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), y1(i), dum
         ENDDO
         CLOSE(kin)
 
@@ -1582,8 +1556,7 @@
 
         n = 61
         DO i = 1, n
-          READ(kin,*) idum, y1(i), dum, dum
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), y1(i), dum, dum
           y1(i) = y1(i) * 1.E-20
         ENDDO
         CLOSE(kin)
@@ -1627,8 +1600,7 @@
 
         n = 23
         DO i = 1, n
-          READ(kin,*) idum, dum, y1(i)
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), dum, y1(i)
         ENDDO
         CLOSE(kin)
 
@@ -1655,8 +1627,7 @@
         n1 = n
         n2 = n
         DO i = 1, n
-          READ(kin,*) idum, dum, y2(i), y1(i)
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), dum, y2(i), y1(i)
           x2(i) = x1(i)
         ENDDO
         CLOSE(kin)
@@ -1683,9 +1654,10 @@
 
       ENDIF
 
-      qyoh = 0.75
-      qyg1 = 0.45
-      qyg2 = 0.13
+! Quantum yields scaled externally
+C      qyoh = 0.75
+C      qyg1 = 0.45
+C      qyg2 = 0.13
 
 * combine:
 
@@ -1708,18 +1680,9 @@
           IF(myld==3 .OR. (myld==4 .AND. wc(iw)>=310.)) THEN
             qy = qy0*(1.+eta)/(1.+eta*airden(i)/2.465e19)
           ENDIF
-          sq(j-6,i,iw) = sig * qy
-          sq(j-5,i,iw) = sig * qyg1
-          sq(j-4,i,iw) = sig * qyg2
-          sq(j-3,i,iw) = sigoh * qyg1
-          sq(j-2,i,iw) = sigoh * qyg2
-          IF(qyg1+qyg2 > 0.) THEN
-            sq(j-1,i,iw) = sigoh * qyoh*qyg1/(qyg1+qyg2)
-            sq(j  ,i,iw) = sigoh * qyoh*qyg2/(qyg1+qyg2)
-           ELSE
-            sq(j-1,i,iw) = 0.
-            sq(j  ,i,iw) = 0.
-          ENDIF
+          sq(j-2,i,iw) = sig * qy
+          sq(j-1,i,iw) = sig
+          sq(j  ,i,iw) = sigoh
         ENDDO
       ENDDO
 
@@ -1775,7 +1738,7 @@
       REAL yg(kw), yg1(kw), yg2(kw), ygoh(kw), dum
       REAL qy1, qy2, qy3, qy0, eta, ptorr, qyoh
       REAL sig, sigoh
-      INTEGER ierr, idum
+      INTEGER ierr
       INTEGER iw
 
       INTEGER mabs, myld
@@ -1938,8 +1901,7 @@
 
         n = 68
         DO i = 1, n
-          READ(kin,*) idum, y1(i)
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), y1(i)
         ENDDO
         CLOSE(kin)
 
@@ -1968,8 +1930,7 @@
 
       n = 11
       DO i = 1, n
-        READ(kin,*) idum, y1(i)
-        x1(i) = FLOAT(idum)
+        READ(kin,*) x1(i), y1(i)
       ENDDO
       CLOSE(kin)
 
@@ -2309,7 +2270,7 @@
       REAL yg(kw)
       REAL qy1, qy2
       REAL sig
-      INTEGER ierr, idum
+      INTEGER ierr
       INTEGER iw
 
 * Ratio for both channels estimated from ratio of channel I + II
@@ -2330,8 +2291,7 @@
 
       n = 84
       DO i = 1, n
-        READ(kin,*) idum, y1(i)
-        x1(i) = FLOAT(idum)
+        READ(kin,*) x1(i), y1(i)
         y1(i) = y1(i)*1.e-20
       ENDDO
       CLOSE(kin)
@@ -2428,7 +2388,7 @@
       REAL yg1(kw), yg2(kw)
       real qy, qym1, qy1, qy2, qy3
       REAL sig
-      INTEGER ierr, idum
+      INTEGER ierr
 
       INTEGER mabs, myld
 
@@ -2529,8 +2489,7 @@
         ENDDO
         n = 68
         DO i = 1, n
-          READ(kin,*) idum, y1(i)
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), y1(i)
         ENDDO
         CLOSE(kin)
 
@@ -2683,7 +2642,7 @@
       REAL yg(kw)
       real qy, qym1, qy1, qy2, qy3
       REAL sig
-      INTEGER ierr, idum
+      INTEGER ierr
 
       INTEGER mabs, myld
 
@@ -2761,8 +2720,7 @@
 
         n = 111
         DO i = 1, n
-          READ(kin,*) idum, y1(i)
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), y1(i)
         ENDDO
         CLOSE(kin)
 
@@ -2776,8 +2734,7 @@
 
         n = 81
         DO i = 1, n
-          READ(kin,*) idum, y1(i)
-          x1(i) = FLOAT(idum)
+          READ(kin,*) x1(i), y1(i)
         ENDDO
         CLOSE(kin)
       ENDIF
@@ -3038,9 +2995,9 @@
 * local
 
       REAL yg(kw), ygoh(kw), dum
-      real qy1, qy2, qyg1, qyg2, qyoh
+      real qy1, qy2, qyoh
       REAL sig, sigoh
-      INTEGER ierr, idum
+      INTEGER ierr
       INTEGER iw
 
       j = j+1
@@ -3049,19 +3006,13 @@
       jlabel(j) = 'C4H9CH(C2H5)CHO -> C7H16 + CO'
 
       j = j+1
-      jlabel(j) = 'AlkALD -> NI products'
-      j = j+1
-      jlabel(j) = 'AlkALD -> NII products'
+      jlabel(j) = 'AlkALD -> products'
 
       j = j+1
-      jlabel(j) = 'AlkALDOHqy -> NI products'
-      j = j+1
-      jlabel(j) = 'AlkALDOHqy -> NII products'
+      jlabel(j) = 'AlkALDOHqy -> products'
 
       j = j+1
-      jlabel(j) = 'AlkALDOHoh -> NI products'
-      j = j+1
-      jlabel(j) = 'AlkALDOHoh -> NII products'
+      jlabel(j) = 'AlkALDOHoh -> products'
 
 
 * Absorption cross sections
@@ -3074,8 +3025,7 @@
 
       n = 33
       DO i = 1, n
-        READ(kin,*) idum, y1(i), dum
-        x1(i) = FLOAT(idum)
+        READ(kin,*) x1(i), y1(i), dum
       ENDDO
       CLOSE(kin)
 
@@ -3112,8 +3062,6 @@
 * zero pressure qy:
       qy1  = 0.51*0.8
       qy2  = 0.51*0.2
-      qyg1 = 0.45
-      qyg2 = 0.13
       qyoh = 0.75
 
 
@@ -3123,19 +3071,11 @@
          sig = yg(iw)
          sigoh = ygoh(iw)
          DO i = 1, nz
-           sq(j-7,i,iw) = sig * qy1
-           sq(j-6,i,iw) = sig * qy2
-           sq(j-5,i,iw) = sig * qyg1
-           sq(j-4,i,iw) = sig * qyg2
-           sq(j-3,i,iw) = sigoh * qyg1
-           sq(j-2,i,iw) = sigoh * qyg2
-           IF(qy1+qy2 > 0.) THEN
-             sq(j-1,i,iw) = sigoh * qyoh*qyg1/(qyg1+qyg2)
-             sq(j  ,i,iw) = sigoh * qyoh*qyg2/(qyg1+qyg2)
-            ELSE
-             sq(j-1,i,iw) = 0.
-             sq(j  ,i,iw) = 0.
-           ENDIF
+           sq(j-4,i,iw) = sig * qy1
+           sq(j-3,i,iw) = sig * qy2
+           sq(j-2,i,iw) = sig
+           sq(j-1,i,iw) = sigoh
+           sq(j  ,i,iw) = sigoh * qyoh
          ENDDO
       ENDDO
 
@@ -3210,7 +3150,7 @@
       REAL yg1(kw), ygoh(kw)
       real qy, qym1, qy1, qy2, qy3, qyoh
       REAL sig, sigoh
-      INTEGER ierr, idum
+      INTEGER ierr
 
       INTEGER myld
 
@@ -3236,6 +3176,11 @@
       jlabel(j) = 'aMeC4uALDOHoh -> alkene + CO'
       j = j+1
       jlabel(j) = 'aMeC4uALDOHoh -> acyl + H'
+
+      j = j+1
+      jlabel(j) = 'genaMeuAld(poly)'
+      j = j+1
+      jlabel(j) = 'genaMeuAldOH(poly)'
 
 
 * quantum yields estimated 10x acrolein
@@ -3277,8 +3222,7 @@
       ENDDO
       n = 84
       DO i = 1, n
-        READ(kin,*) idum, y1(i)
-        x1(i) = float(idum)
+        READ(kin,*) x1(i), y1(i)
         y1(i) = y1(i)*1.E-20
       ENDDO
       CLOSE(kin)
@@ -3347,21 +3291,23 @@
      &              -0.1661*airden(i)/1.E19+0.8485)
            qy3 = qy*(-0.0217*(airden(i)/1.E19)**2
      &              +0.0788*airden(i)/1.E19+0.1029)
-           sq(j-8,i,iw) = sig * qy1
-           sq(j-7,i,iw) = sig * qy2
-           sq(j-6,i,iw) = sig * qy3
-           sq(j-5,i,iw) = sigoh * qy1
-           sq(j-4,i,iw) = sigoh * qy2
-           sq(j-3,i,iw) = sigoh * qy3
+           sq(j-10,i,iw) = sig * qy1
+           sq(j-9,i,iw) = sig * qy2
+           sq(j-8,i,iw) = sig * qy3
+           sq(j-7,i,iw) = sigoh * qy1
+           sq(j-6,i,iw) = sigoh * qy2
+           sq(j-5,i,iw) = sigoh * qy3
            IF(qy1+qy2+qy3 > 0.) THEN
-             sq(j-2,i,iw) = sigoh * qyoh*qy1/(qy1+qy2+qy3)
-             sq(j-1,i,iw) = sigoh * qyoh*qy2/(qy1+qy2+qy3)
-             sq(j  ,i,iw) = sigoh * qyoh*qy3/(qy1+qy2+qy3)
+             sq(j-4,i,iw) = sigoh * qyoh*qy1/(qy1+qy2+qy3)
+             sq(j-3,i,iw) = sigoh * qyoh*qy2/(qy1+qy2+qy3)
+             sq(j-2,i,iw) = sigoh * qyoh*qy3/(qy1+qy2+qy3)
             ELSE
+             sq(j-4,i,iw) = 0.
+             sq(j-3,i,iw) = 0.
              sq(j-2,i,iw) = 0.
-             sq(j-1,i,iw) = 0.
-             sq(j  ,i,iw) = 0.
            ENDIF
+           sq(j-1,i,iw) = sig
+           sq(j  ,i,iw) = sigoh
         ENDDO
       ENDDO
 
@@ -3436,7 +3382,7 @@
       REAL yg1(kw), ygoh(kw)
       real qy, qym1, qy1, qy2, qy3, qyoh
       REAL sig, sigoh
-      INTEGER ierr, idum
+      INTEGER ierr
 
       INTEGER myld
 
@@ -3462,6 +3408,11 @@
       jlabel(j) = 'bMeC4uALDOHoh -> alkene + CO'
       j = j+1
       jlabel(j) = 'bMeC4uALDOHoh -> acyl + H'
+
+      j = j+1
+      jlabel(j) = 'genbMeuAld(poly)'
+      j = j+1
+      jlabel(j) = 'genbMeuAldOH(poly)'
 
 
 * quantum yields estimated 10x acrolein
@@ -3503,8 +3454,7 @@
       ENDDO
       n = 84
       DO i = 1, n
-        READ(kin,*) idum, y1(i)
-        x1(i) = float(idum)
+        READ(kin,*) x1(i), y1(i)
       ENDDO
       CLOSE(kin)
 
@@ -3572,21 +3522,23 @@
      &              -0.1661*airden(i)/1.E19+0.8485)
            qy3 = qy*(-0.0217*(airden(i)/1.E19)**2
      &                +0.0788*airden(i)/1.E19+0.1029)
-           sq(j-8,i,iw) = sig * qy1
-           sq(j-7,i,iw) = sig * qy2
-           sq(j-6,i,iw) = sig * qy3
-           sq(j-5,i,iw) = sigoh * qy1
-           sq(j-4,i,iw) = sigoh * qy2
-           sq(j-3,i,iw) = sigoh * qy3
+           sq(j-10,i,iw) = sig * qy1
+           sq(j-9,i,iw) = sig * qy2
+           sq(j-8,i,iw) = sig * qy3
+           sq(j-7,i,iw) = sigoh * qy1
+           sq(j-6,i,iw) = sigoh * qy2
+           sq(j-5,i,iw) = sigoh * qy3
            IF(qy1+qy2+qy3 > 0.) THEN
-             sq(j-2,i,iw) = sigoh * qyoh*qy1/(qy1+qy2+qy3)
-             sq(j-1,i,iw) = sigoh * qyoh*qy2/(qy1+qy2+qy3)
-             sq(j  ,i,iw) = sigoh * qyoh*qy3/(qy1+qy2+qy3)
+             sq(j-4,i,iw) = sigoh * qyoh*qy1/(qy1+qy2+qy3)
+             sq(j-3,i,iw) = sigoh * qyoh*qy2/(qy1+qy2+qy3)
+             sq(j-2,i,iw) = sigoh * qyoh*qy3/(qy1+qy2+qy3)
             ELSE
+             sq(j-4,i,iw) = 0.
+             sq(j-3,i,iw) = 0.
              sq(j-2,i,iw) = 0.
-             sq(j-1,i,iw) = 0.
-             sq(j  ,i,iw) = 0.
            ENDIF
+           sq(j-1,i,iw) = sig
+           sq(j  ,i,iw) = sigoh
         ENDDO
       ENDDO
 
@@ -3661,7 +3613,7 @@
       REAL yg(kw), ygoh(kw)
       real qy, qym1, qy1, qy2, qy3, qyoh
       REAL sig, sigoh
-      INTEGER ierr, idum
+      INTEGER ierr
 
 **************** 2-hexenal photodissociation
 
@@ -3686,6 +3638,11 @@
       j = j+1
       jlabel(j) = 'uuALDOHoh -> acyl + H'
 
+      j = j+1
+      jlabel(j) = 'genluuALD(poly)'
+      j = j+1
+      jlabel(j) = 'genluuALD(OHpoly)'
+
 
 * cross sections
       OPEN(UNIT=kin,FILE='DATAJ1/MCMext/ALD/hexadienal.abs',
@@ -3696,8 +3653,7 @@
 
       n = 111
       DO i = 1, n
-        READ(kin,*) idum, y1(i)
-        x1(i) = FLOAT(idum)
+        READ(kin,*) x1(i), y1(i)
       ENDDO
       CLOSE(kin)
 
@@ -3756,21 +3712,23 @@
      &               -0.1661*airden(i)/1.E19+0.8485)
            qy3 = qy*(-0.0217*(airden(i)/1.E19)**2
      &               +0.0788*airden(i)/1.E19+0.1029)
-           sq(j-8,i,iw) = sig * qy1
-           sq(j-7,i,iw) = sig * qy2
-           sq(j-6,i,iw) = sig * qy3
-           sq(j-5,i,iw) = sigoh * qy1
-           sq(j-4,i,iw) = sigoh * qy2
-           sq(j-3,i,iw) = sigoh * qy3
+           sq(j-10,i,iw) = sig * qy1
+           sq(j-9,i,iw) = sig * qy2
+           sq(j-8,i,iw) = sig * qy3
+           sq(j-7,i,iw) = sigoh * qy1
+           sq(j-6,i,iw) = sigoh * qy2
+           sq(j-5,i,iw) = sigoh * qy3
            IF(qy1+qy2+qy3 > 0.) THEN
-             sq(j-2,i,iw) = sigoh * qyoh*qy1/(qy1+qy2+qy3)
-             sq(j-1,i,iw) = sigoh * qyoh*qy2/(qy1+qy2+qy3)
-             sq(j  ,i,iw) = sigoh * qyoh*qy3/(qy1+qy2+qy3)
+             sq(j-4,i,iw) = sigoh * qyoh*qy1/(qy1+qy2+qy3)
+             sq(j-3,i,iw) = sigoh * qyoh*qy2/(qy1+qy2+qy3)
+             sq(j-2,i,iw) = sigoh * qyoh*qy3/(qy1+qy2+qy3)
             ELSE
+             sq(j-4,i,iw) = 0.
+             sq(j-3,i,iw) = 0.
              sq(j-2,i,iw) = 0.
-             sq(j-1,i,iw) = 0.
-             sq(j  ,i,iw) = 0.
            ENDIF
+           sq(j-1,i,iw) = sig
+           sq(j  ,i,iw) = sigoh
         ENDDO
       ENDDO
 
@@ -3844,7 +3802,7 @@
       REAL yg(kw), yg1(kw), dum
       REAL qy
       REAL sig
-      INTEGER ierr, idum
+      INTEGER ierr
       INTEGER iw
 
       INTEGER myld
@@ -3937,8 +3895,7 @@
 
         n = 73
         DO i = 1, n
-           READ(kin,*) idum, dum, y1(i),y2(i)
-           x1(i) = FLOAT(idum)
+           READ(kin,*) x1(i), dum, y1(i),y2(i)
            x2(i) = x1(i)
         ENDDO
         CLOSE(kin)
@@ -3953,8 +3910,7 @@
 
         n = 11
         DO i = 1, n
-           READ(kin,*) idum, y1(i)
-           x1(i) = FLOAT(idum)
+           READ(kin,*) x1(i), y1(i)
         ENDDO
         CLOSE(kin)
 
@@ -3995,12 +3951,13 @@
 
 *=============================================================================*
 
-      SUBROUTINE ma19(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) !C8 n-aldehyde
+      SUBROUTINE ma19(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) !C8+cycl. n-aldehyde
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
 *=  Provide product (cross section)x(quantum yield) for n-aldehyde photolysis=*
 *=          n-aldehydes + hv -> products                                     =*
+*=          (also includes aldehydes with ring structures)                   =*
 *=                                                                           =*
 *-----------------------------------------------------------------------------*
 *=  PARAMETERS:                                                              =*
@@ -4056,9 +4013,9 @@
 
       REAL yg1(kw),yg2(kw),yg3(kw),yg4(kw),dum
       REAL yg1oh(kw),yg2oh(kw),yg3oh(kw),yg4oh(kw)
-      REAL qy, qyoh
+!     REAL qy, qyoh  ! QY now scaled externally
       REAL sig,sigoh
-      INTEGER ierr, idum
+      INTEGER ierr
       INTEGER iw
 
       INTEGER myld
@@ -4083,8 +4040,7 @@
 
       n = 106
       DO i = 1, n
-         READ(kin,*) idum, y1(i)
-         x1(i) = FLOAT(idum)
+         READ(kin,*) x1(i), y1(i)
          y1(i) = y1(i)*1.e-20
       ENDDO
       CLOSE(kin)
@@ -4265,8 +4221,12 @@
 
 
 * OH quantum yield
-      qy = 0.2466 ! from lin. regression: qy = 0.385 - 0.0173*CN(8)
-      qyOH = 0.75
+! effective quantum yields are now scaled in the mechanism
+! not in TUV directly with differect quantum yields and products for
+! a) linear aldehydes: n-Ald -> Alkyl cyclobutanol with
+!     qy = 0.2466 ! from lin. regression: qy = 0.385 - 0.0173*CN(8)
+! b) aldehyde with ring structures: c-Ald -> R + CHO
+!     qyOH = 0.75
 
 
 * combine:
@@ -4312,9 +4272,9 @@
            sigoh = (yg1oh(iw)+yg2oh(iw)+yg3oh(iw)+yg4oh(iw))/4
          ENDIF
          DO i = 1, nz
-             sq(j-2,i,iw) = sig * qy
-             sq(j-1,i,iw) = sigOH * qy
-             sq(j  ,i,iw) = sigOH * qyOH
+             sq(j-2,i,iw) = sig!* qy
+             sq(j-1,i,iw) = sigOH!* qy
+             sq(j  ,i,iw) = sigOH!* qyOH
          ENDDO
       ENDDO
 
@@ -4322,7 +4282,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE ma20(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! methyl substituted and cyclic aldehydes
+      SUBROUTINE ma20(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! methyl substituted aldehydes
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -4385,33 +4345,20 @@
 * local
 
       REAL yg1(kw), yg2(kw), yg1oh(kw), yg2oh(kw)
-      REAL qy1, qy2, qyc, qyoh
+      REAL qyoh
       REAL sig, sigoh
-      INTEGER ierr, idum
+      INTEGER ierr
       INTEGER iw
 
 
       j = j+1
-      jlabel(j) = 'MeALD -> NI products'
-      j = j+1
-      jlabel(j) = 'MeALD -> NII products'
+      jlabel(j) = 'MeALD -> products'
 
       j = j+1
-      jlabel(j) = 'MeALDOHqy -> NI products'
-      j = j+1
-      jlabel(j) = 'MeALDOHqy -> NII products'
+      jlabel(j) = 'MeALDOHqy -> products'
 
       j = j+1
-      jlabel(j) = 'MeALDOHoh -> NI products'
-      j = j+1
-      jlabel(j) = 'MeALDOHoh -> NII products'
-
-      j = j+1
-      jlabel(j) = 'cALD -> NI products'
-      j = j+1
-      jlabel(j) = 'cALDOHqy -> NI products'
-      j = j+1
-      jlabel(j) = 'cALDOHoh -> NI products'
+      jlabel(j) = 'MeALDOHoh -> products'
 
 
 * cross sections:
@@ -4425,8 +4372,7 @@
 
       n = 121
       DO i = 1, n
-         READ(kin,*) idum, y1(i)
-         x1(i) = FLOAT(idum)
+         READ(kin,*) x1(i), y1(i)
          y1(i) = y1(i) * 1E-20
       ENDDO
       CLOSE(kin)
@@ -4467,8 +4413,7 @@
 
       n = 63
       DO i = 1, n
-        READ(kin,*) idum, y1(i)
-        x1(i) = FLOAT(idum)
+        READ(kin,*) x1(i), y1(i)
         y1(i) = y1(i) * 1.E-20
       ENDDO
       CLOSE(kin)
@@ -4500,11 +4445,7 @@
       ENDIF
 
 
-* quantum yields
-
-      qy1 = 0.45
-      qy2 = 0.13
-      qyc = 0.14
+* OH test quantum yields
       qyoh = 0.75
 
 * combine:
@@ -4527,19 +4468,8 @@
            sigoh = (yg1oh(iw)+yg2oh(iw))/2
          ENDIF
          DO i = 1, nz
-           sq(j-8,i,iw) = sig * qy1
-           sq(j-7,i,iw) = sig * qy2
-           sq(j-6,i,iw) = sigoh * qy1
-           sq(j-5,i,iw) = sigoh * qy2
-           IF(qy1+qy2 > 0.) THEN
-             sq(j-4,i,iw) = sigoh * qyoh*qy1/(qy1+qy2)
-             sq(j-3,i,iw) = sigoh * qyoh*qy2/(qy1+qy2)
-            ELSE
-             sq(j-4,i,iw) = 0.
-             sq(j-3,i,iw) = 0.
-           ENDIF
-           sq(j-2,i,iw) = sig * qyc
-           sq(j-1,i,iw) = sigoh * qyc
+           sq(j-2,i,iw) = sig
+           sq(j-1,i,iw) = sigoh
            sq(j  ,i,iw) = sigoh * qyoh
          ENDDO
       ENDDO
@@ -4614,7 +4544,7 @@
       REAL yg1(kw), yg2(kw), yg3(kw), yg1oh(kw), yg2oh(kw), yg3oh(kw)
       real qy, qym1, qy1, qy2, qy3, qyoh
       REAL sig, sigoh
-      INTEGER ierr, idum
+      INTEGER ierr
 
 **************** crotonaldehyde photodissociation
 
@@ -4638,6 +4568,11 @@
       jlabel(j) = 'luALDOHoh -> alkene + CO'
       j = j+1
       jlabel(j) = 'luALDOHoh -> acyl + H'
+
+      j = j+1
+      jlabel(j) = 'genluALD(poly)'
+      j = j+1
+      jlabel(j) = 'genluALD(OHpoly)'
 
 
 * cross section from
@@ -4728,8 +4663,7 @@
 
       n = 81
       DO i = 1, n
-        READ(kin,*) idum, y1(i)
-        x1(i) = FLOAT(idum)
+        READ(kin,*) x1(i), y1(i)
       ENDDO
       CLOSE(kin)
 
@@ -4782,10 +4716,11 @@
 
            if(airden(i) .gt. 2.6e19) then
              qy = 0.004
-           elseif(airden(i) .gt. 8.e17 .and. airden(i) .lt. 2.6e19) then
+            elseif(airden(i) .gt. 8.e17 .and. airden(i) .lt. 2.6e19)
+     &        then
              qym1 = 0.086 + 1.613e-17 * airden(i)
              qy = 0.004 + 1./qym1
-           elseif(airden(i) .lt. 8.e17) then
+            elseif(airden(i) .lt. 8.e17) then
              qym1 = 0.086 + 1.613e-17 * 8.e17
              qy = 0.004 + 1./qym1
            endif
@@ -4797,21 +4732,23 @@
      &               -0.1661*airden(i)/1.E19+0.8485)
            qy3 = qy*(-0.0217*(airden(i)/1.E19)**2
      &               +0.0788*airden(i)/1.E19+0.1029)
-           sq(j-8,i,iw) = sig * qy1
-           sq(j-7,i,iw) = sig * qy2
-           sq(j-6,i,iw) = sig * qy3
-           sq(j-5,i,iw) = sigoh * qy1
-           sq(j-4,i,iw) = sigoh * qy2
-           sq(j-3,i,iw) = sigoh * qy3
-          IF(qy1+qy2+qy3 > 0.) THEN
-            sq(j-2,i,iw) = sigoh * qyoh*qy1/(qy1+qy2+qy3)
-            sq(j-1,i,iw) = sigoh * qyoh*qy2/(qy1+qy2+qy3)
-            sq(j  ,i,iw) = sigoh * qyoh*qy3/(qy1+qy2+qy3)
-           ELSE
-            sq(j-2,i,iw) = 0.
-            sq(j-1,i,iw) = 0.
-            sq(j  ,i,iw) = 0.
-          ENDIF
+           sq(j-10,i,iw) = sig * qy1
+           sq(j-9,i,iw) = sig * qy2
+           sq(j-8,i,iw) = sig * qy3
+           sq(j-7,i,iw) = sigoh * qy1
+           sq(j-6,i,iw) = sigoh * qy2
+           sq(j-5,i,iw) = sigoh * qy3
+           IF(qy1+qy2+qy3 > 0.) THEN
+             sq(j-4,i,iw) = sigoh * qyoh*qy1/(qy1+qy2+qy3)
+             sq(j-3,i,iw) = sigoh * qyoh*qy2/(qy1+qy2+qy3)
+             sq(j-2,i,iw) = sigoh * qyoh*qy3/(qy1+qy2+qy3)
+            ELSE
+             sq(j-4,i,iw) = 0.
+             sq(j-3,i,iw) = 0.
+             sq(j-2,i,iw) = 0.
+           ENDIF
+           sq(j-1,i,iw) = sig
+           sq(j  ,i,iw) = sigoh
         ENDDO
       ENDDO
 
