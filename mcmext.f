@@ -239,6 +239,9 @@
 *mn06.  (CH3)2CHCH2CH2ONO2 + hv -> i-C5H11O + NO2
       CALL mn06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
+*mn11.  internal linear mono-nitrates
+      CALL mn11(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
 *mn07.  C1 OH-subst. alkyl nitrates
       CALL mn07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
@@ -321,11 +324,35 @@
       CALL mr04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
+******** Generic j values for multifunctional chromophore photochemistry
+
+*mm06.  C2ALDqy1
+!     CALL mm06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*mm07.  C3ALDqy1
+ !    CALL mm07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*mm08.  C4ALDqy1
+!     CALL mm08(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*mm09.  C5ALDqy1
+!     CALL mm09(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*mm10.  C6ALDqy1
+!     CALL mm10(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*mm11.  C7ALDqy1
+ !    CALL mm11(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*mm12.  C8ALDqy1
+!     CALL mm12(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+
+
 ******** Sensitivity studies / Tests
 
 *mr01.  Ketone parameterisations
 !     CALL t01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
-
 
 ****************************************************************
 
