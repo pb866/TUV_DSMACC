@@ -436,6 +436,7 @@ c      izfix = 0
      $     aircon, aircol)
       IF(zaird .GT. nzero) aircon(izout) = zaird
 
+
 *****
 *! PBL pollutants will be added if zpbl > 0.
 * CAUTIONS:
@@ -1038,36 +1039,36 @@ c----------------------------------------------------------
        end
 
 
-	subroutine set_up_photol(O3col, albedo, ralt,
-     $       			box_temp, bs,cs,ds,sza,svj_tj)
-	incLude 'params'
-	real*8 b(19),c(19),d(19)
-	real*8 bs(19,kj), cs(19,kj), ds(19,kj)
-        REAL*8 O3col, ralt, box_temp, albedo
-	REAL*8 y,dy,x
-	integer i, n, j
-        real svj_tj(kt,kj), sza(kt)
-	real*8 temp2(19), temp(19)
+      subroutine set_up_photol(O3col, albedo, ralt,
+     $           box_temp, bs,cs,ds,sza,svj_tj)
+      incLude 'params'
+      real*8 b(19),c(19),d(19)
+      real*8 bs(19,kj), cs(19,kj), ds(19,kj)
+      REAL*8 O3col, ralt, box_temp, albedo
+      REAL*8 y,dy,x
+      integer i, n, j
+      real svj_tj(kt,kj), sza(kt)
+      real*8 temp2(19), temp(19)
 
 
 
-        call tuv(real(o3col), real(albedo),
-     $       real(ralt), real(box_temp), sza, svj_tj)
+      call tuv(real(o3col), real(albedo),
+     $          real(ralt), real(box_temp), sza, svj_tj)
 
-	do j=1,kj
-		do i=1,19
-			temp(i)=sza(i)
-			temp2(i)=svj_tj(i,j)
-		enddo
+      do j=1,kj
+        do i=1,19
+          temp(i)=sza(i)
+          temp2(i)=svj_tj(i,j)
+        enddo
 
-        	n=19
-		call spline(n,temp,temp2,b,c,d)
-        	do i=1,19
-			bs(i,j)=b(i)
-			cs(i,j)=c(i)
-			ds(i,j)=d(i)
-		enddo
-	enddo
+        n=19
+        call spline(n,temp,temp2,b,c,d)
+        do i=1,19
+          bs(i,j)=b(i)
+          cs(i,j)=c(i)
+          ds(i,j)=d(i)
+        enddo
+      enddo
 
-	return
-        end
+      return
+      end

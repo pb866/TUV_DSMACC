@@ -788,7 +788,6 @@ CSM         PAUSE
 * number of time steps
 
       IF(nt .LT. 1 .OR. nt .GT. kt) THEN
-         print*,kt
          aerror = 'ntz'
          okvalu = .FALSE.
          RETURN

@@ -414,7 +414,7 @@
 
       REAL yg(kw), yg0(kw), yg1(kw)
       REAL sig, qy, eta
-      INTEGER ierr, idum
+      INTEGER ierr
       INTEGER iw
 
       INTEGER myld
@@ -433,8 +433,7 @@
 
       n = 68
       DO i = 1, n
-         READ(kin,*) idum, y1(i)
-         x1(i) = FLOAT(idum)
+         READ(kin,*) x1(i), y1(i)
       ENDDO
       CLOSE(kin)
 
@@ -485,8 +484,7 @@
       n1 = n
       n2 = n
       DO i = 1, n
-        READ(kin,*) idum, y1(i), y2(i)
-        x1(i) = FLOAT(idum)
+        READ(kin,*) x1(i), y1(i), y2(i)
         x2(i) = x1(i)
       ENDDO
       CLOSE(kin)
@@ -521,7 +519,11 @@
           eta = MAX(0.,yg0(iw)/yg1(iw) - 1.)
         ENDIF
         DO i = 1, nz
-          qy = yg1(iw)*(1.+eta)/(1.+eta*airden(i)/2.465e19)
+          IF(yg1(iw)>0.) THEN
+            qy = yg1(iw)*(1.+eta)/(1.+eta*airden(i)/2.465e19)
+           ELSE
+            qy = 0
+          ENDIF
           sq(j  ,i,iw) = sig * qy
         ENDDO
       ENDDO
