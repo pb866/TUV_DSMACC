@@ -525,7 +525,6 @@
             qy = 0
           ENDIF
           sq(j  ,i,iw) = sig * qy
-          IF(i==2) print*,i,iw,sig,qy
         ENDDO
       ENDDO
 
