@@ -61,6 +61,8 @@
 
       j = j+1
       jlabel(j) = 'CHOCH=CHCHO -> 3H-furan-2-one'
+      j = j+1
+      jlabel(j) = 'uDICARaa(poly)'
 
 
       IF(vers==1)THEN
@@ -192,7 +194,8 @@
           ENDIF
         ENDIF
         DO i = 1, nz
-          sq(j  ,i,iw) = sig * qy
+          sq(j-1,i,iw) = sig * qy
+          sq(j  ,i,iw) = sig
         ENDDO
       ENDDO
 
@@ -261,6 +264,8 @@
       jlabel(j) = 'CH3COCH=CHCHO + hv -> CH3COCH=CH2 + CO'
       j = j+1
       jlabel(j) = 'CH3COCH=CHCHO + hv -> maleic anhydride + HO2. + R.'
+      j = j+1
+      jlabel(j) = 'uDICARak(poly)'
 * further channel possible: cis/trans conversion with qy < 0.2 (see IUPAC)
 
       IF(vers==1)THEN
@@ -405,10 +410,11 @@
 
 
          DO i = 1, nz
-            sq(j-3,i,iw) = sig * qy1
-            sq(j-2,i,iw) = sig * qy2
-            sq(j-1,i,iw) = sig * qy3
-            sq(j  ,i,iw) = sig * qy4
+            sq(j-4,i,iw) = sig * qy1
+            sq(j-3,i,iw) = sig * qy2
+            sq(j-2,i,iw) = sig * qy3
+            sq(j-1,i,iw) = sig * qy4
+            sq(j  ,i,iw) = sig
          ENDDO
       ENDDO
 
@@ -462,7 +468,7 @@
 * local
 
       REAL yg(kw), dum
-      REAL qy
+!     REAL qy
       REAL sig
       INTEGER ierr, idum
       INTEGER iw
@@ -471,6 +477,8 @@
 
       j = j+1
       jlabel(j) = 'CHOCH=CHCH=CHCHO + hv -> diformyl cyclobutene'
+      j = j+1
+      jlabel(j) = 'uDICARkk(poly)'
 
 
       IF(vers==1)THEN
@@ -538,8 +546,8 @@
 
 
 * quantum yields
-
-      qy = 0.1
+! now scaled externally
+!     qy = 0.1
 
 
 * combine:
@@ -547,7 +555,7 @@
       DO iw = 1, nw - 1
         sig = yg(iw)
         DO i = 1, nz
-          sq(j  ,i,iw) = sig * qy
+          sq(j,i,iw) = sig!* qy
         ENDDO
       ENDDO
 
@@ -601,13 +609,15 @@
 * local
 
       REAL yg(kw)
-      REAL qy
+!     REAL qy
       REAL sig
       INTEGER ierr
       INTEGER iw
 
       j = j+1
       jlabel(j) = 'CH3COCH=CHCOCH3 + hv -> CH3CO + CH=CHCOCH3'
+
+
 * main fraction >~80% undergoes cis/trans-isomerisation
 
       OPEN(UNIT=kin,FILE='DATAJ1/MCMext/DICAR/hexenedione.abs',
@@ -635,8 +645,8 @@
 
 
 * quantum yields
-
-      qy = 0.1
+! now scaled externally
+!     qy = 0.1
 
 
 * combine:
@@ -644,7 +654,7 @@
       DO iw = 1, nw - 1
         sig = yg(iw)
         DO i = 1, nz
-          sq(j  ,i,iw) = sig * qy
+          sq(j  ,i,iw) = sig!* qy
         ENDDO
       ENDDO
 

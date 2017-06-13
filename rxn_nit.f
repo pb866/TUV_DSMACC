@@ -1579,3 +1579,89 @@
       END
 
 *=============================================================================*
+
+      SUBROUTINE mn12(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 2/3-C5H11ONO2
+
+*-----------------------------------------------------------------------------*
+*=  PURPOSE:                                                                 =*
+*=  Provide product (cross section) x (quantum yield) for average of 2-      =*
+*=  and 3-C5H11ONO2 photolysis:                                              =*
+*=              C5H11ONO2 + hv -> C5H11O + NO2                               =*
+*=                                                                           =*
+*=  Cross section: Roberts and Fajer (1989)                                  =*
+*=  Quantum yield: Assumed to be unity                                       =*
+*-----------------------------------------------------------------------------*
+*=  PARAMETERS:                                                              =*
+*=  NW     - INTEGER, number of specified intervals + 1 in working        (I)=*
+*=           wavelength grid                                                 =*
+*=  WL     - REAL, vector of lower limits of wavelength intervals in      (I)=*
+*=           working wavelength grid                                         =*
+*=  WC     - REAL, vector of center points of wavelength intervals in     (I)=*
+*=           working wavelength grid                                         =*
+*=  NZ     - INTEGER, number of altitude levels in working altitude grid  (I)=*
+*=  TLEV   - REAL, temperature (K) at each specified altitude level       (I)=*
+*=  AIRDEN - REAL, air density (molec/cc) at each altitude level          (I)=*
+*=  J      - INTEGER, counter for number of weighting functions defined  (IO)=*
+*=  SQ     - REAL, cross section x quantum yield (cm^2) for each          (O)=*
+*=           photolysis reaction defined, at each defined wavelength and     =*
+*=           at each defined altitude level                                  =*
+*=  JLABEL - CHARACTER*lcl, string identifier for each photolysis         (O)=*
+*=           reaction defined                                                =*
+*=  lcl    - INTEGER, length of character for labels                         =*
+*-----------------------------------------------------------------------------*
+
+      IMPLICIT NONE
+      INCLUDE 'params'
+
+* input
+
+      INTEGER nw
+      REAL wl(kw), wc(kw)
+
+      INTEGER nz
+
+      REAL tlev(kz)
+      REAL airden(kz)
+
+* weighting functions
+
+      CHARACTER(lcl) jlabel(kj)
+      REAL sq(kj,kz,kw)
+
+* input/output:
+
+      INTEGER j
+
+* data arrays
+
+      INTEGER i
+      INTEGER iw
+
+* local
+
+!      REAL qy
+      REAL sig
+
+**************** 3-C5H11ONO2 photodissociation
+
+      j = j + 1
+      jlabel(j) = 'C5H11ONO2 -> C5H11O + NO2'
+
+* cross sections calculated with least square fit
+* to data of 2- adn 3-pentyl nitrate from Roberts and Fajer (1989)
+* see also DATAJ1/MCMext/NIT/avrge23PentNit.abs
+* quantum yield = 1
+
+!      qy = 1.
+
+      DO iw = 1, nw - 1
+         sig = exp(-1.339e-3*wc(iw)**2+0.7086*wc(iw)-138.3)
+         DO i = 1, nz
+            sq(j,i,iw) = sig ! * qy
+         ENDDO
+      ENDDO
+
+      RETURN
+      END
+
+* ============================================================================*

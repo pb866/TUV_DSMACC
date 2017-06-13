@@ -3840,6 +3840,8 @@ c         ENDDO
       jlabel(j) = 'CH3CHO -> CH4 + CO'
       j = j+1
       jlabel(j) = 'CH3CHO -> CH3CO + H'
+      j = j+1
+      jlabel(j) = 'genCH3CHO(poly)'
 
 * options
 * mabs for cross sections
@@ -4279,9 +4281,10 @@ c         n = 1705
               ENDIF
             ENDIF
 
-            sq(j-2,i,iw) = sig * qy1
-            sq(j-1,i,iw) = sig * qy2
-            sq(j  ,i,iw) = sig * qy3
+            sq(j-3,i,iw) = sig * qy1
+            sq(j-2,i,iw) = sig * qy2
+            sq(j-1,i,iw) = sig * qy3
+            sq(j  ,i,iw) = sig
 
          ENDDO
       ENDDO
@@ -4372,6 +4375,10 @@ c         n = 1705
       jlabel(j) = 'ALD3OHqy -> R(OH) + HCO'
       j = j+1
       jlabel(j) = 'ALD3OHoh -> R(OH) + HCO'
+      j = j+1
+      jlabel(j) = 'genC2H5CHO(poly)'
+      j = j+1
+      jlabel(j) = 'genC2H5CHO(OHpoly)'
 
 * options
 * mabs for cross sections
@@ -4582,9 +4589,11 @@ c         n = 1705
            ENDIF
            qy1 = MIN(qy1,1.)
 
-           sq(j-2,i,iw) = sig * qy1
-           sq(j-1,i,iw) = sigoh * qy1
-           sq(j  ,i,iw) = sigoh * qy1oh
+           sq(j-4,i,iw) = sig * qy1
+           sq(j-3,i,iw) = sigoh * qy1
+           sq(j-2,i,iw) = sigoh * qy1oh
+           sq(j-1,i,iw) = sig
+           sq(j  ,i,iw) = sigoh
 
          ENDDO
       ENDDO
@@ -5131,6 +5140,8 @@ c         n = 1705
 
       j = j+1
       jlabel(j) = 'CH3COCHO -> CH3CO + HCO'
+      j = j+1
+      jlabel(j) = 'aDICARak(poly)'
 
 * options
 * mabs for cross sections
@@ -5551,7 +5562,8 @@ c               kq = 1.93e4 * EXP(-5639/wc(iw))
 
             ENDIF
 
-            sq(j,i,iw) = sig * qy
+            sq(j-1,i,iw) = sig * qy
+            sq(j  ,i,iw) = sig
 
          ENDDO
       ENDDO
@@ -10708,6 +10720,8 @@ c             sq(j,iz,iw) = qy * EXP(sum)
       jlabel(j) = 'HOCH2CHO -> CH3OH + CO'
       j = j+1
       jlabel(j) = 'HOCH2CHO -> CH2CHO + OH'
+      j = j+1
+      jlabel(j) = 'genHOCH2CHO(poly)'
 
       IF(vers==1)THEN
         mabs = 2
@@ -10823,9 +10837,10 @@ c             sq(j,iz,iw) = qy * EXP(sum)
 
       DO iw = 1, nw - 1
          DO i = 1, nz
-            sq(j-2,i,iw) = yg(iw) * qy1
-            sq(j-1,i,iw) = yg(iw) * qy2
-            sq(j  ,i,iw) = yg(iw) * qy3
+            sq(j-3,i,iw) = yg(iw) * qy1
+            sq(j-2,i,iw) = yg(iw) * qy2
+            sq(j-1,i,iw) = yg(iw) * qy3
+            sq(j  ,i,iw) = yg(iw)
          ENDDO
       ENDDO
 
@@ -10911,6 +10926,12 @@ c             sq(j,iz,iw) = qy * EXP(sum)
 * mabs = 1 Plum et al.
 * mabs = 2 Horowitz et al.
 
+      j = j+1
+      jlabel(j) = 'CH3COCOCH3 -> Products'
+      j = j+1
+      jlabel(j) = 'aDICARkk(poly)'
+
+
       IF(vers==1)THEN
         mabs = 2
        ELSEIF(vers==2)THEN
@@ -10932,9 +10953,6 @@ c             sq(j,iz,iw) = qy * EXP(sum)
        ELSE
         STOP "'mabs' not defined for CH3COCOCH3 photolysis."
       ENDIF
-
-      j = j+1
-      jlabel(j) = 'CH3COCOCH3 -> Products'
 
       IF( mabs. EQ. 1) THEN
          OPEN(UNIT=kin,FILE='DATAJ1/CH3COCOCH3/biacetyl_plum.abs',
@@ -10990,7 +11008,8 @@ c             sq(j,iz,iw) = qy * EXP(sum)
 
       DO iw = 1, nw - 1
          DO i = 1, nz
-            sq(j,i,iw) = yg(iw) * qy
+            sq(j-1,i,iw) = yg(iw) * qy
+            sq(j  ,i,iw) = yg(iw)
          ENDDO
       ENDDO
 
@@ -11491,6 +11510,8 @@ c             sq(j,iz,iw) = qy * EXP(sum)
       jlabel(j) = 'CH3COCOOH -> CH3COOH + CO'
       j = j+1
       jlabel(j) = 'CH3COCOOH -> CH3CO + CO + OH'
+      j = j+1
+      jlabel(j) = 'genPYR(poly)'
 
 
 * mabs = 1:  Horowitz et al.
@@ -11610,10 +11631,11 @@ c             sq(j,iz,iw) = qy * EXP(sum)
 
       DO iw = 1, nw - 1
          DO i = 1, nz
-            sq(j-3,i,iw) = yg(iw) * qy1
-            sq(j-2,i,iw) = yg(iw) * qy2
-            sq(j-1,i,iw) = yg(iw) * qy3
-            sq(j  ,i,iw) = yg(iw) * qy4
+            sq(j-4,i,iw) = yg(iw) * qy1
+            sq(j-3,i,iw) = yg(iw) * qy2
+            sq(j-2,i,iw) = yg(iw) * qy3
+            sq(j-1,i,iw) = yg(iw) * qy4
+            sq(j  ,i,iw) = yg(iw)
          ENDDO
       ENDDO
 
