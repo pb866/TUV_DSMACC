@@ -15,10 +15,10 @@ INCLUDES = params
 USE_INCL = TUV521.o \
 		   grids.o \
 		   rdinp.o rdetfl.o rdxs.o \
-		   swphys.o swbiol.o swchem.o mcmext.o\
+		   swphys.o swbiol.o swchem.o mcmext.o gcext.o\
 		   rxn_mcm.o rxn_ald.o rxn_ket.o rxn_dicar.o\
 		   rxn_nit.o rxn_dinit.o rxn_rooh.o\
-		   rxn_mult.o rxn_rad.o qys.o \
+		   rxn_mult.o rxn_rad.o rxn_gc11.o qys.o \
 		   wshift.o \
 		   vpair.o vptmp.o vpo3.o \
 		   odrl.o odo3.o \

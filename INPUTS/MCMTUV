@@ -1,20 +1,20 @@
 TUV inputs:
 ==================================================================
-inpfil =      MCMTUV   outfil =         tuv   nstr =             4
-lat =          0.000   lon =          0.000   tmzone =         0.0
-iyear =         2005   imonth =           7   iday =             1
-zstart =       0.000   zstop =       80.000   nz =              19
-wstart =     120.000   wstop =      735.000   nwint =         -156
+inpfil =        MCM4   outfil =        MCM4   nstr =             4
+lat =         45.000   lon =          0.000   tmzone =         0.0
+iyear =         2002   imonth =           7   iday =             1
+zstart =       0.000   zstop =      120.000   nz =             121
+wstart =     209.500   wstop =      735.500   nwint =          526
 tstart =       0.000   tstop =       90.000   nt =              19
 lzenit =           T   alsurf =       0.100   psurf =       -999.0
 o3col =      350.000   so2col =       0.000   no2col =       0.000
 taucld =       0.000   zbase =        4.000   ztop =         5.000
 tauaer =       0.235   ssaaer =       0.990   alpha =        1.000
 dirsun =       1.000   difdn =        1.000   difup =        1.000
-zout =         0.000   zaird =   -9.990E+02   ztemp =     -999.000
+zout =         0.500   zaird =   -9.990E+02   ztemp =     -999.000
 lirrad =           F   laflux =           F   lmmech =           F
 lrates =           F   isfix =            0   nms =              0
-ljvals =           T   ijfix =            0   nmj =            284
+ljvals =           T   ijfix =            0   nmj =             48
 iwfix =            0   itfix =            0   izfix =            0
 ==================================================================
 ===== Avaliable spectral weighting functions:
@@ -72,35 +72,35 @@ T 23 CH2O -> H2 + CO
 T 24 CH3CHO -> CH3 + HCO
 F 25 CH3CHO -> CH4 + CO
 T 26 CH3CHO -> CH3CO + H
-T 27 genCH3CHO(poly)
+F 27 genCH3CHO(poly)
 T 28 C2H5CHO -> C2H5 + HCO
-T 29 genC2H5CHO(poly)
-T 30 genC2H5CHO(OHpoly)
-T 31 ALD3OHqy -> R(OH) + HCO
-T 32 ALD3OHoh -> R(OH) + HCO
+F 29 genC2H5CHO(poly)
+F 30 genC2H5CHO(OHpoly)
+F 31 ALD3OHqy -> R(OH) + HCO
+F 32 ALD3OHoh -> R(OH) + HCO
 T 33 CH3OOH -> CH3O + OH
-T 34 HOCH2OOH -> HOCH2O. + OH
+F 34 HOCH2OOH -> HOCH2O. + OH
 T 35 CH3ONO2 -> CH3O + NO2
 T 36 CH3(OONO2) -> CH3(OO) + NO2
 T 37 CH3(OONO2) -> CH3(O) + NO3
-T 38 ROONO2 -> products
+F 38 ROONO2 -> products
 T 39 C2H5ONO2 -> C2H5O + NO2
-T 40 n-C3H7ONO2 -> C3H7O + NO2
+F 40 n-C3H7ONO2 -> C3H7O + NO2
 T 41 1-C4H9ONO2 -> 1-C4H9O + NO2
 T 42 2-C4H9ONO2 -> 2-C4H9O + NO2
 T 43 CH3CHONO2CH3 -> CH3CHOCH3 + NO2
-T 44 CH2(OH)CH2(ONO2) -> CH2(OH)CH2(O.) + NO2
+F 44 CH2(OH)CH2(ONO2) -> CH2(OH)CH2(O.) + NO2
 T 45 CH3COCH2(ONO2) -> CH3COCH2(O.) + NO2
 T 46 C(CH3)3(ONO2) -> C(CH3)3(O.) + NO2
 F 47 C(CH3)3(ONO) -> C(CH3)3(O) + NO
-T 48 CH3CO(OONO2) -> CH3CO(OO) + NO2
-T 49 CH3CO(OONO2) -> CH3CO(O) + NO3
-T 50 CH3CH2CO(OONO2) -> CH3CH2CO(OO) + NO2
-T 51 CH3CH2CO(OONO2) -> CH3CH2CO(O) + NO3
-T 52 CH2=CHCHO -> CH2=CH + CHO
-T 53 CH2=CHCHO -> CH2=CH2 + CO
+F 48 CH3CO(OONO2) -> CH3CO(OO) + NO2
+F 49 CH3CO(OONO2) -> CH3CO(O) + NO3
+F 50 CH3CH2CO(OONO2) -> CH3CH2CO(OO) + NO2
+F 51 CH3CH2CO(OONO2) -> CH3CH2CO(O) + NO3
+F 52 CH2=CHCHO -> CH2=CH + CHO
+F 53 CH2=CHCHO -> CH2=CH2 + CO
 F 54 CH2=CHCHO -> CH3CHOO + CO
-T 55 CH2=CHCHO -> CH2=CHCO + H
+F 55 CH2=CHCHO -> CH2=CHCO + H
 T 56 CH2=C(CH3)CHO -> CH2=CCH3 + CHO
 T 57 CH2=C(CH3)CHO -> CH3CH=CH2 + CO
 F 58 CH2=C(CH3)CHO -> CH3C(OO.)CH3 + CO
@@ -109,39 +109,39 @@ T 60 HPALD -> Products
 T 61 CH3COCH=CH2 -> CH3 + C2H3CO
 T 62 CH3COCH=CH2 -> C2H3 + CH3CO
 T 63 CH3COCH=CH2 -> C3H6 + CO
-T 64 HOCH2CHO -> CH2OH + HCO
-T 65 HOCH2CHO -> CH3OH + CO
-T 66 HOCH2CHO -> CH2CHO + OH
-T 67 genHOCH2CHO(poly)
+F 64 HOCH2CHO -> CH2OH + HCO
+F 65 HOCH2CHO -> CH3OH + CO
+F 66 HOCH2CHO -> CH2CHO + OH
+F 67 genHOCH2CHO(poly)
 T 68 CH3COCH3 -> CH3CO + CH3
 T 69 CH3COCH3 -> CO + 2 CH3
 T 70 CH3COCH2CH3 -> CH3CO + CH2CH3
-T 71 CH2(OH)COCH3 -> CH3CO + CH2(OH)
-T 72 CH2(OH)COCH3 -> CH2(OH)CO + CH3
+F 71 CH2(OH)COCH3 -> CH3CO + CH2(OH)
+F 72 CH2(OH)COCH3 -> CH2(OH)CO + CH3
 T 73 CHOCHO -> 2 HO2 + 2 CO
 T 74 CHOCHO -> H2 + 2 CO
 T 75 CHOCHO -> CH2O + CO
 T 76 CH3COCHO -> CH3CO + HCO
-T 77 aDICARak(poly)
+F 77 aDICARak(poly)
 T 78 CH3COCOCH3 -> Products
-T 79 aDICARkk(poly)
+F 79 aDICARkk(poly)
 F 80 CH3COOH -> CH3 + COOH
-T 81 CH3CO(OOH) -> Products
-T 82 CH3COCOOH -> CH3CHO + CO2
-T 83 CH3COCOOH -> CH3CO + COOH
-T 84 CH3COCOOH -> CH3COOH + CO
-T 85 CH3COCOOH -> CH3CO + CO + OH
-T 86 genPYR(poly)
+F 81 CH3CO(OOH) -> Products
+F 82 CH3COCOOH -> CH3CHO + CO2
+F 83 CH3COCOOH -> CH3CO + COOH
+F 84 CH3COCOOH -> CH3COOH + CO
+F 85 CH3COCOOH -> CH3CO + CO + OH
+F 86 genPYR(poly)
 F 87 (CH3)2NNO -> Products
 F 88 CF2O -> Products
 F 89 Cl2 -> Cl + Cl
 F 90 ClO -> Cl + O(1D)
 F 91 ClO -> Cl + O(3P)
 F 92 ClOO -> Products
-F 93 OClO -> Products
+T 93 OClO -> Products
 F 94 ClOOCl -> Cl + ClOO
 F 95 HCl -> H + Cl
-F 96 HOCl -> HO + Cl
+F 96 HOCl -> OH + Cl
 F 97 NOCl -> NO + Cl
 F 98 ClNO2 -> Cl + NO2
 F 99 ClONO -> Cl + NO2
@@ -185,222 +185,227 @@ F136 CF2BrCF2Br (Halon-2402) -> Products
 F137 perfluoro 1-iodopropane -> products
 T138 n-C3H7CHO -> n-C3H7 + CHO
 T139 n-C3H7CHO -> C2H4 + CH2CHOH
-T140 ALD4OHqy -> NI products
-T141 ALD4OHqy -> NII products
-T142 ALD4OHoh -> NI products
-T143 ALD4OHoh -> NII products
+F140 ALD4OHqy -> NI products
+F141 ALD4OHqy -> NII products
+F142 ALD4OHoh -> NI products
+F143 ALD4OHoh -> NII products
 T144 i-C3H7CHO -> i-C3H7 + CHO
-T145 pinonaldehyde -> R + CO + HO2
-T146 caronaldehyde -> R + CO + HO2
-T147 n-C4H9CHO -> C4H9 +  CHO
-T148 n-C4H9CHO -> CH3CH=CH2 +  CH2=CHOH
-T149 n-C4H9CHO -> 2-methylcyclobutanol
-T150 C5nALDOHqy -> NI products
-T151 C5nALDOHqy -> NII products
-T152 C5nALDOHoh -> NI products
-T153 C5nALDOHoh -> NII products
-T154 C5nALDOHoh -> cycl. product
-T155 i-C4H9CHO -> C4H9 + CHO
-T156 i-C4H9CHO -> CH3CH=CH2 + CH2=CHOH
-T157 sec-C4H9CHO -> C4H9 + CHO
-T158 sec-C4H9CHO  -> CH3CH=CHOH + CH2=CH2
-T159 t-C4H9CHO -> C4H9 + CHO
-T160 tALD -> products
-T161 tALDOH -> products
-T162 n-C5H11CHO -> C5H11 + CHO
-T163 n-C5H11CHO -> C2H5CH=CH2 + CH2=CHOH
-T164 n-C5H11CHO -> 2-ethylcyclobutanol
-T165 C6nALDOHqy -> NI products
-T166 C6nALDOHqy -> NII products
-T167 C6nALDOHoh -> NI products
-T168 C6nALDOHoh -> NII products
-T169 C6nALDOHoh -> cycl. product
-T170 n-C6H13CHO -> C6H13 + CHO
-T171 n-C6H13CHO -> C3H7CH=CH2 + CH2=CHOH
-T172 n-C6H13CHO -> 2-propylcyclobutanol
-T173 C7nALDOHqy -> NI products
-T174 C7nALDOHqy -> NII products
-T175 C7nALDOHoh -> NI products
-T176 C7nALDOHoh -> NII products
-T177 C7nALDOHoh -> cycl. product
-T178 Glycidaldehyde -> oxyranyl radical + CHO
-T179 Glycidaldehyde -> oxyrane + CO
-T180 CH3CH=CHCHO -> CH3CH=CH + CHO
-T181 CH3CH=CHCHO -> CH3CH=CH2 + CO
-T182 CH3CH=CHCHO -> CH3CH=CHCO + H
-T183 2-hexenal -> 1-pentenyl radical + CHO
-T184 2-hexenal -> 1-pentene + CO
-T185 2-hexenal -> C3H7CH=CHCO + H
-T186 C4H9CH(C2H5)CHO -> C7H15 + CHO
-T187 C4H9CH(C2H5)CHO -> C7H16 + CO
-T188 AlkALD -> products
-T189 AlkALDOHqy -> products
-T190 AlkALDOHoh -> products
-T191 CH3CH=C(CH3)CHO -> CH3CH=CCH3 + CHO
-T192 CH3CH=C(CH3)CHO -> CH3CH=CHCH3 + CO
-T193 CH3CH=C(CH3)CHO -> CH3CH=C(CH3)CO + H
-T194 aMeC4uALDOHqy -> NI products
-T195 aMeC4uALDOHqy -> alkene + CO
-T196 aMeC4uALDOHqy -> acyl + H
-T197 aMeC4uALDOHoh -> NI products
-T198 aMeC4uALDOHoh -> alkene + CO
-T199 aMeC4uALDOHoh -> acyl + H
-T200 genaMeuAld(poly)
-T201 genaMeuAldOH(poly)
-T202 CH3C(CH3)=CHCHO -> (CH3)2C=CH + CHO
-T203 CH3C(CH3)=CHCHO -> (CH3)2C=CH2 + CO
-T204 CH3C(CH3)=CHCHO -> (CH3)2C=CHCO + H
-T205 bMeC4uALDOHqy -> NI products
-T206 bMeC4uALDOHqy -> alkene + CO
-T207 bMeC4uALDOHqy -> acyl + H
-T208 bMeC4uALDOHoh -> NI products
-T209 bMeC4uALDOHoh -> alkene + CO
-T210 bMeC4uALDOHoh -> acyl + H
-T211 genbMeuAld(poly)
-T212 genbMeuAldOH(poly)
-T213 hexadienal -> 1-pentenyl radical + CHO
-T214 hexadienal -> 1,3-pentadiene + CO
-T215 hexadienal -> CH3CH=CHCH=CHCO + H
-T216 uuALDOHqy -> NI products
-T217 uuALDOHqy -> diene + CO
-T218 uuALDOHqy -> acyl + H
-T219 uuALDOHoh -> NI products
-T220 uuALDOHoh -> alkene + CO
-T221 uuALDOHoh -> acyl + H
-T222 genluuALD(poly)
-T223 genluuALD(OHpoly)
-T224 CH32C(OH)CHO -> (CH3)2COH + CHO
-T225 nALD -> products
-T226 nALDOHqy -> products
-T227 nALDOHoh -> products
-T228 MeALD -> products
-T229 MeALDOHqy -> products
-T230 MeALDOHoh -> products
-T231 luALD -> NI products
-T232 luALD -> alkene + CO
-T233 luALD -> acyl + H
-T234 luALDOHqy -> NI products
-T235 luALDOHqy -> alkene + CO
-T236 luALDOHqy -> acyl + H
-T237 luALDOHoh -> NI products
-T238 luALDOHoh -> alkene + CO
-T239 luALDOHoh -> acyl + H
-T240 genluALD(poly)
-T241 genluALD(OHpoly)
-T242 C2H5COC2H5 -> 2 C2H5 + CO
-T243 C2H5COC2H5 -> C2H5CO + C2H5
-T244 C3H7COCH3 -> CH3CO + C3H7
+F145 pinonaldehyde -> R + CO + HO2
+F146 caronaldehyde -> R + CO + HO2
+F147 n-C4H9CHO -> C4H9 +  CHO
+F148 n-C4H9CHO -> CH3CH=CH2 +  CH2=CHOH
+F149 n-C4H9CHO -> 2-methylcyclobutanol
+F150 C5nALDOHqy -> NI products
+F151 C5nALDOHqy -> NII products
+F152 C5nALDOHoh -> NI products
+F153 C5nALDOHoh -> NII products
+F154 C5nALDOHoh -> cycl. product
+F155 i-C4H9CHO -> C4H9 + CHO
+F156 i-C4H9CHO -> CH3CH=CH2 + CH2=CHOH
+F157 sec-C4H9CHO -> C4H9 + CHO
+F158 sec-C4H9CHO  -> CH3CH=CHOH + CH2=CH2
+F159 t-C4H9CHO -> C4H9 + CHO
+F160 tALD -> products
+F161 tALDOH -> products
+F162 n-C5H11CHO -> C5H11 + CHO
+F163 n-C5H11CHO -> C2H5CH=CH2 + CH2=CHOH
+F164 n-C5H11CHO -> 2-ethylcyclobutanol
+F165 C6nALDOHqy -> NI products
+F166 C6nALDOHqy -> NII products
+F167 C6nALDOHoh -> NI products
+F168 C6nALDOHoh -> NII products
+F169 C6nALDOHoh -> cycl. product
+F170 n-C6H13CHO -> C6H13 + CHO
+F171 n-C6H13CHO -> C3H7CH=CH2 + CH2=CHOH
+F172 n-C6H13CHO -> 2-propylcyclobutanol
+F173 C7nALDOHqy -> NI products
+F174 C7nALDOHqy -> NII products
+F175 C7nALDOHoh -> NI products
+F176 C7nALDOHoh -> NII products
+F177 C7nALDOHoh -> cycl. product
+F178 Glycidaldehyde -> oxyranyl radical + CHO
+F179 Glycidaldehyde -> oxyrane + CO
+F180 CH3CH=CHCHO -> CH3CH=CH + CHO
+F181 CH3CH=CHCHO -> CH3CH=CH2 + CO
+F182 CH3CH=CHCHO -> CH3CH=CHCO + H
+F183 2-hexenal -> 1-pentenyl radical + CHO
+F184 2-hexenal -> 1-pentene + CO
+F185 2-hexenal -> C3H7CH=CHCO + H
+F186 C4H9CH(C2H5)CHO -> C7H15 + CHO
+F187 C4H9CH(C2H5)CHO -> C7H16 + CO
+F188 AlkALD -> products
+F189 AlkALDOHqy -> products
+F190 AlkALDOHoh -> products
+F191 CH3CH=C(CH3)CHO -> CH3CH=CCH3 + CHO
+F192 CH3CH=C(CH3)CHO -> CH3CH=CHCH3 + CO
+F193 CH3CH=C(CH3)CHO -> CH3CH=C(CH3)CO + H
+F194 aMeC4uALDOHqy -> NI products
+F195 aMeC4uALDOHqy -> alkene + CO
+F196 aMeC4uALDOHqy -> acyl + H
+F197 aMeC4uALDOHoh -> NI products
+F198 aMeC4uALDOHoh -> alkene + CO
+F199 aMeC4uALDOHoh -> acyl + H
+F200 genaMeuAld(poly)
+F201 genaMeuAldOH(poly)
+F202 CH3C(CH3)=CHCHO -> (CH3)2C=CH + CHO
+F203 CH3C(CH3)=CHCHO -> (CH3)2C=CH2 + CO
+F204 CH3C(CH3)=CHCHO -> (CH3)2C=CHCO + H
+F205 bMeC4uALDOHqy -> NI products
+F206 bMeC4uALDOHqy -> alkene + CO
+F207 bMeC4uALDOHqy -> acyl + H
+F208 bMeC4uALDOHoh -> NI products
+F209 bMeC4uALDOHoh -> alkene + CO
+F210 bMeC4uALDOHoh -> acyl + H
+F211 genbMeuAld(poly)
+F212 genbMeuAldOH(poly)
+F213 hexadienal -> 1-pentenyl radical + CHO
+F214 hexadienal -> 1,3-pentadiene + CO
+F215 hexadienal -> CH3CH=CHCH=CHCO + H
+F216 uuALDOHqy -> NI products
+F217 uuALDOHqy -> diene + CO
+F218 uuALDOHqy -> acyl + H
+F219 uuALDOHoh -> NI products
+F220 uuALDOHoh -> alkene + CO
+F221 uuALDOHoh -> acyl + H
+F222 genluuALD(poly)
+F223 genluuALD(OHpoly)
+F224 CH32C(OH)CHO -> (CH3)2COH + CHO
+F225 nALD -> products
+F226 nALDOHqy -> products
+F227 nALDOHoh -> products
+F228 MeALD -> products
+F229 MeALDOHqy -> products
+F230 MeALDOHoh -> products
+F231 luALD -> NI products
+F232 luALD -> alkene + CO
+F233 luALD -> acyl + H
+F234 luALDOHqy -> NI products
+F235 luALDOHqy -> alkene + CO
+F236 luALDOHqy -> acyl + H
+F237 luALDOHoh -> NI products
+F238 luALDOHoh -> alkene + CO
+F239 luALDOHoh -> acyl + H
+F240 genluALD(poly)
+F241 genluALD(OHpoly)
+F242 C2H5COC2H5 -> 2 C2H5 + CO
+F243 C2H5COC2H5 -> C2H5CO + C2H5
+F244 C3H7COCH3 -> CH3CO + C3H7
 F245 C3H7COCH3 -> C3H7CO + CH3
-T246 C3H7COCH3 -> C3H7 + CO + CH3
-T247 C3H7COCH3 -> CH3C(OH)=CH2 + CH2=CH2
-T248 C4H9COCH3 -> CH3CH=CH2 + CH2=C(OH)CH3
-T249 C3H7COC2H5 -> C2H5CO + C3H7
-T250 C3H7COC2H5 -> C3H7CO + C2H5
-T251 C3H7COC2H5 -> C3H7 + CO + C2H5
-T252 C3H7COC2H5 -> C2H5C(OH)=CH2 + CH2=CH2
-T253 MIPK -> CH3CO + i-C3H7
-T254 MIPK -> i-C3H7CO + CH3
+F246 C3H7COCH3 -> C3H7 + CO + CH3
+F247 C3H7COCH3 -> CH3C(OH)=CH2 + CH2=CH2
+F248 C4H9COCH3 -> CH3CH=CH2 + CH2=C(OH)CH3
+F249 C3H7COC2H5 -> C2H5CO + C3H7
+F250 C3H7COC2H5 -> C3H7CO + C2H5
+F251 C3H7COC2H5 -> C3H7 + CO + C2H5
+F252 C3H7COC2H5 -> C2H5C(OH)=CH2 + CH2=CH2
+F253 MIPK -> CH3CO + i-C3H7
+F254 MIPK -> i-C3H7CO + CH3
 F255 MIPK -> i-C3H7 + CO + CH3
 F256 MIPK -> CH2=CHOH + CH3CH=CH2
-T257 MIBK -> products
-T258 MIBK -> CH3CO + i-C4H9
-T259 MIBK -> i-C4H9CO + CH3
-T260 MIBK -> i-C4H9 + CO + CH3
-T261 MIBK -> CH3C(OH)=CH2 + CH3CH=CH2
-T262 4-Me-2-hexanone -> products
-T263 4-Me-2-hexanone -> CH3C(OH)=CH2 + 2-butene
-T264 4-Me-2-hexanone -> CH3C(OH)=CH2 + 1-butene
-T265 5-Me-2-hexanone -> products
-T266 5-Me-2-hexanone -> CH3CO + CH2CH2CH(CH3)2
-T267 5-Me-2-hexanone -> (CH3)2CHCH2CH2CO + CH3
-T268 5-Me-2-hexanone -> CH2CH2CH(CH3)2 + CO + CH3
-T269 5-Me-2-hexanone -> CH3C(OH)=CH2 + CH2=C(CH3)2
-T270 CH3CH(CH3)COCH(CH3)2 -> products
-T271 c-C3H4O -> C2H4 + CO
-T272 c-C3H4O -> further products
-T273 genC3cKet
-T274 c-C4H6O -> C2H4 + CH2=C=O
+F257 MIBK -> products
+F258 MIBK -> CH3CO + i-C4H9
+F259 MIBK -> i-C4H9CO + CH3
+F260 MIBK -> i-C4H9 + CO + CH3
+F261 MIBK -> CH3C(OH)=CH2 + CH3CH=CH2
+F262 4-Me-2-hexanone -> products
+F263 4-Me-2-hexanone -> CH3C(OH)=CH2 + 2-butene
+F264 4-Me-2-hexanone -> CH3C(OH)=CH2 + 1-butene
+F265 5-Me-2-hexanone -> products
+F266 5-Me-2-hexanone -> CH3CO + CH2CH2CH(CH3)2
+F267 5-Me-2-hexanone -> (CH3)2CHCH2CH2CO + CH3
+F268 5-Me-2-hexanone -> CH2CH2CH(CH3)2 + CO + CH3
+F269 5-Me-2-hexanone -> CH3C(OH)=CH2 + CH2=C(CH3)2
+F270 CH3CH(CH3)COCH(CH3)2 -> products
+F271 c-C3H4O -> C2H4 + CO
+F272 c-C3H4O -> further products
+F273 genC3cKet
+F274 c-C4H6O -> C2H4 + CH2=C=O
 F275 c-C4H6O -> C3H6 + CO
-T276 c-C4H6O -> c-C3H6 + CO
-T277 genC4cKet
-T278 c-C5H8O -> 2 C2H4 + CO
-T279 c-C5H8O -> c-C4H8 + CO
-T280 c-C5H8O -> CH2=CHCH2CH2CHO
-T281 genC5cKet
-T282 c-C6H10O -> 5-hexenal
+F276 c-C4H6O -> c-C3H6 + CO
+F277 genC4cKet
+F278 c-C5H8O -> 2 C2H4 + CO
+F279 c-C5H8O -> c-C4H8 + CO
+F280 c-C5H8O -> CH2=CHCH2CH2CHO
+F281 genC5cKet
+F282 c-C6H10O -> 5-hexenal
 F283 c-C6H10O -> cyclopentane + CO
-T284 c-C6H10O -> 1-pentene + CO
-T285 genC6cKet
-T286 CH3CH2COCH=CH2 -> C2H5 + C2H3CO
-T287 CH3CH2COCH=CH2 -> C2H3 + C2H5CO
-T288 CH3CH2COCH=CH2 -> 1-C4H8 + CO
-T289 genuKet(poly)
-T290 CH3COC2H4OH -> CH3CO + CH2CH2OH
-T291 CH3COCH(OH)CH3 -> CH3CO + CH3CHOH
+F284 c-C6H10O -> 1-pentene + CO
+F285 genC6cKet
+F286 CH3CH2COCH=CH2 -> C2H5 + C2H3CO
+F287 CH3CH2COCH=CH2 -> C2H3 + C2H5CO
+F288 CH3CH2COCH=CH2 -> 1-C4H8 + CO
+F289 genuKet(poly)
+F290 CH3COC2H4OH -> CH3CO + CH2CH2OH
+F291 CH3COCH(OH)CH3 -> CH3CO + CH3CHOH
 F292 CH3COCH(OH)CH3 -> CH3CH(OH)CO + CH3
-T293 CH3COC(CH3)2OH -> CH3CO + (CH3)2COH
-T294 lcKet -> products
-T295 lcKet(OH) -> products
-T296 cKet(t-OH) -> products
-T297 a-br. Ket -> products
-T298 a-br. Ket(OH) -> products
-T299 a-br. Ket(t-OH) -> products
-T300 b-br. Ket(OH) -> products
-T301 uKet(OH) -> RdCO + ROH
-T302 uKet(OH) -> ROHCO + Rd
-T303 uKet(OH) -> alkene + CO
-T304 uKet(t-OH) -> RdCO + ROH
-T305 uKet(t-OH) -> ROHCO + Rd
-T306 uKet(t-OH) -> alkene + CO
-T307 genuKet(OHpoly)
-T308 genuKet(t-OHpoly)
-T309 CH2=C=O -> CO2 + CO + H2
-T310 CH3CH=C=O -> C2H4 + CO
-T311 genKete(poly)
-T312 CHOCH=CHCHO -> 3H-furan-2-one
-T313 uDICARaa(poly)
-T314 CH3COCH=CHCHO -> 5Me-3H-2-furanone
-T315 CH3COCH=CHCHO -> CH3 + CHOCH=CHCO
-T316 CH3COCH=CHCHO -> CH3COCH=CH2 + CO
-T317 CH3COCH=CHCHO -> maleic anhydride + HO2. + R.
-T318 uDICARak(poly)
-T319 CHOCH=CHCH=CHCHO -> diformyl cyclobutene
-T320 CH3COCH=CHCOCH3 -> CH3CO + CH=CHCOCH3
-T321 n-C5H11ONO2 -> n-C5H11O + NO2
-T322 2-C5H11ONO2 -> 2-C5H11O + NO2
-T323 3-C5H11ONO2 -> 3-C5H11O + NO2
-T324 C5H11ONO2 -> C5H11O + NO2
-T325 c-C5H11ONO2 -> c-C5H11O + NO2
-T326 i-C4H9ONO2 -> i-C4H9O + NO2
-T327 i-C5H11ONO2 -> i-C5H11O + NO2
-T328 C5H11ONO2 -> C5H11O + NO2
-T329 C1(OH)NO3 -> C1(OH)O + NO2
-T330 R(OH)NO3 -> R(OH)O + NO2
-T331 iR(OH)NO3 -> iR(OH)O + NO2
-T332 tR(OH)NO3 -> tR(OH)O + NO2
-T333 PAN -> RCO(OO) + NO2
-T334 PAN -> RCO(O) + NO3
-T335 CH3CH(NO3)CH2NO3 -> CH3CH(NO3)CH2O + NO2
-T336 CH3CH(NO3)CH2NO3 -> CH3CH(O.)CH2NO3 + NO2
-T337 C2H5CH(NO3)CH2NO3 -> C2H5CH(NO3)CH2O + NO2
-T338 C2H5CH(NO3)CH2NO3 -> C2H5CH(O.)CH2NO3 + NO2
-T339 CH3CH(NO3)CH(NO3)CH3 -> RO. + NO2
-T340 CH2(NO3)CH=CHCH2NO3 -> RO. + NO2
-T341 CH2=CHCH(NO3)CH2NO3 -> C2H3CH(NO3)CH2O + NO2
-T342 CH2=CHCH(NO3)CH2NO3 -> C2H3CH(O.)CH2NO3 + NO2
-T343 uDINIT -> RO. + NO2
-T344 C6H9-1-CH3-1,2-NO3 -> R1O. + NO2
-T345 C6H9-1-CH3-1,2-NO3 -> R2O. + NO2
-T346 (CH3)3COOH -> (CH3)3CO + OH
-T347 C2H5COCH2NO3 -> C2H5COCH2O + NO2
-T348 CH3COCH(NO3)CH3 -> CH3COCH(O.)CH3 + NO2
-T349 C6H9-2-=O-1-NO3 -> RO. + NO2
-T350 CH3COCH2CH2CH(OOH)CH3 -> RO. + OH
-T351 oxohexyl-hydroperoxide -> RO. + OH
-T352 CH2OO -> HCHO + O(3P)
-T353 CH3CHOO -> CH3CHO + O(3P)
-T354 synCH3CHOO -> CH3CHO + O(3P)
-T355 antiCH3CHOO -> CH3CHO + O(3P)
-T356 C2H5CHOO -> C2H5CHO + O(3P)
-T357 (CH3)2COO -> CH3COCH3 + O(3P)
+F293 CH3COC(CH3)2OH -> CH3CO + (CH3)2COH
+F294 lcKet -> products
+F295 lcKet(OH) -> products
+F296 cKet(t-OH) -> products
+F297 a-br. Ket -> products
+F298 a-br. Ket(OH) -> products
+F299 a-br. Ket(t-OH) -> products
+F300 b-br. Ket(OH) -> products
+F301 uKet(OH) -> RdCO + ROH
+F302 uKet(OH) -> ROHCO + Rd
+F303 uKet(OH) -> alkene + CO
+F304 uKet(t-OH) -> RdCO + ROH
+F305 uKet(t-OH) -> ROHCO + Rd
+F306 uKet(t-OH) -> alkene + CO
+F307 genuKet(OHpoly)
+F308 genuKet(t-OHpoly)
+F309 CH2=C=O -> CO2 + CO + H2
+F310 CH3CH=C=O -> C2H4 + CO
+F311 genKete(poly)
+F312 CHOCH=CHCHO -> 3H-furan-2-one
+F313 uDICARaa(poly)
+F314 CH3COCH=CHCHO -> 5Me-3H-2-furanone
+F315 CH3COCH=CHCHO -> CH3 + CHOCH=CHCO
+F316 CH3COCH=CHCHO -> CH3COCH=CH2 + CO
+F317 CH3COCH=CHCHO -> maleic anhydride + HO2. + R.
+F318 uDICARak(poly)
+F319 CHOCH=CHCH=CHCHO -> diformyl cyclobutene
+F320 CH3COCH=CHCOCH3 -> CH3CO + CH=CHCOCH3
+F321 n-C5H11ONO2 -> n-C5H11O + NO2
+F322 2-C5H11ONO2 -> 2-C5H11O + NO2
+F323 3-C5H11ONO2 -> 3-C5H11O + NO2
+F324 C5H11ONO2 -> C5H11O + NO2
+F325 c-C5H11ONO2 -> c-C5H11O + NO2
+F326 i-C4H9ONO2 -> i-C4H9O + NO2
+F327 i-C5H11ONO2 -> i-C5H11O + NO2
+F328 C5H11ONO2 -> C5H11O + NO2
+F329 C1(OH)NO3 -> C1(OH)O + NO2
+F330 R(OH)NO3 -> R(OH)O + NO2
+F331 iR(OH)NO3 -> iR(OH)O + NO2
+F332 tR(OH)NO3 -> tR(OH)O + NO2
+F333 PAN -> RCO(OO) + NO2
+F334 PAN -> RCO(O) + NO3
+F335 CH3CH(NO3)CH2NO3 -> CH3CH(NO3)CH2O + NO2
+F336 CH3CH(NO3)CH2NO3 -> CH3CH(O.)CH2NO3 + NO2
+F337 C2H5CH(NO3)CH2NO3 -> C2H5CH(NO3)CH2O + NO2
+F338 C2H5CH(NO3)CH2NO3 -> C2H5CH(O.)CH2NO3 + NO2
+F339 CH3CH(NO3)CH(NO3)CH3 -> RO. + NO2
+F340 CH2(NO3)CH=CHCH2NO3 -> RO. + NO2
+F341 CH2=CHCH(NO3)CH2NO3 -> C2H3CH(NO3)CH2O + NO2
+F342 CH2=CHCH(NO3)CH2NO3 -> C2H3CH(O.)CH2NO3 + NO2
+F343 uDINIT -> RO. + NO2
+F344 C6H9-1-CH3-1,2-NO3 -> R1O. + NO2
+F345 C6H9-1-CH3-1,2-NO3 -> R2O. + NO2
+F346 (CH3)3COOH -> (CH3)3CO + OH
+F347 C2H5COCH2NO3 -> C2H5COCH2O + NO2
+F348 CH3COCH(NO3)CH3 -> CH3COCH(O.)CH3 + NO2
+F349 C6H9-2-=O-1-NO3 -> RO. + NO2
+F350 CH3COCH2CH2CH(OOH)CH3 -> RO. + OH
+F351 oxohexyl-hydroperoxide -> RO. + OH
+F352 CH2OO -> HCHO + O(3P)
+F353 CH3CHOO -> CH3CHO + O(3P)
+F354 synCH3CHOO -> CH3CHO + O(3P)
+F355 antiCH3CHOO -> CH3CHO + O(3P)
+F356 C2H5CHOO -> C2H5CHO + O(3P)
+F357 (CH3)2COO -> CH3COCH3 + O(3P)
+T358 NO -> N + O(3P)
+T359 OCS -> CO + SO2
+T360 H2SO4 -> 2 OH + SO2
+T361 MACR -> products
+T362 CH2Br2 -> CH2Br + Br
 ==================================================================
