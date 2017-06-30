@@ -10,8 +10,8 @@
 *=  subroutines for ease of management and manipulation.  Please refer to    =*
 *=  the inline documentation of the specific subroutines for detail          =*
 *=  information.                                                             =*
-*=  In this subroutine an addition to the reactions in swchem is treated     =*
-*=  as needed for MCM-GECKO.                                                 =*
+*=  In this subroutine is an addition to the reactions in swchem             =*
+*=  and hosts additional photo-reactions of the MCM-GECKO mechanism.         =*
 *-----------------------------------------------------------------------------*
 *=  PARAMETERS:                                                              =*
 *=  NW     - INTEGER, number of specified intervals + 1 in working        (I)=*
