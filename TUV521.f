@@ -570,6 +570,7 @@ C      zpbl = 3.
       CALL swbiol(nw,wl,wc, ns,sw,slabel)
       CALL swchem(nw,wl,nz,tlev,aircon, nj,sj,jlabel)
       CALL mcmext(nw,wl,nz,tlev,aircon, nj,sj,jlabel)
+      CALL gcext(nw,wl,nz,tlev,aircon, nj,sj,jlabel)
 !     WRITE(*,'(A,I4)') " Number of photoreactions in database:", nj
 
       wrfchm = .FALSE.
@@ -595,6 +596,7 @@ C      zpbl = 3.
                nj = 0
                CALL swchem(nw,wl,nz,tlev,aircon, nj,sj,jlabel)
                CALL mcmext(nw,wl,nz,tlev,aircon, nj,sj,jlabel)
+               CALL gcext(nw,wl,nz,tlev,aircon, nj,sj,jlabel)
 
                WRITE(88,881)tlev(1), aircon(1)
                DO ij = 1, nj
