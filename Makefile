@@ -8,6 +8,19 @@
 # FOBJS    : all required object files that do not use the include file
 #
 
+
+
+if hash ifort 2>/dev/null; then
+	echo 'ifort exists'
+	FC = ifort
+	FFLAGS = -cpp -fpp -fp-model strict -O3 -no-prec-div -static -xHost
+else
+	echo 'no ifort using gfort'
+	FC = gfortran
+	FFLAGS = -fcheck=all #-Wall -cpp -mcmodel medium -fpp
+fi
+
+
 EXC = tuv
 
 INCLUDES = params
