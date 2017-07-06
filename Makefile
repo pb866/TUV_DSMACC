@@ -71,14 +71,13 @@ tidy: clean
 
 compiler:
 ifndef intel
-        @echo 'using gfortran'
-        $(eval export FC=gfortran)
-        $(eval export F90=gfortran)
-        $(eval export FFLAGS=-fcheck=all)
+	@echo 'using gfortran'
+	$(eval export FC=gfortran)
+	$(eval export F90=gfortran)
+	$(eval export FFLAGS=-fcheck=all)
 else
-        @echo 'using ifort'
-        $(eval export FC=ifort)
-        $(eval export F90=ifort)
-        $(eval export FFLAGS = -cpp -fpp -fp-model strict -O3 -no-prec-div -static -xHost)
+	@echo 'using ifort'
+	$(eval export FC=ifort)
+	$(eval export F90=ifort)
+	$(eval export FFLAGS = -cpp -fpp -fp-model strict -O3 -no-prec-div -static -xHost)
 endif
-
