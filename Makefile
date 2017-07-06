@@ -8,17 +8,8 @@
 # FOBJS    : all required object files that do not use the include file
 #
 
+ #-fp-stack-check -check bou    nds -check arg_temp_created -check all #-warn all # -openmp
 
-
-if hash ifort 2>/dev/null; then
-	echo 'ifort exists'
-	FC = ifort
-	FFLAGS = -cpp -fpp -fp-model strict -O3 -no-prec-div -static -xHost
-else
-	echo 'no ifort using gfort'
-	FC = gfortran
-	FFLAGS = -fcheck=all #-Wall -cpp -mcmodel medium -fpp
-fi
 
 
 EXC = tuv
@@ -51,24 +42,24 @@ FOBJS = numer.o functs.o orbit.o
 #        Cray users :  try FC = f90
 # FC = pgf90
 # FC = gfortran
-FC = ifort
+#FC = ifort
 
 # FFLAGS : command line options to compiler call (if not set, default is
 #          probably some basic optimization level)
 # FFLAGS = -fcheck=all #-Wall -cpp -mcmodel medium -fpp
-FFLAGS = -cpp -fpp -fp-model strict -O3 -no-prec-div -static -xHost
+# FFLAGS = -cpp -fpp -fp-model strict -O3 -no-prec-div -static -xHost
 
 # LIBS  : libraries required
 # LIBS =
 
 #----------
 
-$(EXC):		$(FOBJS) $(USE_INCL)
+$(EXC):	compiler	$(FOBJS) $(USE_INCL)
 		$(FC) $(FFLAGS) $(FOBJS) $(USE_INCL) $(LIBS) -o $@
 
 $(USE_INCL):	$(INCLUDES)
 
-.f.o:
+.f.o: compiler
 		$(FC) $(FFLAGS) -c $*.f
 
 clean:
@@ -76,3 +67,18 @@ clean:
 
 tidy: clean
 		rm -f *~ fort.*
+
+
+compiler:
+ifndef intel
+        @echo 'using gfortran'
+        $(eval export FC=gfortran)
+        $(eval export F90=gfortran)
+        $(eval export FFLAGS=-fcheck=all)
+else
+        @echo 'using ifort'
+        $(eval export FC=ifort)
+        $(eval export F90=ifort)
+        $(eval export FFLAGS = -cpp -fpp -fp-model strict -O3 -no-prec-div -static -xHost)
+endif
+
