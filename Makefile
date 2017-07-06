@@ -55,7 +55,7 @@ FOBJS = numer.o functs.o orbit.o
 #----------
 
 $(EXC):	compiler	$(FOBJS) $(USE_INCL)
-		$(FC) $(FFLAGS) $(FOBJS) $(USE_INCL) $(LIBS) -o $@
+		#$(FC) $(FFLAGS) $(FOBJS) $(USE_INCL) $(LIBS) -o $@
 
 $(USE_INCL):	$(INCLUDES)
 
@@ -71,12 +71,12 @@ tidy: clean
 
 compiler:
 ifndef intel
-	@echo 'using gfortran'
+	@echo 'using gfortran to compile tuv'
 	$(eval export FC=gfortran)
 	$(eval export F90=gfortran)
 	$(eval export FFLAGS=-fcheck=all)
 else
-	@echo 'using ifort'
+	@echo 'using ifort to compile tuv'
 	$(eval export FC=ifort)
 	$(eval export F90=ifort)
 	$(eval export FFLAGS = -cpp -fpp -fp-model strict -O3 -no-prec-div -static -xHost)
