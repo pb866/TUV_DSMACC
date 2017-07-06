@@ -10,7 +10,7 @@
 
  #-fp-stack-check -check bou    nds -check arg_temp_created -check all #-warn all # -openmp
 
-
+intel := $(shell command -v ifort 2> /dev/null)
 
 EXC = tuv
 
