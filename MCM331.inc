@@ -67,4 +67,23 @@
     CASE( 45)
       j(  56) = seval(szabin,theta,tmp,tmp2,b,c,d)*0.750 ! CH3COCH2(ONO2) -> CH3COCH2(O.) + NO2
       j(  57) = seval(szabin,theta,tmp,tmp2,b,c,d)*0.250 ! CH3COCH2(ONO2) -> CH3COCH2(O.) + NO2
+! Amendment for Edwards et al. (2014) mechanism
+    CASE( 18)
+      j(1300)=seval(szabin,theta,tmp, tmp2, b,c,d)
+    CASE(123)
+      j(1001)=0.!seval(szabin,theta,tmp, tmp2, b,c,d) ! HOBr
+    CASE(122)
+      j(1002)=0.!seval(szabin,theta,tmp, tmp2, b,c,d) ! BrO
+    CASE(121)
+      j(1003)=0.!seval(szabin,theta,tmp, tmp2, b,c,d) ! Br2
+    CASE(129)
+      j(1004)=0.!seval(szabin,theta,tmp, tmp2, b,c,d) ! BrNO3->Br+NO3
+    CASE(128)
+      j(1005)=0.!seval(szabin,theta,tmp, tmp2, b,c,d) ! BrNO3->BrO+NO2
+    CASE(100)
+      j(1006)=0.!seval(szabin,theta,tmp, tmp2, b,c,d) ! ClNO3->Cl+NO3
+    CASE(101)
+      j(1007)=0.!seval(szabin,theta,tmp, tmp2, b,c,d) ! ClNO3->ClO+NO2
+    CASE( 89)
+      j(1008)=seval(szabin,theta,tmp, tmp2, b,c,d) ! Cl2->2Cl
   END SELECT
