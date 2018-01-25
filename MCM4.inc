@@ -455,7 +455,7 @@
       j(8022) = seval(szabin,theta,tmp,tmp2,b,c,d) ! genuKet(poly)
     CASE(310)
       j(8023) = seval(szabin,theta,tmp,tmp2,b,c,d) ! genKete(poly)
-    CASE(307)
+    CASE(306)
       j(8024) = seval(szabin,theta,tmp,tmp2,b,c,d) ! genuKet(OHpoly)
     CASE(307)
       j(8025) = seval(szabin,theta,tmp,tmp2,b,c,d) ! genuKet(t-OHpoly)
