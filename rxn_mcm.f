@@ -4713,6 +4713,10 @@ c         n = 1705
 
       j = j + 1
       jlabel(j) = 'CHOCHO -> CH2O + CO'
+! generic rate constant for aldehyde groups within di- and polycarbonyls
+! (XS = 0.5*XS(GLY), QY = 1)
+      j = j + 1
+      jlabel(j) = 'genDICAR(Ald)'
 
 
 * options
@@ -5047,9 +5051,13 @@ c         n = 1705
 
            ENDIF
 
-           sq(j-2,i,iw) = sig * qyI
-           sq(j-1,i,iw) = sig * qyII
-           sq(j,  i,iw) = sig * qyIII
+           sq(j-3,i,iw) = sig * qyI
+           sq(j-2,i,iw) = sig * qyII
+           sq(j-1,i,iw) = sig * qyIII
+           ! Divide by 2 to use 1 aldehyde group in glyoxal for
+           ! compounds with an aldehyde group, an adjacent carbonyl group
+           ! and further polyfunctional chromphores
+           sq(j,  i,iw) = sig * 0.5
 
          ENDDO
 
@@ -5140,8 +5148,6 @@ c         n = 1705
 
       j = j+1
       jlabel(j) = 'CH3COCHO -> CH3CO + HCO'
-      j = j+1
-      jlabel(j) = 'aDICARak(poly)'
 
 * options
 * mabs for cross sections
@@ -5562,8 +5568,7 @@ c               kq = 1.93e4 * EXP(-5639/wc(iw))
 
             ENDIF
 
-            sq(j-1,i,iw) = sig * qy
-            sq(j  ,i,iw) = sig
+            sq(j,i,iw) = sig * qy
 
          ENDDO
       ENDDO
@@ -10709,19 +10714,20 @@ c             sq(j,iz,iw) = qy * EXP(sum)
       REAL yg(kw)
       INTEGER ierr
       INTEGER iw
-      INTEGER mabs, myld
-      real qy1, qy2, qy3
+      INTEGER mabs!, myld
+!     real qy1, qy2, qy3
 
 ************************* CH2(OH)CHO photolysis
 
+! Now scaled externally: (0.83/0.1/0.07)
+!     j = j+1
+!     jlabel(j) = 'HOCH2CHO -> CH2OH + HCO'
+!     j = j+1
+!     jlabel(j) = 'HOCH2CHO -> CH3OH + CO'
+!     j = j+1
+!     jlabel(j) = 'HOCH2CHO -> CH2CHO + OH'
       j = j+1
-      jlabel(j) = 'HOCH2CHO -> CH2OH + HCO'
-      j = j+1
-      jlabel(j) = 'HOCH2CHO -> CH3OH + CO'
-      j = j+1
-      jlabel(j) = 'HOCH2CHO -> CH2CHO + OH'
-      j = j+1
-      jlabel(j) = 'genHOCH2CHO(poly)'
+      jlabel(j) = 'HOCH2CHO -> products'
 
       IF(vers==1)THEN
         mabs = 2
@@ -10746,27 +10752,27 @@ c             sq(j,iz,iw) = qy * EXP(sum)
       ENDIF
 
 
-      IF(vers==1)THEN
-        myld = 1
-       ELSEIF(vers==2)THEN
-        myld = 2
-       ELSEIF(vers==0) THEN
-        myld = 2
-       ELSE
-        STOP "'vers' not set. Choose value between 0 and 2 in 'params'."
-      ENDIF
+!     IF(vers==1)THEN
+!       myld = 1
+!      ELSEIF(vers==2)THEN
+!       myld = 2
+!      ELSEIF(vers==0) THEN
+!       myld = 2
+!      ELSE
+!       STOP "'vers' not set. Choose value between 0 and 2 in 'params'."
+!     ENDIF
 
-      IF(vers==1 .OR. vers==2) THEN
-        CONTiNUE
-       ELSEIF(myld.EQ.1) THEN
-        WRITE(kout,'(A)')
-     &       ' HOCH2CHO quantum yields from JPL.'
-       ELSEIF(myld.EQ.2) THEN
-        WRITE(kout,'(A)')
-     &       ' HOCH2CHO quantum yields from IUPAC.'
-       ELSE
-        STOP "'myld' not defined for HOCH2CHO photolysis."
-      ENDIF
+!     IF(vers==1 .OR. vers==2) THEN
+!       CONTiNUE
+!      ELSEIF(myld.EQ.1) THEN
+!       WRITE(kout,'(A)')
+!    &       ' HOCH2CHO quantum yields from JPL.'
+!      ELSEIF(myld.EQ.2) THEN
+!       WRITE(kout,'(A)')
+!    &       ' HOCH2CHO quantum yields from IUPAC.'
+!      ELSE
+!       STOP "'myld' not defined for HOCH2CHO photolysis."
+!     ENDIF
 
       IF(mabs .EQ. 1) THEN
 
@@ -10823,23 +10829,24 @@ c             sq(j,iz,iw) = qy * EXP(sum)
 
       ENDIF
 
+! Quantum yields now scaled externally
+!     IF (myld == 1) THEN
+!       qy1 = 0.83
+!       qy2 = 0.1
+!       qy3 = 0.07
+!      ELSEIF (myld == 2) THEN
+!        qy1 = 0.75
+!        qy2 = 0.
+!        qy3 = 0.
+!     ENDIF
+
+
 * combine:
-
-      IF (myld == 1) THEN
-        qy1 = 0.83
-        qy2 = 0.1
-        qy3 = 0.07
-       ELSEIF (myld == 2) THEN
-         qy1 = 0.75
-         qy2 = 0.
-         qy3 = 0.
-      ENDIF
-
       DO iw = 1, nw - 1
          DO i = 1, nz
-            sq(j-3,i,iw) = yg(iw) * qy1
-            sq(j-2,i,iw) = yg(iw) * qy2
-            sq(j-1,i,iw) = yg(iw) * qy3
+!           sq(j-3,i,iw) = yg(iw) * qy1
+!           sq(j-2,i,iw) = yg(iw) * qy2
+!           sq(j-1,i,iw) = yg(iw) * qy3
             sq(j  ,i,iw) = yg(iw)
          ENDDO
       ENDDO
@@ -10929,7 +10936,7 @@ c             sq(j,iz,iw) = qy * EXP(sum)
       j = j+1
       jlabel(j) = 'CH3COCOCH3 -> Products'
       j = j+1
-      jlabel(j) = 'aDICARkk(poly)'
+      jlabel(j) = 'genDICAR(Ket)'
 
 
       IF(vers==1)THEN
@@ -11009,7 +11016,10 @@ c             sq(j,iz,iw) = qy * EXP(sum)
       DO iw = 1, nw - 1
          DO i = 1, nz
             sq(j-1,i,iw) = yg(iw) * qy
-            sq(j  ,i,iw) = yg(iw)
+            ! Divide by 2 to use 1 keto group in glyoxal for
+            ! compounds with a keto group, an adjacent carbonyl group
+            ! and further polyfunctional chromphores
+            sq(j  ,i,iw) = yg(iw) * 0.5
          ENDDO
       ENDDO
 
@@ -11518,9 +11528,10 @@ c             sq(j,iz,iw) = qy * EXP(sum)
 * mabs = 2:  JPL2011
 
       IF(vers==1)THEN
-        mabs = 2
+        mabs =1
        ELSEIF(vers==2)THEN
-        mabs = 2
+! Now scaled externally
+        mabs = 1
        ELSEIF(vers==0) THEN
         mabs = 2
        ELSE

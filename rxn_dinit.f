@@ -52,18 +52,16 @@
 * local
 
       REAL yg(kw)
-      REAL qy1, qy2
+C      REAL qy1, qy2
       REAL sig
       INTEGER ierr, idum
       INTEGER iw
 
       INTEGER mabs
 
-
+! Scaled externally with 50:50 branching
       j = j+1
-      jlabel(j) = 'CH3CH(NO3)CH2NO3 -> CH3CH(NO3)CH2O + NO2'
-      j = j+1
-      jlabel(j) = 'CH3CH(NO3)CH2NO3 -> CH3CH(O.)CH2NO3 + NO2'
+      jlabel(j) = 'CH3CH(NO3)CH2NO3 -> products'
 
 
       IF(vers==1)THEN
@@ -117,9 +115,8 @@
 
 
 * quantum yields
-
-      qy1 = 0.5
-      qy2 = 0.5
+C      qy1 = 0.5
+C      qy2 = 0.5
 
 
 * combine:
@@ -130,8 +127,7 @@
           sig = yg(iw)
         ENDIF
         DO i = 1, nz
-          sq(j-1,i,iw) = sig * qy1
-          sq(j  ,i,iw) = sig * qy2
+          sq(j,i,iw) = sig
         ENDDO
       ENDDO
 
@@ -185,17 +181,16 @@
 * local
 
       REAL yg(kw)
-      REAL qy1, qy2
+C      REAL qy1, qy2
       REAL sig
       INTEGER ierr, idum
       INTEGER iw
 
       INTEGER mabs
 
+! Scaled externally with 50:50 branching
       j = j+1
-      jlabel(j) = 'C2H5CH(NO3)CH2NO3 -> C2H5CH(NO3)CH2O + NO2'
-      j = j+1
-      jlabel(j) = 'C2H5CH(NO3)CH2NO3 -> C2H5CH(O.)CH2NO3 + NO2'
+      jlabel(j) = 'C2H5CH(NO3)CH2NO3 -> products'
 
 
       IF(vers==1)THEN
@@ -249,9 +244,8 @@
 
 
 * quantum yields
-
-      qy1 = 0.5
-      qy2 = 0.5
+C      qy1 = 0.5
+C      qy2 = 0.5
 
 
 * combine:
@@ -262,8 +256,7 @@
           sig = yg(iw)
         ENDIF
         DO i = 1, nz
-          sq(j-1,i,iw) = sig * qy1
-          sq(j  ,i,iw) = sig * qy2
+          sq(j  ,i,iw) = sig
         ENDDO
       ENDDO
 
@@ -575,17 +568,16 @@
 * local
 
       REAL yg(kw)
-      REAL qy1, qy2
+C      REAL qy1, qy2
       REAL sig
       INTEGER ierr, idum
       INTEGER iw
 
       INTEGER mabs
 
+! Scaled externally with 50:50 branching
       j = j+1
-      jlabel(j) = 'CH2=CHCH(NO3)CH2NO3 -> C2H3CH(NO3)CH2O + NO2'
-      j = j+1
-      jlabel(j) = 'CH2=CHCH(NO3)CH2NO3 -> C2H3CH(O.)CH2NO3 + NO2'
+      jlabel(j) = 'CH2=CHCH(NO3)CH2NO3 -> products'
 
 
       IF(vers==1)THEN
@@ -640,9 +632,8 @@
 
 
 * quantum yields
-
-      qy1 = 0.5
-      qy2 = 0.5
+C      qy1 = 0.5
+C      qy2 = 0.5
 
 
 * combine:
@@ -653,8 +644,7 @@
           sig = yg(iw)
         ENDIF
         DO i = 1, nz
-          sq(j-1,i,iw) = sig * qy1
-          sq(j  ,i,iw) = sig * qy2
+          sq(j,i,iw) = sig
         ENDDO
       ENDDO
 
@@ -708,17 +698,16 @@
 * local
 
       REAL yg(kw), dum
-      REAL qy1, qy2
+C      REAL qy1, qy2
       REAL sig
       INTEGER ierr, idum
       INTEGER iw
 
       INTEGER mabs
 
+! Scaled externally with 50:50 branching
       j = j+1
-      jlabel(j) = 'C6H9-1-CH3-1,2-NO3 -> R1O. + NO2'
-      j = j+1
-      jlabel(j) = 'C6H9-1-CH3-1,2-NO3 -> R2O. + NO2'
+      jlabel(j) = 'C6H9-1-CH3-1,2-NO3 -> products'
 
 
       IF(vers==1)THEN
@@ -790,9 +779,8 @@
 
 
 * quantum yields
-
-      qy1 = 0.5
-      qy2 = 0.5
+C      qy1 = 0.5
+C      qy2 = 0.5
 
 
 * combine:
@@ -800,8 +788,7 @@
       DO iw = 1, nw - 1
         sig = yg(iw)
         DO i = 1, nz
-          sq(j-1,i,iw) = sig * qy1
-          sq(j  ,i,iw) = sig * qy2
+          sq(j,i,iw) = sig
         ENDDO
       ENDDO
 

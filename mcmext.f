@@ -10,7 +10,7 @@
 *=  subroutines for ease of management and manipulation.  Please refer to    =*
 *=  the inline documentation of the specific subroutines for detail          =*
 *=  information.                                                             =*
-*=  In this subroutine is an addition to the reactions in swchem             =*
+*=  This subroutine is an addition to subroutine swchem                      =*
 *=  and hosts additional photo-reactions of the MCM-GECKO mechanism.         =*
 *-----------------------------------------------------------------------------*
 *=  PARAMETERS:                                                              =*
@@ -322,6 +322,14 @@
 
 *mr04.  (CH3)2COO + hv -> CH3COCH3 + O(3P)
       CALL mr04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+
+******** nitrocompound Photochemistry
+
+*mn13.  CH3NO2 + hv -> CH3 + NO2 (+ HONO channel for RNO2)
+      CALL mn13(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*mn14.  C2H5NO2 + hv -> products
+      CALL mn14(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
 ******** Generic j values for multifunctional chromophore photochemistry

@@ -2,7 +2,7 @@
 *= the product (cross section) x (quantum yield) for photo-reactions of
 *= organic nitrates in MCM-GECKO, which were not yet present in TUV5.2:
 *=
-*=     mn01 through mn11
+*=     mn01 through mn14
 
 *=============================================================================*
 
@@ -82,7 +82,7 @@
 
       REAL yg1(kw), yg2(kw)
       REAL sig ! qy
-      INTEGER ierr,idum
+      INTEGER ierr
       INTEGER iw
       INTEGER mabs
 
@@ -126,8 +126,7 @@
          ENDDO
          n = 15
          DO i = 1, n
-            READ(kin,*) idum, y1(i)
-            x1(i) = float(idum)
+            READ(kin,*) x1(i), y1(i)
          ENDDO
          CLOSE(kin)
          IF(mabs==3) THEN
@@ -153,8 +152,7 @@
          ENDDO
          n = 16
          DO i = 1, n
-            READ(kin,*) idum, y1(i)
-            x1(i) = float(idum)
+            READ(kin,*) x1(i), y1(i)
          ENDDO
          CLOSE(kin)
          IF(mabs==3) THEN
@@ -203,8 +201,7 @@
       ENDDO
       n = 16
       DO i = 1, n
-        READ(kin,*) idum, y2(i)
-        x2(i) = float(idum)
+        READ(kin,*) x2(i), y2(i)
         y2(i) = y2(i) * 1.E-3
       ENDDO
       CLOSE(kin)
@@ -558,7 +555,7 @@
 
       REAL yg1(kw)
       REAL sig ! qy
-      INTEGER ierr, idum
+      INTEGER ierr
       INTEGER iw
 
 ***************** i-C4H9ONO2 photolysis *************************
@@ -574,8 +571,7 @@
       ENDDO
       n = 25
       DO i = 1, n
-        READ(kin,*) idum, y1(i)
-        x1(i) = float(idum)
+        READ(kin,*) x1(i), y1(i)
       ENDDO
       CLOSE(kin)
 
@@ -668,7 +664,7 @@
 
       REAL yg1(kw)
       REAL sig ! qy
-      INTEGER ierr, idum
+      INTEGER ierr
       INTEGER iw
 
 ***************** i-C5H11ONO2 photolysis *************************
@@ -684,8 +680,7 @@
       ENDDO
       n = 25
       DO i = 1, n
-        READ(kin,*) idum, y1(i)
-        x1(i) = float(idum)
+        READ(kin,*) x1(i), y1(i)
       ENDDO
       CLOSE(kin)
 
@@ -1665,3 +1660,338 @@
       END
 
 * ============================================================================*
+
+      SUBROUTINE mn13(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! RNO2
+
+*-----------------------------------------------------------------------------*
+*=  PURPOSE:                                                                 =*
+*=  Provide the product (cross section) x (quantum yield) for RNO2           =*
+*=  RNO2 photolysis:                                                         =*
+*=           RNO2 + hv -> R + NO2                                            =*
+*=                                                                           =*
+*=  Absorption cross sections: Taylor et al. (1980) for nitromethane         =*
+*=  (from MPI-Mainz Spectral Atlas)                                          =*
+*=  Quantum yields:            Estimates based on Calvert et al. 2011 book   =*
+*=                                                                           =*
+*-----------------------------------------------------------------------------*
+*=  PARAMETERS:                                                              =*
+*=  NW     - INTEGER, number of specified intervals + 1 in working        (I)=*
+*=           wavelength grid                                                 =*
+*=  WL     - REAL, vector of lower limits of wavelength intervals in      (I)=*
+*=           working wavelength grid                                         =*
+*=  WC     - REAL, vector of center points of wavelength intervals in     (I)=*
+*=           working wavelength grid                                         =*
+*=  NZ     - INTEGER, number of altitude levels in working altitude grid  (I)=*
+*=  TLEV   - REAL, temperature (K) at each specified altitude level       (I)=*
+*=  AIRDEN - REAL, air density (molec/cc) at each altitude level          (I)=*
+*=  J      - INTEGER, counter for number of weighting functions defined  (IO)=*
+*=  SQ     - REAL, cross section x quantum yield (cm^2) for each          (O)=*
+*=           photolysis reaction defined, at each defined wavelength and     =*
+*=           at each defined altitude level                                  =*
+*=  JLABEL - CHARACTER*lcl, string identifier for each photolysis         (O)=*
+*=           reaction defined                                                =*
+*=  lcl    - INTEGER, length of character for labels                         =*
+*-----------------------------------------------------------------------------*
+
+      IMPLICIT NONE
+      INCLUDE 'params'
+
+* input
+
+      INTEGER nw
+      REAL wl(kw), wc(kw)
+
+      INTEGER nz
+
+      REAL tlev(kz)
+      REAL airden(kz)
+
+* weighting functions
+
+      CHARACTER(lcl) jlabel(kj)
+      REAL sq(kj,kz,kw)
+
+* input/output:
+
+      INTEGER j
+
+* data arrays
+
+      INTEGER kdata
+      PARAMETER(kdata=200)
+
+      INTEGER i, n
+      REAL x1(kdata)
+      REAL y1(kdata)
+
+* local
+
+      REAL yg1(kw)
+      REAL sig, qy
+      INTEGER ierr
+      INTEGER iw
+
+***************** RNO2 photolysis *************************
+
+      j = j+1
+      jlabel(j) = 'RNO2 + hv -> R + NO2'
+!     Minor channels (QY = 0.08 scaled externally)
+      j = j+1
+      jlabel(j) = 'RNO2 + hv -> products'
+
+
+       OPEN(UNIT=kin,FILE='DATAJ1/MCMext/NIT/CH3NO2_Taylor80.abs',
+     $      STATUS='old')
+       DO i = 1, 8
+          READ(kin,*)
+       ENDDO
+       n = 35
+       DO i = 1, n
+          READ(kin,*) x1(i), y1(i)
+       ENDDO
+       CLOSE(kin)
+       CALL addpnt(x1,y1,kdata,n,x1(1)*(1.-deltax),0.)
+       CALL addpnt(x1,y1,kdata,n,               0.,0.)
+       CALL addpnt(x1,y1,kdata,n,x1(n)*(1.+deltax),0.)
+       CALL addpnt(x1,y1,kdata,n,           1.e+38,0.)
+       CALL inter2(nw,wl,yg1,n,x1,y1,ierr)
+       IF (ierr .NE. 0) THEN
+         WRITE(*,*) ierr, jlabel(j)
+         STOP
+       ENDIF
+
+
+* quantum yields
+* channel 1 – RNO2 + hv -> R + NO2:
+* @238nm: 0.2
+* @254nm: 0.7
+* @296nm: 0.7
+* @337nm: 0.3
+* below 254nm: lin. interpol. to qy1=0
+* above 296nm: lin. interpol. to qy1=0
+* in-between: qy1 = 0.7
+
+* channel 2 – RNO2 + hv -> 1-alkene + HONO:
+* qy2 = 0.08 (scaled externally)
+
+
+* combine
+      DO iw = 1, nw - 1
+         sig = yg1(iw)
+         IF(wc(iw)<254.) THEN
+           qy = MAX(0.,0.2 + 0.5/16.*(wc(iw)-238.))
+          ELSEIF(wc(iw)>296.) THEN
+           qy = MAX(0.,0.7 - 0.4/41.*(wc(iw)-296.))
+          ELSE
+           qy = 0.7
+         ENDIF
+
+         DO i = 1, nz
+           sq(j-1,i,iw) = sig * qy
+           sq(j  ,i,iw) = sig
+         ENDDO
+      ENDDO
+
+      END
+
+*=============================================================================*
+
+      SUBROUTINE mn14(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C2H5NO2
+
+*-----------------------------------------------------------------------------*
+*=  PURPOSE:                                                                 =*
+*=  Provide the product (cross section) x (quantum yield) for C2H5NO2        =*
+*=  photolysis:                                                              =*
+*=           C2H5NO2 + hv -> C2H5 + NO2                                      =*
+*=                                                                           =*
+*=  Absorption cross sections: see options below                             =*
+*=  Quantum yields:            estimated same as CH3NO2                      =*
+*=                                                                           =*
+*-----------------------------------------------------------------------------*
+*=  PARAMETERS:                                                              =*
+*=  NW     - INTEGER, number of specified intervals + 1 in working        (I)=*
+*=           wavelength grid                                                 =*
+*=  WL     - REAL, vector of lower limits of wavelength intervals in      (I)=*
+*=           working wavelength grid                                         =*
+*=  WC     - REAL, vector of center points of wavelength intervals in     (I)=*
+*=           working wavelength grid                                         =*
+*=  NZ     - INTEGER, number of altitude levels in working altitude grid  (I)=*
+*=  TLEV   - REAL, temperature (K) at each specified altitude level       (I)=*
+*=  AIRDEN - REAL, air density (molec/cc) at each altitude level          (I)=*
+*=  J      - INTEGER, counter for number of weighting functions defined  (IO)=*
+*=  SQ     - REAL, cross section x quantum yield (cm^2) for each          (O)=*
+*=           photolysis reaction defined, at each defined wavelength and     =*
+*=           at each defined altitude level                                  =*
+*=  JLABEL - CHARACTER*lcl, string identifier for each photolysis         (O)=*
+*=           reaction defined                                                =*
+*=  lcl    - INTEGER, length of character for labels                         =*
+*-----------------------------------------------------------------------------*
+
+      IMPLICIT NONE
+      INCLUDE 'params'
+
+* input
+
+      INTEGER nw
+      REAL wl(kw), wc(kw)
+
+      INTEGER nz
+
+      REAL tlev(kz)
+      REAL airden(kz)
+
+* weighting functions
+
+      CHARACTER(lcl) jlabel(kj)
+      REAL sq(kj,kz,kw)
+
+* input/output:
+
+      INTEGER j
+
+* data arrays
+
+      INTEGER kdata
+      PARAMETER(kdata=200)
+
+      INTEGER i, n
+      REAL x1(kdata), x2(kdata)
+      REAL y1(kdata), y2(kdata)
+
+* local
+
+      REAL yg1(kw), yg2(kw), yg(kw)
+      REAL sig, qy
+      INTEGER ierr
+      INTEGER iw
+      INTEGER mabs
+
+***************** RNO2 photolysis *************************
+
+!     Major channel
+      j = j+1
+      jlabel(j) = 'C2H5NO2 + hv -> C2H5 + NO2'
+!     Minor channel (QY = 0.08 scaled externally)
+      j = j+1
+      jlabel(j) = 'C2H5NO2 + hv -> C2H4 + HONO'
+
+*** Cross section options
+      IF(vers==1)THEN
+        mabs = 2 ! GECKO-A database
+       ELSEIF(vers==2)THEN
+        mabs = 2
+       ELSEIF(vers==0) THEN
+        mabs = 2
+       ELSE
+        STOP "'vers' not set. Choose value between 0 and 2 in 'params'."
+      ENDIF
+
+      IF(vers==1 .OR. vers==2) THEN
+        CONTiNUE
+       ELSEIF(mabs.EQ.1) THEN
+        WRITE(kout,'(A)')
+     &       ' Wallace-Goodeve, 1943.'
+       ELSEIF(mabs.EQ.2) THEN
+        WRITE(kout,'(A)')
+     &       ' McMillan, 1966, pers. comm.'
+       ELSEIF(mabs.EQ.3) THEN
+        WRITE(kout,'(2A)')
+     &       ' Average of mabs 1 and 2.'
+       ELSE
+        STOP "'mabs' not defined for n-C5H11ONO2 photolysis."
+      ENDIF
+
+*** Cross sections
+* Wallace-Goodeve 1934
+      IF(mabs==1 .or. mabs==3) THEN
+         OPEN(UNIT=kin,
+     $        FILE='DATAJ1/MCMext/NIT/C2H5NO2_Wallace-Goodeve34.abs',
+     $        STATUS='old')
+         DO i = 1, 7
+           READ(kin,*)
+         ENDDO
+         n = 55
+         DO i = 1, n
+           READ(kin,*) x1(i), y1(i)
+         ENDDO
+         CLOSE(kin)
+         CALL addpnt(x1,y1,kdata,n,x1(1)*(1.-deltax),0.)
+         CALL addpnt(x1,y1,kdata,n,               0.,0.)
+         CALL addpnt(x1,y1,kdata,n,x1(n)*(1.+deltax),0.)
+         CALL addpnt(x1,y1,kdata,n,           1.e+38,0.)
+         CALL inter2(nw,wl,yg1,n,x1,y1,ierr)
+         IF (ierr .NE. 0) THEN
+           WRITE(*,*) ierr, jlabel(j)
+           STOP
+         ENDIF
+       ENDIF
+
+* McMillan 1966
+       IF(mabs==2 .or. mabs==3) THEN
+         OPEN(UNIT=kin,FILE='DATAJ1/MCMext/NIT/C2H5NO2_McMillan66.abs',
+     $        STATUS='old')
+         DO i = 1, 7
+           READ(kin,*)
+         ENDDO
+         n = 27
+         DO i = 1, n
+           READ(kin,*) x2(i), y2(i)
+         ENDDO
+         CLOSE(kin)
+         CALL addpnt(x2,y2,kdata,n,x2(1)*(1.-deltax),0.)
+         CALL addpnt(x2,y2,kdata,n,               0.,0.)
+         CALL addpnt(x2,y2,kdata,n,x2(n)*(1.+deltax),0.)
+         CALL addpnt(x2,y2,kdata,n,           1.e+38,0.)
+         CALL inter2(nw,wl,yg2,n,x2,y2,ierr)
+         IF (ierr .NE. 0) THEN
+           WRITE(*,*) ierr, jlabel(j)
+           STOP
+         ENDIF
+      ENDIF
+
+* Average of the above
+      IF(mabs==1) THEN
+        yg = yg1
+      ELSEIF(mabs==2) THEN
+        yg = yg2
+      ELSEIF(mabs==3) THEN
+        DO i = 1,kw
+          yg(i) = (yg1(i)+yg2(i))/2.
+        ENDDO
+      ENDIF
+
+
+* quantum yields
+* channel 1 – RNO2 + hv -> R + NO2:
+* @238nm: 0.2
+* @254nm: 0.7
+* @296nm: 0.7
+* @337nm: 0.3
+* below 254nm: lin. interpol. to qy1=0
+* above 296nm: lin. interpol. to qy1=0
+* in-between: qy1 = 0.7
+
+* channel 2 – RNO2 + hv -> 1-alkene + HONO:
+* qy2 = 0.08 (scaled externally)
+
+
+* combine
+      DO iw = 1, nw - 1
+         sig = yg(iw)
+         IF(wc(iw)<254.) THEN
+           qy = MAX(0.,0.2 + 0.5/16.*(wc(iw)-238.))
+          ELSEIF(wc(iw)>296.) THEN
+           qy = MAX(0.,0.7 - 0.4/41.*(wc(iw)-296.))
+          ELSE
+           qy = 0.7
+         ENDIF
+
+         DO i = 1, nz
+           sq(j-1,i,iw) = sig * qy
+           sq(j  ,i,iw) = sig
+         ENDDO
+      ENDDO
+
+      END
+
+*=============================================================================*

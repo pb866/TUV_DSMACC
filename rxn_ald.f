@@ -693,8 +693,8 @@
       jlabel(j) = 'C5nALDOHqy + hv -> NI products'
       j = j+1
       jlabel(j) = 'C5nALDOHqy + hv -> NII products'
-! 3rd cyclisation channel for OH-subst. C5 n-aldehydes will be estimated with
-! scaled value from the corresponding C8 compound
+      j = j+1
+      jlabel(j) = 'C5nALDOHqy + hv -> cycl. products'
 
       j = j+1
       jlabel(j) = 'C5nALDOHoh + hv -> NI products'
@@ -903,11 +903,12 @@
             qy2 = 0.52/(2.44 + 7.771E-4*ptorr)
             qy3 = 0.35/(2.44 + 7.771E-4*ptorr)
           ENDIF
-          sq(j-7,i,iw) = sig * qy1
-          sq(j-6,i,iw) = sig * qy2
-          sq(j-5,i,iw) = sig * qy3
-          sq(j-4,i,iw) = sigoh * qy1
-          sq(j-3,i,iw) = sigoh * qy2
+          sq(j-8,i,iw) = sig * qy1
+          sq(j-7,i,iw) = sig * qy2
+          sq(j-6,i,iw) = sig * qy3
+          sq(j-5,i,iw) = sigoh * qy1
+          sq(j-4,i,iw) = sigoh * qy2
+          sq(j-3,i,iw) = sigoh * qy3
           IF(qy1+qy2+qy3 > 0.) THEN
             sq(j-2,i,iw) = sigoh * qyoh*qy1/(qy1+qy2+qy3)
             sq(j-1,i,iw) = sigoh * qyoh*qy2/(qy1+qy2+qy3)
@@ -1754,8 +1755,8 @@ C      qyg2 = 0.13
       jlabel(j) = 'C6nALDOHqy + hv -> NI products'
       j = j+1
       jlabel(j) = 'C6nALDOHqy + hv -> NII products'
-! 3rd cyclisation channel for OH-subst. C6 n-aldehydes will be estimated with
-! scaled value from the corresponding C8 compound
+      j = j+1
+      jlabel(j) = 'C6nALDOHqy + hv -> cycl. product'
 
       j = j+1
       jlabel(j) = 'C6nALDOHoh + hv -> NI products'
@@ -1969,16 +1970,18 @@ C      qyg2 = 0.13
             qy2 = 0.61/(2.26 + 4.758E-4*ptorr)
             qy3 = 0.18/(2.26 + 4.758E-4*ptorr)
           ENDIF
-          sq(j-7,i,iw) = sig * qy1
-          sq(j-6,i,iw) = sig * qy2
-          sq(j-5,i,iw) = sig * qy3
-          sq(j-4,i,iw) = sigoh * qy1
-          sq(j-3,i,iw) = sigoh * qy2
-          sq(j-2,i,iw) = sigoh * qy3
+          sq(j-8,i,iw) = sig * qy1
+          sq(j-7,i,iw) = sig * qy2
+          sq(j-6,i,iw) = sig * qy3
+          sq(j-5,i,iw) = sigoh * qy1
+          sq(j-4,i,iw) = sigoh * qy2
+          sq(j-3,i,iw) = sigoh * qy3
           IF(qy1+qy2+qy3 > 0.) THEN
-            sq(j-1,i,iw) = sigoh * qyoh*qy1/(qy1+qy2+qy3)
-            sq(j  ,i,iw) = sigoh * qyoh*qy2/(qy1+qy2+qy3)
+            sq(j-2,i,iw) = sigoh * qyoh*qy1/(qy1+qy2+qy3)
+            sq(j-1,i,iw) = sigoh * qyoh*qy2/(qy1+qy2+qy3)
+            sq(j  ,i,iw) = sigoh * qyoh*qy3/(qy1+qy2+qy3)
            ELSE
+            sq(j-2,i,iw) = 0.
             sq(j-1,i,iw) = 0.
             sq(j  ,i,iw) = 0.
           ENDIF
@@ -2053,8 +2056,8 @@ C      qyg2 = 0.13
       jlabel(j) = 'C7nALDOHqy + hv -> NI products'
       j = j+1
       jlabel(j) = 'C7nALDOHqy + hv -> NII products'
-! 3rd cyclisation channel for OH-subst. C7 n-aldehydes will be estimated with
-! scaled value from the corresponding C8 compound
+      j = j+1
+      jlabel(j) = 'C7nALDOHqy + hv -> cycl. product'
 
       j = j+1
       jlabel(j) = 'C7nALDOHoh + hv -> NI products'
@@ -2203,16 +2206,18 @@ C      qyg2 = 0.13
             qy2 = 0.38/(2.408 + 1.169E-3*ptorr)
             qy3 = 0.52/(2.408 + 1.169E-3*ptorr)
           ENDIF
-          sq(j-7,i,iw) = sig * qy1
-          sq(j-6,i,iw) = sig * qy2
-          sq(j-5,i,iw) = sig * qy3
-          sq(j-4,i,iw) = sigoh * qy1
-          sq(j-3,i,iw) = sigoh * qy2
-          sq(j-2,i,iw) = sigoh * qy3
+          sq(j-8,i,iw) = sig * qy1
+          sq(j-7,i,iw) = sig * qy2
+          sq(j-6,i,iw) = sig * qy3
+          sq(j-5,i,iw) = sigoh * qy1
+          sq(j-4,i,iw) = sigoh * qy2
+          sq(j-3,i,iw) = sigoh * qy3
           IF(qy1+qy2+qy3 > 0.) THEN
-            sq(j-1,i,iw) = sigoh * qyoh*qy1/(qy1+qy2+qy3)
-            sq(j  ,i,iw) = sigoh * qyoh*qy2/(qy1+qy2+qy3)
+            sq(j-2,i,iw) = sigoh * qyoh*qy1/(qy1+qy2+qy3)
+            sq(j-1,i,iw) = sigoh * qyoh*qy2/(qy1+qy2+qy3)
+            sq(j  ,i,iw) = sigoh * qyoh*qy3/(qy1+qy2+qy3)
            ELSE
+            sq(j-2,i,iw) = 0.
             sq(j-1,i,iw) = 0.
             sq(j  ,i,iw) = 0.
           ENDIF
@@ -2268,7 +2273,7 @@ C      qyg2 = 0.13
 * local
 
       REAL yg(kw)
-      REAL qy1, qy2
+!     REAL qy1, qy2
       REAL sig
       INTEGER ierr
       INTEGER iw
@@ -2276,10 +2281,15 @@ C      qyg2 = 0.13
 * Ratio for both channels estimated from ratio of channel I + II
 * from glycolaldehyde photolysis with overall quantum yield = 0.6
 * (see Calvert et al. 2011 for total qy)
+! now scaled externally
+! 89%:
+!     j = j+1
+!     jlabel(j) = 'Glycidaldehyde + hv -> oxyranyl radical + CHO'
+! 11%:
+!     j = j+1
+!     jlabel(j) = 'Glycidaldehyde + hv -> oxyrane + CO'
       j = j+1
-      jlabel(j) = 'Glycidaldehyde + hv -> oxyranyl radical + CHO'
-      j = j+1
-      jlabel(j) = 'Glycidaldehyde + hv -> oxyrane + CO'
+      jlabel(j) = 'Glycidaldehyde + hv -> products'
 
 
       OPEN(UNIT=kin,FILE='DATAJ1/MCMext/ALD/Glycidaldehyde.abs',
@@ -2309,11 +2319,11 @@ C      qyg2 = 0.13
 
       DO iw = 1, nw - 1
         sig = yg(iw)
-        qy1 = 0.6*0.89
-        qy2 = 0.6*0.11
+!       qy1 = 0.6*0.89
+!       qy2 = 0.6*0.11
         DO i = 1, nz
-          sq(j-1,i,iw) = sig * qy1
-          sq(j  ,i,iw) = sig * qy2
+          sq(j-1,i,iw) = sig! * qy1
+          sq(j  ,i,iw) = sig! * qy2
         ENDDO
       ENDDO
 
@@ -4018,7 +4028,7 @@ C      qyg2 = 0.13
       INTEGER ierr
       INTEGER iw
 
-      INTEGER myld
+!     INTEGER myld
 * Labels
 * unsubstituted:
       j = j+1
@@ -4196,27 +4206,27 @@ C      qyg2 = 0.13
 * 1: Moortgat 99
 * 2: IUPAC (Tadic et al. 01)
 
-      IF(vers==1)THEN
-        myld = 1 !From GECKO-A TUV version (Bernard Aumont group), not TUV5.2
-       ELSEIF(vers==2)THEN
-        myld = 2
-       ELSEIF(vers==0) THEN
-        myld = 2
-       ELSE
-        STOP "'vers' not set. Choose value between 0 and 2 in 'params'."
-      ENDIF
-
-      IF(vers==1 .OR. vers==2) THEN
-        CONTiNUE
-       ELSEIF(myld.EQ.1) THEN
-        WRITE(kout,'(A)')
-     &       ' n-C3H7CHO quantum yields from Moortgat 1999.'
-       ELSEIF(myld.EQ.2) THEN
-        WRITE(kout,'(A)')
-     &       ' n-C3H7CHO quantum yields from IUPAC.'
-       ELSE
-        STOP "'myld' not defined for n-C3H7CHO photolysis."
-      ENDIF
+C      IF(vers==1)THEN
+C        myld = 1 !From GECKO-A TUV version (Bernard Aumont group), not TUV5.2
+C       ELSEIF(vers==2)THEN
+C        myld = 2
+C       ELSEIF(vers==0) THEN
+C        myld = 2
+C       ELSE
+C        STOP "'vers' not set. Choose value between 0 and 2 in 'params'."
+C      ENDIF
+C
+C      IF(vers==1 .OR. vers==2) THEN
+C        CONTiNUE
+C       ELSEIF(myld.EQ.1) THEN
+C        WRITE(kout,'(A)')
+C     &       ' n-C3H7CHO quantum yields from Moortgat 1999.'
+C       ELSEIF(myld.EQ.2) THEN
+C        WRITE(kout,'(A)')
+C     &       ' n-C3H7CHO quantum yields from IUPAC.'
+C       ELSE
+C        STOP "'myld' not defined for n-C3H7CHO photolysis."
+C      ENDIF
 
 
 
