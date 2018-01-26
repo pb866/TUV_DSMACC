@@ -47,7 +47,7 @@ FOBJS = numer.o functs.o orbit.o
 # FFLAGS : command line options to compiler call (if not set, default is
 #          probably some basic optimization level)
 # FFLAGS = -fcheck=all #-Wall -cpp -mcmodel medium -fpp
-# FFLAGS = -cpp -fpp -fp-model strict -O3 -no-prec-div -static -xHost
+FFLAGS = -cpp -fpp -fp-model strict -O3 -no-prec-div -static -xHost
 
 # LIBS  : libraries required
 # LIBS =

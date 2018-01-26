@@ -5,7 +5,7 @@ lat =         45.000   lon =          0.000   tmzone =         0.0
 iyear =         2002   imonth =           7   iday =             1
 zstart =       0.000   zstop =      120.000   nz =             121
 wstart =     209.500   wstop =      735.500   nwint =          526
-tstart =       0.000   tstop =       90.000   nt =             181
+tstart =       0.000   tstop =       90.000   nt =              19
 lzenit =           T   alsurf =       0.100   psurf =       -999.0
 o3col =      350.000   so2col =       0.000   no2col =       0.000
 taucld =       0.000   zbase =        4.000   ztop =         5.000
