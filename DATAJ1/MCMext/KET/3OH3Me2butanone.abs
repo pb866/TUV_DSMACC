@@ -1,7 +1,7 @@
-Cross sections for 3-hydroxy-3-methyl-2-butanone
-measured by Messaadia et al., Chem Phys Lett 529, 16-22, 2012.
-
-λ/nm	σ/cm2
+# Cross sections for 3-hydroxy-3-methyl-2-butanone
+# measured by Messaadia et al., Chem Phys Lett 529, 16-22, 2012.
+#
+# λ/nm	σ/cm2
 200	4.435e-19
 201	4.171e-19
 202	3.830e-19

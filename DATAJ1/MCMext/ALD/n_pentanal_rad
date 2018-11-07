@@ -1,6 +1,6 @@
-n-pentanal -> R. + CHO.
-Absorption cross sections : Zhu 99
-Quantum yield : Zhu 99
+# n-pentanal -> R. + CHO.
+# Absorption cross sections : Zhu 99
+# Quantum yield : Zhu 99
        280  5.48E-20     0.058
        285  6.23E-20     0.095
        290  6.09E-20       0.1

@@ -1,9 +1,9 @@
-Absorption cross sections for 2-hexenal measured by
-Jiminez et al., ACP 7, 1565-1574, 2007.
-taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
-last checked: 12.01.2016
-
-λ/nm	σ/cm2	error
+# Absorption cross sections for 2-hexenal measured by
+# Jiminez et al., ACP 7, 1565-1574, 2007.
+# taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
+# last checked: 12.01.2016
+#
+#λ/nm	σ/cm2	error
 290	1.78e-20	3.30e-21
 291	1.86e-20	1.60e-21
 292	1.96e-20	1.90e-21

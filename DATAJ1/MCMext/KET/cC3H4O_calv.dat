@@ -1,12 +1,12 @@
-Cross sections and quantum yields for cyclopropanone photolysis
-from the book of Calvert et al. (2011):
-The Mechanisms of Atmospheric Oxidation of the Oxygenates,
-Oxford University Press, 2011.
-and Calvert et al. (2006):
-Mechanisms of Atmospheric Oxidation of the Alkanes, Final Report CRC Project A-58.
-original data from Thomas and Rodriguez, J Am Chem Soc 93, 5918-5920, 1971.
-
-λ/nm	σ/1E-20 cm2	Φ1
+# Cross sections and quantum yields for cyclopropanone photolysis
+# from the book of Calvert et al. (2011):
+# The Mechanisms of Atmospheric Oxidation of the Oxygenates,
+# Oxford University Press, 2011.
+# and Calvert et al. (2006):
+# Mechanisms of Atmospheric Oxidation of the Alkanes, Final Report CRC Project A-58.
+# original data from Thomas and Rodriguez, J Am Chem Soc 93, 5918-5920, 1971.
+#
+# λ/nm	σ/1E-20 cm2	Φ1
 278	1.80	1.00
 279	2.02	1.00
 280	2.29	1.00

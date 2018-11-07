@@ -1,0 +1,40 @@
+# Extended absorption isopentyl nitrate cross sections. Up to 300nm, values by
+# Turberg et al., J Photochem Photobiol A 51, 281-292, 1990, are used.
+# Above 300nm values for n-pentyl nitrate by Zhu and Kellis, Chem Phys Lett 278,
+# 41-48, 1997, are scaled by a factor of 1.96 (the ratio between the 2 datasets at 300nm)
+# and the last value at 340nm is set to 0.
+
+# λ/nm  σ /1E-20 cm2
+185.0    1860.0
+188.0    1880.0
+190.0    1860.0
+195.0    1680.0
+200.0    1310.0
+205.0    910.0
+210.0    544.0
+215.0    282.0
+220.0    137.0
+225.0    69.0
+230.0    37.0
+235.0    21.0
+240.0    13.0
+245.0    9.0
+250.0    7.5
+255.0    7.0
+260.0    6.5
+265.0    5.8
+270.0    5.1
+275.0    4.1
+280.0    3.5
+285.0    2.7
+290.0    2.2
+295.0    1.5
+300.0    1.2
+305.0    0.7620294599018004
+310.0    0.4556464811783961
+315.0    0.25335515548281506
+320.0    0.1327659574468085
+325.0    0.07659574468085106
+330.0    0.049099836333878884
+335.0    0.03417348608837971
+340.0    0.0

@@ -1,11 +1,11 @@
-Absorption cross sections for cyclopentanone measured in cyclohexane by
-Nakashima et al., Bull Chem Soc Jpn: 55(2), 145-149 (1982).
-as digitized from Figure IX-E-1, p. 1144
-in the book of Calvert et al. (2011):
-The Mechanisms of Atmospheric Oxidation of the Oxygenates,
-Oxford University Press, 2011.
-
-λ / nm	σ / 1E-20 cm-2
+# Absorption cross sections for cyclopentanone measured in cyclohexane by
+# Nakashima et al., Bull Chem Soc Jpn: 55(2), 145-149 (1982).
+# as digitized from Figure IX-E-1, p. 1144
+# in the book of Calvert et al. (2011):
+# The Mechanisms of Atmospheric Oxidation of the Oxygenates,
+# Oxford University Press, 2011.
+#
+# λ / nm	σ / 1E-20 cm-2
 233.071	0.235518
 234.404	0.250712
 235.471	0.288699

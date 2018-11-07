@@ -1,11 +1,11 @@
-Absorption cross sections for methylketene measured by
-Chong and Kistiakowsky, The Journal of Physical Chemistry: 68(7), 1793-1797 (1964).
-as digitized from Figure IX-E-14, p. 1164
-in the book of Calvert et al. (2011):
-The Mechanisms of Atmospheric Oxidation of the Oxygenates,
-Oxford University Press, 2011.
-
-λ / nm	σ / 1E-20 cm-2
+# Absorption cross sections for methylketene measured by
+# Chong and Kistiakowsky, The Journal of Physical Chemistry: 68(7), 1793-1797 (1964).
+# as digitized from Figure IX-E-14, p. 1164
+# in the book of Calvert et al. (2011):
+# The Mechanisms of Atmospheric Oxidation of the Oxygenates,
+# Oxford University Press, 2011.
+#
+# λ / nm	σ / 1E-20 cm-2
 280.26	0.606887
 281.658	0.631652
 283.237	0.673781

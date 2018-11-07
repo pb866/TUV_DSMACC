@@ -1,17 +1,17 @@
-file pan_talukdar.abs - PAN absorption cross section from Talukdar et al.
-PAN ABSORPTION CROSS SECTION
-Reference:  Talukdar et al., 1995, J.Geophys.Res. 100/D7, 14163-14174
-Species Code     Common Name     Chemical Formula
-     ????         Peroxyacetylnitrate  CH3CO2NO2
-Units:   Wavelength  (nm)
-         Absorption Cross Section  (Cm**2/Molec)
-Scale Factor:     To Dm**3/Mol/Cm  Divide By
-    3.82e-21
-Temperature:   25 Degrees C
-Absorption Cross Section Data
-Wavelength (nm)    Absorption Cross Section (Cm**2/Molec)
-$$$$$$$$$$$$
-     1.                      1.e-20                                  1.e-3
+# file pan_talukdar.abs - PAN absorption cross section from Talukdar et al.
+# PAN ABSORPTION CROSS SECTION
+# Reference:  Talukdar et al., 1995, J.Geophys.Res. 100/D7, 14163-14174
+# Species Code     Common Name     Chemical Formula
+#      ????         Peroxyacetylnitrate  CH3CO2NO2
+# Units:   Wavelength  (nm)
+#          Absorption Cross Section  (Cm**2/Molec)
+# Scale Factor:     To Dm**3/Mol/Cm  Divide By
+#     3.82e-21
+# Temperature:   25 Degrees C
+# Absorption Cross Section Data
+# Wavelength (nm)    Absorption Cross Section (Cm**2/Molec)
+# $$$$$$$$$$$$
+#    1.                      1.e-20                                  1.e-3
      196                     429.0                                   2.02
      198                     398.0                                   1.73
      200                     361.0                                   1.36
@@ -90,4 +90,4 @@ $$$$$$$$$$$$
      346                       0.00231                              12.50
      348                       0.00247                              12.50
      350                       0.00165                              12.50
-$$$$$$$$$$$$$$$$$$$$
+# $$$$$$$$$$$$$$$$$$$$

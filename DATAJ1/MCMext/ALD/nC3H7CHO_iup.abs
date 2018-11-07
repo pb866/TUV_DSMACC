@@ -1,8 +1,8 @@
-Absorption cross sections for n-C3H7CHO photolysis
-IUPAC preferred values taken from http://iupac.pole-ether.fr
-last checked: 08.12.2015; last update of data sheet: 16.5.2002
-
-λ/nm	σ(298) / 1E-20 cm-2
+# Absorption cross sections for n-C3H7CHO photolysis
+# IUPAC preferred values taken from http://iupac.pole-ether.fr
+# last checked: 08.12.2015; last update of data sheet: 16.5.2002
+#
+# λ/nm	σ(298) / 1E-20 cm-2
 202	0.0178
 206	0.0316
 210	0.0475

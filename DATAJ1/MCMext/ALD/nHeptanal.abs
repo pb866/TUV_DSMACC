@@ -1,8 +1,8 @@
-Absorption cross sections for n-heptanal photolysis
-from Tang and Zhu, J Phys Chem A 108, 8307-8316 (2004)
-as given in MPI Spectral Atlas
-
-λ/nm	σ / cm2	error/cm2
+# Absorption cross sections for n-heptanal photolysis
+# from Tang and Zhu, J Phys Chem A 108, 8307-8316 (2004)
+# as given in MPI Spectral Atlas
+#
+# λ/nm	σ / cm2	error/cm2
 280	5.44e-20	3.3e-21
 285	6.39e-20	8.2e-21
 290	5.99e-20	4.1e-21

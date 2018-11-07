@@ -1,8 +1,8 @@
-Absorption cross sections for butyr- and valeraldehyde photolysis
-taken from Tadic et al., J Photochem Photobiol A 143, 169-179, 2001.
-
-		σ(298) / 1e-20 cm-2
-λ/nm	n-butanal	n-pentanal
+# Absorption cross sections for butyr- and valeraldehyde photolysis
+# taken from Tadic et al., J Photochem Photobiol A 143, 169-179, 2001.
+#
+# 		σ(298) / 1e-20 cm-2
+# λ/nm	n-butanal	n-pentanal
 230.00	1.53e-21	1.47e-21
 231.00	1.69e-21	1.63e-21
 232.00	1.88e-21	1.81e-21

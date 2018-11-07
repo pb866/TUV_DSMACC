@@ -1,0 +1,29 @@
+# Mean of nitro-oxy acetone absorption cross sections using data by
+# Barnes et al., J Atmos Chem 17, 353-373, 1993 and
+# Roberts and Fajer, Environ Sci Technol 23, 945-951, 1989.
+#
+# Mean is calculated using auxdata v0.7.2 (https://github.com/pb866/auxdata.git)
+# where the mean outside the common data range is scaled by
+# mean(all data)/mean(remaining data)
+#
+# λ/nm    σ / 1e-20 cm2
+   245    20.36
+   250    14.74
+   255    10.67
+   260     8.53
+   265     7.63
+   270     7.29
+   275     7.02
+   280     6.67
+   285     6.25
+   290     5.83
+   295     5.18
+   300     4.48
+   305     3.61
+   310     2.69
+   315     1.86
+   320     1.30
+   325     0.79
+   330     0.46
+   335     0.20
+   340     0.15

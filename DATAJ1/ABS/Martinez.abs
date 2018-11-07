@@ -1,7 +1,7 @@
-Ketone cross sections from Martinez et al. 1992				
-Near U.V. absorption spectra of several aliphatic aldehydes and ketones at 300 K
-Martinez, Richard D; Buttrago, Alvaro A; Howell, Noel W; Hearn, Christine H; Joens, Jeffrey A, Atmospheric Environment. Vol. 26A, no. 5, pp. 785-792. 1992 
-nm	acetone	2-butanone	2-pentanone	3-pentanone
+# Ketone cross sections from Martinez et al. 1992
+# Near U.V. absorption spectra of several aliphatic aldehydes and ketones at 300 K
+# Martinez, Richard D; Buttrago, Alvaro A; Howell, Noel W; Hearn, Christine H; Joens, Jeffrey A, Atmospheric Environment. Vol. 26A, no. 5, pp. 785-792. 1992
+# nm	acetone	2-butanone	2-pentanone	3-pentanone
 202	0.533	1.412	2.88	12.6
 206	0.125	0.192	0.76	0.41
 210	0.104	0.16	0.722	0.282

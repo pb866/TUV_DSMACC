@@ -1,11 +1,11 @@
-Hydroxy acetone CH2(OH)COCH3
-Absorption cross section, from
-Orlando, J. J., G. S. Tyndall, J.-M. Fracheboud, E. G. Estupinan, 
-S. Haberkorn, and A. ZImmer, The rate and mechanism of the gas phase 
-oxidation of hydroxyacetone, Atmos. Env., 33, 1621-1629, 1999.
-(Electronic data file from J. Orlando)
-Wavelength, nm
-	Xsection, cm2
+# Hydroxy acetone CH2(OH)COCH3
+# Absorption cross section, from
+# Orlando, J. J., G. S. Tyndall, J.-M. Fracheboud, E. G. Estupinan,
+# S. Haberkorn, and A. ZImmer, The rate and mechanism of the gas phase
+# oxidation of hydroxyacetone, Atmos. Env., 33, 1621-1629, 1999.
+# (Electronic data file from J. Orlando)
+# Wavelength, nm
+# 	Xsection, cm2
 236	2.13E-20
 237	2.29E-20
 238	2.43E-20

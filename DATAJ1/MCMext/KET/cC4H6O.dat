@@ -1,12 +1,12 @@
-Cross sections and quantum yields for cyclobutanone
-from the book of Calvert et al. (2011):
-The Mechanisms of Atmospheric Oxidation of the Oxygenates,
-Oxford University Press, 2011.
-and Calvert et al. (2006):
-Mechanisms of Atmospheric Oxidation of the Alkanes, Final Report CRC Project A-58.
-Original data: Carless and Lee, J Am Chem Soc 94, 1-6, 1972.
-
-λ/nm  σ/1E-20 cm2 Φ1    Φ2
+# Cross sections and quantum yields for cyclobutanone
+# from the book of Calvert et al. (2011):
+# The Mechanisms of Atmospheric Oxidation of the Oxygenates,
+# Oxford University Press, 2011.
+# and Calvert et al. (2006):
+# Mechanisms of Atmospheric Oxidation of the Alkanes, Final Report CRC Project A-58.
+# Original data: Carless and Lee, J Am Chem Soc 94, 1-6, 1972.
+#
+# λ/nm  σ/1E-20 cm2 Φ1    Φ2
 278    6.15    0.61    0.37
 279    6.42    0.61    0.37
 280    6.69    0.62    0.37

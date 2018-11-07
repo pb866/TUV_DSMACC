@@ -1,9 +1,9 @@
-Absorption cross sections for crotonaldehyde measured by
-Lee et al., J Phys Chem A 111, 11948-11960, 2007.
-taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
-last checked: 11.01.2016
-
-λ / nm	σ / cm2	
+# Absorption cross sections for crotonaldehyde measured by
+# Lee et al., J Phys Chem A 111, 11948-11960, 2007.
+# taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
+# last checked: 11.01.2016
+#
+# λ / nm	σ / cm2
 105.97	5.8420e-17
 105.99	5.7339e-17
 106.01	5.8157e-17

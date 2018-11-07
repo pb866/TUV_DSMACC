@@ -1,9 +1,9 @@
-Absorption cross sections for cyclopropanone measured by
-Thomas and Rodriguez, J Am Chem Soc 93, 5918-5920, 1971.
-taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
-last checked: 25.01.2016
-
-λ/nm	σ/cm2
+# Absorption cross sections for cyclopropanone measured by
+# Thomas and Rodriguez, J Am Chem Soc 93, 5918-5920, 1971.
+# taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
+# last checked: 25.01.2016
+#
+# λ/nm	σ/cm2
 279	1.80e-20
 280	2.02e-20
 281	2.29e-20

@@ -1,9 +1,9 @@
-Absorption cross sections for isopentyl nitrate measured by
-Turberg et al., J Photochem Photobiol A 51, 281-292, 1990.
-taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
-last checked: 28.01.2016
-
-λ / nm	σ / cm2
+# Absorption cross sections for isopentyl nitrate measured by
+# Turberg et al., J Photochem Photobiol A 51, 281-292, 1990.
+# taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
+# last checked: 28.01.2016
+#
+# λ / nm	σ / cm2
 185    1.860e-17
 188    1.880e-17
 190    1.860e-17

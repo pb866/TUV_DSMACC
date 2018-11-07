@@ -1,13 +1,13 @@
-Absorption Cross Sections of C2H5C(O)O2NO2 at 296 K and Temperature
-Coefficients B.  From JPL_15 (July 10, 2006).  Originally from 
-Harwood, M. H., J. M. Roberts, G. J. Frost, A. R. Ravishankara and J. B. 
-Burkholder, 2003, J. Phys. Chem. A, 107, 1148-1154.
-Corrected typo 2400nm should be 240 nm.
-Values at 296K.  For diff temp, use B coefficient:
-sigma(T) = sigma(296K) * exp[B(T-296K)]
-Wavelength, nm
-	Cross Section, 10-20 cm2/molec
-		B, 1e-3 K-1
+# Absorption Cross Sections of C2H5C(O)O2NO2 at 296 K and Temperature
+# Coefficients B.  From JPL_15 (July 10, 2006).  Originally from
+# Harwood, M. H., J. M. Roberts, G. J. Frost, A. R. Ravishankara and J. B.
+# Burkholder, 2003, J. Phys. Chem. A, 107, 1148-1154.
+# Corrected typo 2400nm should be 240 nm.
+# Values at 296K.  For diff temp, use B coefficient:
+# sigma(T) = sigma(296K) * exp[B(T-296K)]
+# Wavelength, nm
+# 	Cross Section, 10-20 cm2/molec
+# 		B, 1e-3 K-1
 210	174	1.22
 212	154	1.2
 214	135	1.19

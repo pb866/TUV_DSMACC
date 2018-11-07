@@ -1,9 +1,9 @@
-Absorption cross sections for crotonaldehyde measured by
-I. Magneron (1999), unpublished data, obtained at the Max-Planck-Institut für Chemie, Mainz, Germany
-taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
-last checked: 11.01.2016
-
-λ / nm	σ / cm2	
+# Absorption cross sections for crotonaldehyde measured by
+# I. Magneron (1999), unpublished data, obtained at the Max-Planck-Institut für Chemie, Mainz, Germany
+# taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
+# last checked: 11.01.2016
+#
+# λ/nm	 σ / cm2
 211.908	1.17014e-17
 211.977	1.20279e-17
 212.045	1.19896e-17

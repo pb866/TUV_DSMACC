@@ -1,9 +1,9 @@
-Absorption cross sections for tert-butyl nitrate from least square fit by
-Roberts and Fajer, Environ Sci Technol 23, 945-951, 1989.
-taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
-last checked: 28.01.2016
-
-λ / nm	σ / cm2
+# Absorption cross sections for tert-butyl nitrate from least square fit by
+# Roberts and Fajer, Environ Sci Technol 23, 945-951, 1989.
+# taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
+# last checked: 28.01.2016
+#
+# λ / nm	σ / cm2
 270    4.27e-20
 272    4.20e-20
 274    4.11e-20

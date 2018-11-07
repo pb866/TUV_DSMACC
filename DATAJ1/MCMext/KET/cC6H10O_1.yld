@@ -1,11 +1,12 @@
-Estimates for quantum yields for cyclohexanone
-from on the book of Calvert et al. (2011):
-The Mechanisms of Atmospheric Oxidation of the Oxygenates,
-Oxford University Press, 2011.
-Values are digitised points from the curve fits shown in their
-Figure IX-E-12, p. 1161.
-
-λ/nm	Φ1
+# Estimates for quantum yield channel 1 for cyclohexanone
+# c-C6H10O + hv -> 5-hexenal
+# from the book of Calvert et al. (2011):
+# The Mechanisms of Atmospheric Oxidation of the Oxygenates,
+# Oxford University Press, 2011.
+# Values are digitised points from the curve fits shown in their
+# Figure IX-E-12, p. 1161.
+#
+# λ/nm	Φ1
 240.257	0.
 242.653	0.
 245.818	0.

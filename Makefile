@@ -1,4 +1,4 @@
-# Makefile for TUV 5.2.1 as subroutine of DSMACC
+# Makefile for TUV 5.2.1
 # Use with disort (discrete ordinate), or ps2str (2 stream approximation,
 # pseudo-spherical correction)
 #----------
@@ -8,76 +8,58 @@
 # FOBJS    : all required object files that do not use the include file
 #
 
- #-fp-stack-check -check bou    nds -check arg_temp_created -check all #-warn all # -openmp
-
-intel := $(shell command -v ifort 2> /dev/null)
-
 EXC = tuv
+EXE = tuvmcm
 
 INCLUDES = params
 
-USE_INCL = TUV521.o \
-		   grids.o \
-		   rdinp.o rdetfl.o rdxs.o \
-		   swphys.o swbiol.o swchem.o mcmext.o gcext.o\
-		   rxn_mcm.o rxn_ald.o rxn_ket.o rxn_dicar.o\
-		   rxn_nit.o rxn_dinit.o rxn_rooh.o\
-		   rxn_mult.o rxn_rad.o rxn_gc11.o qys.o \
-		   wshift.o \
-		   vpair.o vptmp.o vpo3.o \
-		   odrl.o odo3.o \
-		   setaer.o setalb.o setcld.o setsnw.o \
-		   setno2.o seto2.o setso2.o \
-		   sphers.o  \
-		   la_srb.o \
-		   rtrans.o \
-		   savout.o
-# Include in list above, if needed: rxn_test.o
+USE_INCL = SRC/TUV521.o \
+		   SRC/grids.o \
+		   SRC/rdinp.o SRC/rdetfl.o SRC/rdxs.o \
+		   SRC/swphys.o SRC/swbiol.o SRC/RXN/swchem.o SRC/RXN/mcmext.o SRC/RXN/gcext.o\
+		   SRC/RXN/rxn.o SRC/RXN/rxn_ald.o SRC/RXN/rxn_ket.o SRC/RXN/rxn_dicar.o\
+		   SRC/RXN/rxn_nit.o SRC/RXN/rxn_dinit.o SRC/RXN/rxn_rooh.o\
+		   SRC/RXN/rxn_mult.o SRC/RXN/rxn_rad.o SRC/RXN/rxn_gc11.o SRC/qys.o \
+		   SRC/wshift.o \
+		   SRC/vpair.o SRC/vptmp.o SRC/vpo3.o \
+		   SRC/odrl.o SRC/odo3.o \
+		   SRC/setaer.o SRC/setalb.o SRC/setcld.o SRC/setsnw.o \
+		   SRC/setno2.o SRC/seto2.o SRC/setso2.o \
+		   SRC/sphers.o  \
+		   SRC/la_srb.o \
+		   SRC/rtrans.o \
+		   SRC/savout.o \
+			 SRC/options.o
 
-FOBJS = numer.o functs.o orbit.o
+FOBJS = SRC/numer.o SRC/functs.o SRC/orbit.o
 
 #----------
 # FC   : FORTRAN compiler
 #        Linux users:  try FC = g77
 #        Cray users :  try FC = f90
 # FC = pgf90
-# FC = gfortran
-#FC = ifort
+FC = gfortran
 
 # FFLAGS : command line options to compiler call (if not set, default is
 #          probably some basic optimization level)
-# FFLAGS = -fcheck=all #-Wall -cpp -mcmodel medium -fpp
-FFLAGS = -cpp -fpp -fp-model strict -O3 -no-prec-div -static -xHost
+# FFLAGS = -fcheck=all #-Wall
 
 # LIBS  : libraries required
 # LIBS =
 
 #----------
 
-$(EXC):	compiler	$(FOBJS) $(USE_INCL)
-		#$(FC) $(FFLAGS) $(FOBJS) $(USE_INCL) $(LIBS) -o $@
+$(EXC):		$(FOBJS) $(USE_INCL)
+		$(FC) $(FFLAGS) $(FOBJS) $(USE_INCL) $(LIBS) -o $@
 
 $(USE_INCL):	$(INCLUDES)
 
-.f.o: compiler
-		$(FC) $(FFLAGS) -c $*.f
+mcm : $(EXE)
+$(EXE): $(FOBJS) $(USE_INCL)
+	$(FC) $(FFLAGS) $(FOBJS) $(USE_INCL) $(LIBS) -o $@
 
 clean:
-		rm -f core $(EXC) $(USE_INCL) $(FOBJS)
+		rm -f $(EXC) $(EXE) $(USE_INCL) $(FOBJS)
 
 tidy: clean
-		rm -f *~ fort.*
-
-
-compiler:
-ifndef intel
-	@echo 'using gfortran to compile tuv'
-	$(eval export FC=gfortran)
-	$(eval export F90=gfortran)
-	$(eval export FFLAGS=-fcheck=all)
-else
-	@echo 'using ifort to compile tuv'
-	$(eval export FC=ifort)
-	$(eval export F90=ifort)
-	$(eval export FFLAGS = -cpp -fpp -fp-model strict -O3 -no-prec-div -static -xHost)
-endif
+	rm -f core *~ fort.*

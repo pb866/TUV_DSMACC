@@ -1,0 +1,16 @@
+# Cycloheptanone quantum yields measured by:
+# Hamer and Huber, Vapor phase photochemistry of cycloheptanone,
+# Chemical Physics 35(3), 387-396, 1978.
+
+# Values at 343nm extrapolated.
+
+# λ/nm ϕ(alkenal) ϕ(c-hexane) ϕ(hexene)
+  260     0.0       0.20        1.00
+  270     0.019     0.17        0.97
+  288     0.07      0.14        0.64
+  290     0.11      0.073       0.53
+  312     0.20      0.013       0.11
+  320     0.20      0.00        0.021
+  322     0.23      0.00        0.014
+  333     0.26      0.00        0.011
+  343     0.28      0.00        0.00

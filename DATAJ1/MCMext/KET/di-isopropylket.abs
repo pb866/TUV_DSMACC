@@ -1,9 +1,9 @@
-Absorption cross sections for di-isopropyl ketone measured by
-Yujing and Mellouki, J. Photochem. Photobiol. A: Chem. 134, 31-36 (2000).
-taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
-last checked: 19.01.2016
-
-λ / nm	σ / cm2
+# Absorption cross sections for di-isopropyl ketone measured by
+# Yujing and Mellouki, J. Photochem. Photobiol. A: Chem. 134, 31-36 (2000).
+# taken from the MPI-Mainz UV/VIS Spectral Atlas: http://satellite.mpic.de/spectral_atlas/
+# last checked: 19.01.2016
+#
+# λ / nm	σ / cm2
 240    3.600e-21
 241    4.070e-21
 242    5.170e-21

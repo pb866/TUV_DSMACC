@@ -1,9 +1,9 @@
-Absorption cross sections for cis/trans-butenedial photolysis
-IUPAC preferred values taken from http://iupac.pole-ether.fr
-last checked: 08.12.2015; last update of data sheet: May 2012
-
-λ/nm	σ(298) / 1E-20 cm-2
-	cis 	trans	combined (50/50)
+# Absorption cross sections for acetylacrolein photolysis
+# IUPAC preferred values taken from http://iupac.pole-ether.fr
+# last checked: 08.12.2015; last update of data sheet: May 2012
+#
+# λ/nm	σ(298) / 1E-20 cm-2
+# 	cis 	trans	combined (50/50)
 193	 849	 444	644
 248	66.2	37.8	52
 280	3.72	1.39	2.56

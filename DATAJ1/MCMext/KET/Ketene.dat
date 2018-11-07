@@ -1,12 +1,12 @@
-Absorption cross sections and quantum yields for ketene measured by
-taken from the book of Calvert et al. (2011):
-The Mechanisms of Atmospheric Oxidation of the Oxygenates,
-Oxford University Press, 2011.
+# Absorption cross sections and quantum yields for ketene measured by
+# taken from the book of Calvert et al. (2011):
+# The Mechanisms of Atmospheric Oxidation of the Oxygenates,
+# Oxford University Press, 2011.
 
-Original data:
-Laufer and Keller, J. Am. Chem. Soc., 93(1), 61 - 63, 1971.
+# Original data:
+# Laufer and Keller, J. Am. Chem. Soc., 93(1), 61 - 63, 1971.
 
-λ / nm	σ / 1E-20 cm-2
+# λ / nm	σ / 1E-20 cm-2  ϕ
 278	1.12	1.00
 279	1.18	1.00
 280	1.23	1.00
@@ -166,4 +166,3 @@ Laufer and Keller, J. Am. Chem. Soc., 93(1), 61 - 63, 1971.
 434	0.002	0.000
 435	0.001	0.000
 436	0.000	0.000
-
