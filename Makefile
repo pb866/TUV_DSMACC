@@ -8,9 +8,8 @@
 # FOBJS    : all required object files that do not use the include file
 #
 
+intel := $(shell command -v ifort 2> /dev/null)
 EXC = tuv
-EXE = tuvmcm
-
 INCLUDES = params
 
 USE_INCL = SRC/TUV521.o \
@@ -38,28 +37,25 @@ FOBJS = SRC/numer.o SRC/functs.o SRC/orbit.o
 #        Linux users:  try FC = g77
 #        Cray users :  try FC = f90
 # FC = pgf90
-FC = gfortran
+# FC = gfortran
 
 # FFLAGS : command line options to compiler call (if not set, default is
 #          probably some basic optimization level)
 # FFLAGS = -fcheck=all #-Wall
+FFLAGS = -cpp -fpp -fp-model strict -O3 -no-prec-div -static -xHost
 
 # LIBS  : libraries required
 # LIBS =
 
 #----------
 
-$(EXC):		$(FOBJS) $(USE_INCL)
-		$(FC) $(FFLAGS) $(FOBJS) $(USE_INCL) $(LIBS) -o $@
+$(EXC):	$(FOBJS) $(USE_INCL)
+	$(FC) $(FFLAGS) $(FOBJS) $(USE_INCL) $(LIBS) -o $@
 
 $(USE_INCL):	$(INCLUDES)
 
-mcm : $(EXE)
-$(EXE): $(FOBJS) $(USE_INCL)
-	$(FC) $(FFLAGS) $(FOBJS) $(USE_INCL) $(LIBS) -o $@
-
 clean:
-		rm -f $(EXC) $(EXE) $(USE_INCL) $(FOBJS)
+		rm -f $(EXC) $(USE_INCL) $(FOBJS)
 
 tidy: clean
 	rm -f core *~ fort.*
