@@ -19,14 +19,23 @@
 
 ! Choice of data set for cross sections and quantum yields
 
-      INTEGER vers
-      PARAMETER(vers=2)
+      INTEGER, PARAMETER :: vers=2
 
 ! overwrites mabs and myld to enforce TUV or MCM dataset
 ! used for calculation of photolysis data AND transmission
 ! vers = 0: choose XS/QY individually
 ! vers = 1: TUV standard version
-! vers = 2: MCM standard version
+! vers = 2: MCM/GECKO-A standard version
+
+! Parameters for character lengths/array size of log messages:
+      INTEGER, PARAMETER ::  nlog = 10, llog = 100
+      INTEGER, PARAMETER ::  lspc = 25
+
+! Option for alternative quantum yield estimate for OH-subst. aldehydes
+! swOH = 1: Use estimate of unsubstituted aldehyde
+! swOH = 2: Use glycolaldehyde (qy = 0.75) as surrogate
+      INTEGER, PARAMETER ::  swOH = 2
+      REAL(4), PARAMETER ::  qyOH = 0.75
 !_________________________________________________
 ! number of weighting functions
       INTEGER ks, kj, lcl

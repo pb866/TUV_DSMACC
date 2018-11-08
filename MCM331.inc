@@ -23,7 +23,7 @@
       j(  13) = seval(szabin,theta,tmp,tmp2,b,c,d) ! CH3CHO -> CH3 + HCO
     CASE( 28)
       j(  14) = seval(szabin,theta,tmp,tmp2,b,c,d) ! C2H5CHO -> C2H5 + HCO
-    CASE(135)
+    CASE(134)
       j(  15) = seval(szabin,theta,tmp,tmp2,b,c,d) ! n-C3H7CHO -> n-C3H7 + CHO
     CASE(135)
       j(  16) = seval(szabin,theta,tmp,tmp2,b,c,d) ! n-C3H7CHO -> C2H4 + CH2CHOH
