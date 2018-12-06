@@ -1,8 +1,8 @@
 *= This file contains the following subroutines, related to reading/loading
 *= the product (cross section) x (quantum yield) for photo-reactions of
-*= organic hydroperoxides in MCM-GECKO, which were not yet present in TUV5.2:
+*= organic hydroperoxides in MCM/GECKO-A, which were not yet present in TUV5.2:
 *=
-*=     md01
+*=     mh01
 
 *=============================================================================*
 
@@ -60,7 +60,7 @@
 ***************** tert-butyl hydroperoxide photolysis *************************
 
       j = j+1
-      jlabel(j) = '(CH3)3COOH + hv -> (CH3)3CO + OH'
+      jlabel(j) = '(CH3)3COOH -> (CH3)3CO + OH'
 
 
       OPEN(UNIT=kin,FILE='DATAJ1/MCMext/ROOH/tButHP.abs',

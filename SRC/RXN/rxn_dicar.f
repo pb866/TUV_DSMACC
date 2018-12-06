@@ -1,12 +1,12 @@
 *= This file contains the following subroutines, related to reading/loading
 *= the product (cross section) x (quantum yield) for photo-reactions of
-*= dicarbonyls in MCM-GECKO, which were not yet present in TUV5.2:
+*= dicarbonyls in MCM/GECKO-A, which were not yet present in TUV5.2:
 *=
-*=     mb01 through mb06
+*=     dc01 through dc06
 
 *=============================================================================*
 
-      SUBROUTINE mb01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! butenedial
+      SUBROUTINE dc01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! butenedial
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -158,7 +158,7 @@
 
 * =============================================================================
 
-      SUBROUTINE mb02(nw,wl,wc,nz,tlev,airlev,j,sq,jlabel) ! 4-oxo-2-pentenal
+      SUBROUTINE dc02(nw,wl,wc,nz,tlev,airlev,j,sq,jlabel) ! 4-oxo-2-pentenal
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -333,7 +333,7 @@
 
 * =============================================================================
 
-      SUBROUTINE mb03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! hexadienedial
+      SUBROUTINE dc03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! hexadienedial
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -462,7 +462,7 @@
 
 * =============================================================================
 
-      SUBROUTINE mb04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 3-hexene-2,5-dione
+      SUBROUTINE dc04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 3-hexene-2,5-dione
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -575,7 +575,7 @@
 
 * =============================================================================
 
-      SUBROUTINE mb05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! pinonaldehyde
+      SUBROUTINE dc05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! pinonaldehyde
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -704,7 +704,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE mb06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! caronaldehyde
+      SUBROUTINE dc06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! caronaldehyde
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*

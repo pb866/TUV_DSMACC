@@ -1,0 +1,54 @@
+Reference: Atkinson, R. et al.:
+           Evaluated kinetic and photochemical data for atmospheric chemistry:
+           Volume III - gas phase reactions of inorganic halogens.
+           Atmospheric Chemistry and Physics, 7(4), 981 - 1191, 2007. ISSN 1680-7316.
+           page 1179
+
+HOI + hv -> I + OH
+QY: ~1 
+n = 43
+
+lambda / nm 1.E+20 sigma / cm^2 molecule^1
+280          0.0077
+285          0.0226
+290          0.0589
+295          0.137
+300          0.286
+305          0.541
+310          0.926
+315          1.45
+320          2.07
+325          2.72
+330          3.29
+335          3.7
+340          3.85
+345          3.77
+350          3.47
+355          3.04
+360          2.58
+365          2.21
+370          1.98
+375          1.94
+380          2.07
+385          2.33
+390          2.66
+395          2.98
+400          3.22
+405          3.32
+410          3.27
+415          3.07
+420          2.75
+425          2.35
+430          1.92
+435          1.5
+440          1.13
+445          0.813
+450          0.563
+455          0.376
+460          0.242
+465          0.15
+470          0.0904
+475          0.0525
+480          0.0296
+485          0.0161
+490          0.0086

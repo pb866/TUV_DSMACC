@@ -1,6 +1,6 @@
 *= This file contains the following subroutines, related to reading/loading
 *= the product (cross section) x (quantum yield) for photo-reactions of
-*= ketones in MCM-GECKO, which were not yet present in TUV5.2:
+*= ketones in MCM/GECKO-A, which were not yet present in TUV5.2:
 *=
 *=     mk01 through mk36
 
@@ -1233,7 +1233,7 @@
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  cyclobutanone photolysis:                                                =*
-*=        c-C4H6O ->  products                                          =*
+*=        c-C4H6O -> products                                           =*
 *=                                                                           =*
 *=  Cross section:  Calvert et al. 2008/2011 book                            =*
 *=  Quantum yield:  estimates based on Calvert et al. 2011 book              =*
@@ -1345,7 +1345,7 @@
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  cyclohexanone photolysis:                                                =*
-*=        c-C6H10O ->  products                                         =*
+*=        c-C6H10O -> products                                               =*
 *=                                                                           =*
 *=  Cross section:  Iwasaki et al. 2008                                      =*
 *=  Quantum yield:  estimates based on Calvert et al. 2011 book              =*
@@ -1488,7 +1488,7 @@
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  cyclopentanone photolysis:                                               =*
-*=        c-C5H8O ->  products                                          =*
+*=        c-C5H8O -> products                                                =*
 *=                                                                           =*
 *=  Cross section:  Calvert et al. 2008/2011 book                            =*
 *=  Quantum yield:  estimates based on Calvert et al. 2011 book              =*
@@ -1601,7 +1601,7 @@
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  cyclopropanone photolysis:                                               =*
-*=        c-C3H4O ->  products                                          =*
+*=        c-C3H4O -> products                                                =*
 *=                                                                           =*
 *=  Cross section:  Thomas and Rodiguez (1971)                               =*
 *=  Quantum yield:  estimates based on Calvert et al. 2011 book              =*
@@ -3116,7 +3116,7 @@ C      qy2OH = 0.28
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  cycloheptanone photolysis:                                               =*
-*=        c-C7H12O ->  products                                              =*
+*=        c-C7H12O -> products                                               =*
 *=                                                                           =*
 *=  Cross section:  based on Hamer and Huber (1978)                          =*
 *=  Quantum yield:  based on Hamer and Huber (1978)                          =*
@@ -3239,7 +3239,7 @@ C      qy2OH = 0.28
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  4-heptanone photolysis:                                                  =*
-*=        4-C7H14O ->  products                                              =*
+*=        4-C7H14O -> products                                               =*
 *=                                                                           =*
 *=  Cross section:  C5 ketone average                                        =*
 *=  Quantum yield:  based on Calvert et al. (2011 )                          =*
@@ -3349,7 +3349,7 @@ C      qy2OH = 0.28
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  4-octanone photolysis:                                                   =*
-*=        4-C8H16O ->  products                                              =*
+*=        4-C8H16O -> products                                               =*
 *=                                                                           =*
 *=  Cross section:  C5 ketone average                                        =*
 *=  Quantum yield:  based on Calvert et al. (2011 )                          =*
@@ -3464,7 +3464,7 @@ C      qy2OH = 0.28
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  n-propyl isopropyl ketone photolysis:                                    =*
-*=        n-C3H7COCH(CH3)2 ->  products                                      =*
+*=        n-C3H7COCH(CH3)2 -> products                                       =*
 *=                                                                           =*
 *=  Cross section:  same as DIPK                                             =*
 *=  Quantum yield:  based on Calvert et al. (2011 )                          =*
@@ -3574,7 +3574,7 @@ C      qy2OH = 0.28
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  methyl neopentyl ketone photolysis:                                      =*
-*=        CH3COCH2C(CH3)3 ->  products                                       =*
+*=        CH3COCH2C(CH3)3 -> products                                        =*
 *=                                                                           =*
 *=  Cross section:  same as MIBK                                             =*
 *=  Quantum yield:  based on Calvert et al. (2011 )                          =*
@@ -3684,7 +3684,7 @@ C      qy2OH = 0.28
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  n-propyl isobutyl ketone photolysis:                                     =*
-*=        n-propyl isobutyl ketone ->  products                              =*
+*=        n-propyl isobutyl ketone -> products                               =*
 *=                                                                           =*
 *=  Cross section:  same as MIBK                                             =*
 *=  Quantum yield:  based on Calvert et al. (2011 )                          =*
@@ -3799,7 +3799,7 @@ C      qy2OH = 0.28
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  3-Me-4-heptanone photolysis:                                             =*
-*=        3-Me-4-heptanone ->  products                                      =*
+*=        3-Me-4-heptanone -> products                                       =*
 *=                                                                           =*
 *=  Cross section:  same as DIPK                                             =*
 *=  Quantum yield:  based on Calvert et al. (2011 )                          =*
@@ -3909,7 +3909,7 @@ C      qy2OH = 0.28
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  2,2-Me-3-hexanone photolysis:                                            =*
-*=        2,2-Me-3-hexanone ->  products                                     =*
+*=        2,2-Me-3-hexanone -> products                                      =*
 *=                                                                           =*
 *=  Cross section:  same as DIPK                                             =*
 *=  Quantum yield:  based on Calvert et al. (2011 )                          =*
@@ -4019,7 +4019,7 @@ C      qy2OH = 0.28
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  DIBK photolysis:                                                         =*
-*=        (CH3)3CCOC(CH3)3 ->  products                                      =*
+*=        (CH3)3CCOC(CH3)3 -> products                                       =*
 *=                                                                           =*
 *=  Cross section:  same as MIBK                                             =*
 *=  Quantum yield:  based on Calvert et al. (2011 )                          =*
@@ -4129,7 +4129,7 @@ C      qy2OH = 0.28
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  di-sec-butyl ketone photolysis:                                          =*
-*=        di-sec-butyl ketone ->  products                                   =*
+*=        di-sec-butyl ketone -> products                                    =*
 *=                                                                           =*
 *=  Cross section:  same as DIPK                                             =*
 *=  Quantum yield:  based on Calvert et al. (2011 )                          =*
@@ -4239,7 +4239,7 @@ C      qy2OH = 0.28
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for                =*
 *=  di-tert-butyl ketone photolysis:                                         =*
-*=        di-tert-butyl ketone ->  products                                  =*
+*=        di-tert-butyl ketone -> products                                   =*
 *=                                                                           =*
 *=  Cross section:  same as DIPK                                             =*
 *=  Quantum yield:  based on Calvert et al. (2011 )                          =*

@@ -1,6 +1,6 @@
 *= This file contains the following subroutines, related to reading/loading
 *= the product (cross section) x (quantum yield) for photo-reactions of
-*= organic nitrates in MCM-GECKO, which were not yet present in TUV5.2:
+*= organic nitrates in MCM/GECKO-A, which were not yet present in TUV5.2:
 *=
 *=     mn01 through mn14
 
@@ -1533,9 +1533,9 @@
 
 * Setting photolysis index and cross section/quantum yield options
       j = j+1
-      jlabel(j) = 'RNO2 + hv -> R + NO2'
+      jlabel(j) = 'CH3NO2 -> CH3 + NO2'
       j = j+1
-      jlabel(j) = 'RNO2 + hv -> products'
+      jlabel(j) = 'RNO2 -> alkene + HONO'
 
 * quantum yield options
       spc = "RNO2"
@@ -1675,9 +1675,9 @@
 
 * Setting photolysis index and cross section/quantum yield options
       j = j+1
-      jlabel(j) = 'C2H5NO2 + hv -> C2H5 + NO2'
+      jlabel(j) = 'C2H5NO2 -> C2H5 + NO2'
       j = j+1
-      jlabel(j) = 'C2H5NO2 + hv -> C2H4 + HONO'
+      jlabel(j) = 'C2H5NO2 -> C2H4 + HONO'
 
 * cross section options
       spc = "C2H5NO2"

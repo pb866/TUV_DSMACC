@@ -63,7 +63,7 @@
 
 *_______________________________________________________________________
 
-******** Aldehyde Photochemistry
+******** Aldehyde photochemistry
 *ma01.  n-C3H7CHO + hv -> products (Norrish type I + II)
       CALL ma01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
@@ -122,7 +122,7 @@
       CALL ma18(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
-******** Keto Photochemistry
+******** Keto photochemistry
 
 *mk01.  diethyl ketone + hv -> products (both channels)
       CALL mk01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
@@ -216,7 +216,7 @@
       CALL mk21(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
-******** Ketene Photochemistry
+******** Ketene photochemistry
 
 *mk19.  ketene + hv -> CO2 + CO + H2
       CALL mk19(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
@@ -225,28 +225,28 @@
       CALL mk20(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
-******** Dicarbonyl Photochemistry
+******** Dicarbonyl photochemistry
 
-*mb01.  butenedial + hv -> 3H-furan-2-one
-      CALL mb01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*dc01.  butenedial + hv -> 3H-furan-2-one
+      CALL dc01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mb02.  2-oxo pentenedial + hv -> products (all three channels)
-      CALL mb02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*dc02.  2-oxo pentenedial + hv -> products (all three channels)
+      CALL dc02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mb03.  E,E-2,4-hexadienedial + hv -> Z-3,4-Diformyl-cyclobutene
-      CALL mb03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*dc03.  E,E-2,4-hexadienedial + hv -> Z-3,4-Diformyl-cyclobutene
+      CALL dc03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mb04.  CH3COCH=CHCOCH3 + hv -> CH3CO + CH=CHCOCH3
-      CALL mb04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*dc04.  CH3COCH=CHCOCH3 + hv -> CH3CO + CH=CHCOCH3
+      CALL dc04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*ma03.  pinonaldehyde + hv -> R + CO + HO2
-      CALL mb05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*dc05.  pinonaldehyde + hv -> R + CO + HO2
+      CALL dc05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*ma13.  caronaldehyde + hv -> R + CO + HO2
-      CALL mb06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*dc06.  caronaldehyde + hv -> R + CO + HO2
+      CALL dc06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
-******** Nitrate Photochemistry
+******** Nitrate photochemistry
 
 *mn01.  1-C5H11ONO2 + hv -> 1-C5H11O + NO2
       CALL mn01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
@@ -282,76 +282,76 @@
       CALL mn10(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
-******** PAN Photochemistry
+******** PAN photochemistry
 
 *mn01.  PANs + hv -> products
       CALL mn11(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
-******** Dinitrate Photochemistry
+******** Dinitrate photochemistry
 
-*md01.  CH3CH(NO3)CH2NO3 + hv -> products (both channels)
-      CALL md01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*dn01.  CH3CH(NO3)CH2NO3 + hv -> products (both channels)
+      CALL dn01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*md02.  CH3CH2CH(NO3)CH2NO3 + hv -> products (both channels)
-      CALL md02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*dn02.  CH3CH2CH(NO3)CH2NO3 + hv -> products (both channels)
+      CALL dn02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*md03.  CH3CH(NO3)CH(NO3)CH3 -> CH3CH(NO3)CH(O.)CH3 + NO2
-      CALL md03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*dn03.  CH3CH(NO3)CH(NO3)CH3 -> CH3CH(NO3)CH(O.)CH3 + NO2
+      CALL dn03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*md04.  CH2(NO3)CH=CHCH2NO3 + hv -> CH2(NO3)CH=CHCH2O + NO2
-      CALL md04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*dn04.  CH2(NO3)CH=CHCH2NO3 + hv -> CH2(NO3)CH=CHCH2O + NO2
+      CALL dn04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*md05.  CH2=CHCH(NO3)CH2NO3 + hv -> products (both channels)
-      CALL md05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*dn05.  CH2=CHCH(NO3)CH2NO3 + hv -> products (both channels)
+      CALL dn05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*md07.  generic unsaturated dinitrates
-      CALL md07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*dn07.  generic unsaturated dinitrates
+      CALL dn07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*md06.  1-methyl-cyclohexyl-1,2-dinitrate + hv -> products (both channels)
-      CALL md06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*dn06.  1-methyl-cyclohexyl-1,2-dinitrate + hv -> products (both channels)
+      CALL dn06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
-******** Hydroperoxide Photochemistry
+******** Hydroperoxide photochemistry
 
-*md01.  (CH3)3COOH + hv -> (CH3)3CO + OH
+*mh01.  (CH3)3COOH + hv -> (CH3)3CO + OH
       CALL mh01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
-******** Multifunctional chromophore Photochemistry
+******** Multifunctional chromophore photochemistry
 
-*mm01.  CH3CH2COCH2NO3 -> CH3CH2COCH2O + NO2
-      CALL mm01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*mf01.  CH3CH2COCH2NO3 -> CH3CH2COCH2O + NO2
+      CALL mf01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mm02.  CH3COCH(NO3)CH3 + hv -> CH3COCH(O.)CH3 + NO2
-      CALL mm02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*mf02.  CH3COCH(NO3)CH3 + hv -> CH3COCH(O.)CH3 + NO2
+      CALL mf02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mm03.  2-oxo-cyclohexyl nitrate + hv -> RO. + NO2
-      CALL mm03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*mf03.  2-oxo-cyclohexyl nitrate + hv -> RO. + NO2
+      CALL mf03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mm04.  CH3COCH2CH2CH(OOH)CH3 + hv -> RO. + OH
-      CALL mm04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*mf04.  CH3COCH2CH2CH(OOH)CH3 + hv -> RO. + OH
+      CALL mf04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mm05.  oxohexyl-hydroperoxide + hv -> RO. + OH
-      CALL mm05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
-
-
-******** Criegee Radical Photochemistry
-
-*mr01.  CH2OO + hv -> HCHO + O(3P)
-      CALL mr01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
-
-*mr02.  CH3CHOO + hv -> CH3CHO + O(3P)
-      CALL mr02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
-
-*mr03.  C2H5CHOO + hv -> C2H5CHO + O(3P)
-      CALL mr03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
-
-*mr04.  (CH3)2COO + hv -> CH3COCH3 + O(3P)
-      CALL mr04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*mf05.  oxohexyl-hydroperoxide + hv -> RO. + OH
+      CALL mf05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
-******** nitrocompound Photochemistry
+******** Criegee radical photochemistry
+
+*ci01.  CH2OO + hv -> HCHO + O(3P)
+      CALL ci01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*ci02.  CH3CHOO + hv -> CH3CHO + O(3P)
+      CALL ci02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*ci03.  C2H5CHOO + hv -> C2H5CHO + O(3P)
+      CALL ci03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*ci04.  (CH3)2COO + hv -> CH3COCH3 + O(3P)
+      CALL ci04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+
+******** Nitrocompound photochemistry
 
 *mn13.  CH3NO2 + hv -> CH3 + NO2 (+ HONO channel for RNO2)
       CALL mn13(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
@@ -364,32 +364,42 @@
 *mk25.  lKET5 --> products
       CALL mk25(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mm06.  C2ALDqy1
-!     CALL mm06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mm07.  C3ALDqy1
- !    CALL mm07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+******** Halogen photochemistry
 
-*mm08.  C4ALDqy1
-!     CALL mm08(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*h01.  IO + hv -> I + O(3P)
+      CALL h01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*h02.  HOI + hv -> I + OH
+      CALL h02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*h03.  OIO + hv -> I + O2
+      CALL h03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mm09.  C5ALDqy1
-!     CALL mm09(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*mf06.  C2ALDqy1
+!     CALL mf06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mm10.  C6ALDqy1
-!     CALL mm10(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*mf07.  C3ALDqy1
+ !    CALL mf07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mm11.  C7ALDqy1
- !    CALL mm11(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*mf08.  C4ALDqy1
+!     CALL mf08(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mm12.  C8ALDqy1
-!     CALL mm12(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*mf09.  C5ALDqy1
+!     CALL mf09(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*mf10.  C6ALDqy1
+!     CALL mf10(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*mf11.  C7ALDqy1
+ !    CALL mf11(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+
+*mf12.  C8ALDqy1
+!     CALL mf12(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
 
 ******** Sensitivity studies / Tests
 
-*mr01.  n-Aldehyde parameterisations
+*t01.  n-Aldehyde parameterisations
 C      CALL t02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 ****************************************************************

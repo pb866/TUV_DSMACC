@@ -570,7 +570,6 @@ C      zpbl = 3.
       CALL swbiol(nw,wl,wc, ns,sw,slabel)
       CALL swchem(nw,wl,nz,tlev,aircon, nj,sj,jlabel)
       CALL mcmext(nw,wl,nz,tlev,aircon, nj,sj,jlabel)
-      CALL gcext(nw,wl,nz,tlev,aircon, nj,sj,jlabel)
 !     WRITE(*,'(A,I4)') " Number of photoreactions in database:", nj
 
       wrfchm = .FALSE.
@@ -596,7 +595,6 @@ C      zpbl = 3.
                nj = 0
                CALL swchem(nw,wl,nz,tlev,aircon, nj,sj,jlabel)
                CALL mcmext(nw,wl,nz,tlev,aircon, nj,sj,jlabel)
-               CALL gcext(nw,wl,nz,tlev,aircon, nj,sj,jlabel)
 
                WRITE(88,881)tlev(1), aircon(1)
                DO ij = 1, nj
@@ -1043,7 +1041,7 @@ c----------------------------------------------------------
 
       subroutine set_up_photol(O3col, albedo, ralt,
      $           box_temp, bs,cs,ds,sza,svj_tj)
-      incLude 'params'
+      incLude '../params'
       real*8 b(19),c(19),d(19)
       real*8 bs(19,kj), cs(19,kj), ds(19,kj)
       REAL*8 O3col, ralt, box_temp, albedo

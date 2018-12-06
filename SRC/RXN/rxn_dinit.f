@@ -1,12 +1,12 @@
 *= This file contains the following subroutines, related to reading/loading
 *= the product (cross section) x (quantum yield) for photo-reactions of
-*= organic dinitrates in MCM-GECKO, which where not yet present in TUV5.2:
+*= organic dinitrates in MCM/GECKO-A, which where not yet present in TUV5.2:
 *=
-*=     md01 through md07
+*=     dn01 through dn07
 
 *=============================================================================*
 
-      SUBROUTINE md01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! isopropylene dinitrate
+      SUBROUTINE dn01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! isopropylene dinitrate
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -129,7 +129,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE md02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 1,2-butylene dinitrate
+      SUBROUTINE dn02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 1,2-butylene dinitrate
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -252,7 +252,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE md03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 2,3-butylene dinitrate
+      SUBROUTINE dn03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 2,3-butylene dinitrate
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -360,7 +360,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE md04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 1,4-dinitrooxy-2-butene
+      SUBROUTINE dn04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 1,4-dinitrooxy-2-butene
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -469,7 +469,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE md05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 3,4-dinitrooxy-1-butene
+      SUBROUTINE dn05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 3,4-dinitrooxy-1-butene
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -592,7 +592,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE md06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 1-methyl-cyclohexyl-1,2-dinitrate
+      SUBROUTINE dn06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 1-methyl-cyclohexyl-1,2-dinitrate
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -729,7 +729,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE md07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! uDINIT
+      SUBROUTINE dn07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! uDINIT
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*

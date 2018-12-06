@@ -1,9 +1,9 @@
 *= This file contains the following subroutines, related to reading/loading
 *= the product (cross section) x (quantum yield) for photo-reactions of
-*= organic compounds with multiple chromphores in MCM-GECKO,
+*= organic compounds with multiple chromphores in MCM/GECKO-A,
 *= which where not yet present in TUV5.2:
 *=
-*=     mm01 through mm05
+*=     mf01 through mf05
 *=
 *=
 *= Further routines concern the calculation of generic j values, where
@@ -13,11 +13,11 @@
 *= where absorption cross sections are added up and the total
 *= quantum yield is set to 1:
 *=
-*=    mm06 through mm12
+*=    mf06 through mf12
 
 *=============================================================================*
 
-      SUBROUTINE mm01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! NMEK, nitroxymethyl ethyl ketone
+      SUBROUTINE mf01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! NMEK, nitroxymethyl ethyl ketone
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -127,7 +127,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE mm02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! M1NEK, methyl 1-nitroxyethyl ketone
+      SUBROUTINE mf02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! M1NEK, methyl 1-nitroxyethyl ketone
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -187,7 +187,7 @@
 
 * Setting photolysis index and cross section/quantum yield options
       j = j+1
-      jlabel(j) = 'CH3COCH(NO3)CH3 + hv -> CH3COCH(O.)CH3 + NO2'
+      jlabel(j) = 'CH3COCH(NO3)CH3 -> CH3COCH(O.)CH3 + NO2'
 
 * cross section options
       spc = "CH3COCH(NO3)CH3"
@@ -249,7 +249,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE mm03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 2-oxo-cyclohexyl nitrate
+      SUBROUTINE mf03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 2-oxo-cyclohexyl nitrate
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -374,7 +374,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE mm04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 2-hexanone-5-hydroperoxide
+      SUBROUTINE mf04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 2-hexanone-5-hydroperoxide
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -428,7 +428,7 @@
 ***************** 2-hexanone-5-hydroperoxide photolysis *************************
 
       j = j+1
-      jlabel(j) = 'CH3COCH2CH2CH(OOH)CH3 + hv -> RO. + OH'
+      jlabel(j) = 'CH3COCH2CH2CH(OOH)CH3 -> RO. + OH'
 
 
 *cross sections
@@ -465,7 +465,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE mm05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! oxohexyl-hydroperoxide
+      SUBROUTINE mf05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! oxohexyl-hydroperoxide
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -519,7 +519,7 @@
 ***************** oxohexyl-hydroperoxide photolysis *************************
 
       j = j+1
-      jlabel(j) = 'oxohexyl-hydroperoxide + hv -> RO. + OH'
+      jlabel(j) = 'oxohexyl-hydroperoxide -> RO. + OH'
 
 
       OPEN(UNIT=kin,FILE='DATAJ1/MCMext/MULT/oxo+oohHex.abs',
@@ -553,7 +553,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE mm06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C2ALDqy1
+      SUBROUTINE mf06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C2ALDqy1
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -646,7 +646,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE mm07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C3ALDqy1
+      SUBROUTINE mf07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C3ALDqy1
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -748,7 +748,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE mm08(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C4ALDqy1
+      SUBROUTINE mf08(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C4ALDqy1
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -856,7 +856,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE mm09(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C5ALDqy1
+      SUBROUTINE mf09(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C5ALDqy1
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -964,7 +964,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE mm10(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C6ALDqy1
+      SUBROUTINE mf10(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C6ALDqy1
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -1069,7 +1069,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE mm11(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C7ALDqy1
+      SUBROUTINE mf11(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C7ALDqy1
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -1174,7 +1174,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE mm12(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C8ALDqy1
+      SUBROUTINE mf12(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C8ALDqy1
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
