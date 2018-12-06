@@ -1,6 +1,6 @@
 *= This file contains the following subroutines, related to testing
 *= the product (cross section) x (quantum yield) for photo-reactions of
-*= certain species in MCM-GECKO, which were not yet present in TUV5.2
+*= certain species in MCM/GECKO-A, which were not yet present in TUV5.2
 *= and derive possible parameterisations:
 *=
 *=     t01 through t02

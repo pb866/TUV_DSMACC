@@ -1,12 +1,12 @@
 *= This file contains the following subroutines, related to reading/loading
 *= the product (cross section) x (quantum yield) for photo-reactions of
-*= organic radical compounds in MCM-GECKO, which were not yet present in TUV5.2:
+*= stabilised Criegee intermediates in MCM/GECKO-A:
 *=
-*=     mr01 through mr04
+*=     ci01 through ci04
 
 *=============================================================================*
 
-      SUBROUTINE mr01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C1 Criegee intermediate
+      SUBROUTINE ci01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C1 Criegee intermediate
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -92,7 +92,7 @@
 
 * =============================================================================
 
-      SUBROUTINE mr02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C2 Criegee intermediate
+      SUBROUTINE ci02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C2 Criegee intermediate
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -185,7 +185,7 @@
 
 * =============================================================================
 
-      SUBROUTINE mr03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! n-C3 Criegee radical
+      SUBROUTINE ci03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! n-C3 Criegee radical
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -239,7 +239,7 @@
 ***************** n-C3 Criegee intermediate photolysis *************************
 
       j = j+1
-      jlabel(j) = 'C2H5CHOO + hv -> C2H5CHO + O(3P)'
+      jlabel(j) = 'C2H5CHOO -> C2H5CHO + O(3P)'
 
 * cross sections
       OPEN(UNIT=kin,FILE='DATAJ1/MCMext/RAD/C2H5CHOO_Liu14.abs',
@@ -270,7 +270,7 @@
 
 * =============================================================================
 
-      SUBROUTINE mr04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! i-C3 Criegee radical
+      SUBROUTINE ci04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! i-C3 Criegee radical
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -324,7 +324,7 @@
 ***************** n-C3 Criegee intermediate photolysis *************************
 
       j = j+1
-      jlabel(j) = '(CH3)2COO + hv -> CH3COCH3 + O(3P)'
+      jlabel(j) = '(CH3)2COO -> CH3COCH3 + O(3P)'
 
 * cross sections
       OPEN(UNIT=kin,FILE='DATAJ1/MCMext/RAD/CH32COO_Liu14.abs',

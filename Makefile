@@ -12,13 +12,13 @@ intel := $(shell command -v ifort 2> /dev/null)
 EXC = tuv
 INCLUDES = params
 
-USE_INCL = SRC/TUV521.o \
+USE_INCL = SRC/TUV.o \
 		   SRC/grids.o \
 		   SRC/rdinp.o SRC/rdetfl.o SRC/rdxs.o \
-		   SRC/swphys.o SRC/swbiol.o SRC/RXN/swchem.o SRC/RXN/mcmext.o SRC/RXN/gcext.o\
+		   SRC/swphys.o SRC/swbiol.o SRC/RXN/swchem.o SRC/RXN/mcmext.o\
 		   SRC/RXN/rxn.o SRC/RXN/rxn_ald.o SRC/RXN/rxn_ket.o SRC/RXN/rxn_dicar.o\
 		   SRC/RXN/rxn_nit.o SRC/RXN/rxn_dinit.o SRC/RXN/rxn_rooh.o\
-		   SRC/RXN/rxn_mult.o SRC/RXN/rxn_rad.o SRC/RXN/rxn_gc11.o SRC/qys.o \
+		   SRC/RXN/rxn_mult.o SRC/RXN/rxn_sci.o SRC/RXN/rxn_halo.o SRC/qys.o \
 		   SRC/wshift.o \
 		   SRC/vpair.o SRC/vptmp.o SRC/vpo3.o \
 		   SRC/odrl.o SRC/odo3.o \

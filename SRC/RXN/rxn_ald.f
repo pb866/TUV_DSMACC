@@ -1,6 +1,6 @@
 *= This file contains the following subroutines, related to reading/loading
 *= the product (cross section) x (quantum yield) for photo-reactions of
-*= aldehydes in MCM-GECKO, which were not yet present in TUV5.2:
+*= aldehydes in MCM/GECKO-A, which were not yet present in TUV5.2:
 *=
 *=     ma01 through ma19
 
@@ -447,9 +447,9 @@
 
 
       j = j+1
-      jlabel(j) = 'n-C4H9CHO -> C4H9 +  CHO'
+      jlabel(j) = 'n-C4H9CHO -> C4H9 + CHO'
       j = j+1
-      jlabel(j) = 'n-C4H9CHO -> CH3CH=CH2 +  CH2=CHOH'
+      jlabel(j) = 'n-C4H9CHO -> CH3CH=CH2 + CH2=CHOH'
       j = j+1
       jlabel(j) = 'n-C4H9CHO -> 2-methylcyclobutanol'
       j = j+1
@@ -457,7 +457,7 @@
       j = j+1
       jlabel(j) = 'C5nALDOH -> NII products'
       j = j+1
-      jlabel(j) = 'C5nALDOH -> cycl. products'
+      jlabel(j) = 'C5nALDOH -> cycl. product'
 * estimates in compounds with polyfunctional chromophores
       j = j+1
       jlabel(j) = 'C5nALDpoly'
@@ -1027,7 +1027,7 @@
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for t-C4H9CHO      =*
 *=  photolysis:                                                              =*
-*=         t-C4H9CHO + hv -> HCO. +  t-C4H9.                                 =*
+*=         t-C4H9CHO + hv -> HCO. + t-C4H9.                                  =*
 *=  Also provides values for generalised t-aldehydes with possible OH-subst. =*
 *=                                                                           =*
 *=  Cross section:  see options below in the source code                     =*
@@ -1274,9 +1274,9 @@ C      qyg2 = 0.13
 
 * Setting photolysis index and cross section/quantum yield options
       j = j+1
-      jlabel(j) = 'n-C5H11CHO -> C5H11 +  CHO'
+      jlabel(j) = 'n-C5H11CHO -> C5H11 + CHO'
       j = j+1
-      jlabel(j) = 'n-C5H11CHO -> C2H5CH=CH2 +  CH2=CHOH'
+      jlabel(j) = 'n-C5H11CHO -> C2H5CH=CH2 + CH2=CHOH'
       j = j+1
       jlabel(j) = 'n-C5H11CHO -> 2-ethylcyclobutanol'
       j = j+1
@@ -1662,7 +1662,7 @@ C      qyg2 = 0.13
 *=  PURPOSE:                                                                 =*
 *=  Provide the product (cross section) x (quantum yield) for glycidaldehyde =*
 *=  photolysis:                                                              =*
-*=         Glycidaldehyde + hv ->  products                                  =*
+*=         Glycidaldehyde + hv -> products                                   =*
 *=                                                                           =*
 *=  Cross section and quantum yield:  taken from Calvert et al. 2011         =*
 *-----------------------------------------------------------------------------*
@@ -3068,7 +3068,7 @@ C      qyg2 = 0.13
       j = j+1
       jlabel(j) = 'n-C7H15CHO -> C7H15 + CHO'
       j = j+1
-      jlabel(j) = 'n-C7H15CHO -> C4H7CH=CH2 + CH2=CHOH'
+      jlabel(j) = 'n-C7H15CHO -> C4H9CH=CH2 + CH2=CHOH'
       j = j+1
       jlabel(j) = 'n-C7H15CHO -> 2-butylcyclobutanol'
 
@@ -3186,7 +3186,7 @@ C      qyg2 = 0.13
 *=  PURPOSE:                                                                 =*
 *=  Provide product (cross section)x(quantum yield) for                      =*
 *=  linear alpha,beta-unsaturated aldehyde photolysis:                       =*
-*=          aldehydes + hv ->  products                                      =*
+*=          aldehydes + hv -> products                                       =*
 *=  Cross section:  average of crotonaldehyde and 2-hexenal                  =*
 *=  Quantum yield:  10 * acrolein                                            =*
 *-----------------------------------------------------------------------------*
