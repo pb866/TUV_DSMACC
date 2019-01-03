@@ -388,10 +388,10 @@ c                    ** hour angle in radians between -pi and pi
 
 c                    ** solar azimuth and elevation
 
-      EL  = ASIN( SIN( sngl(DEC) )*SIN( LAT*sngl(RPD) ) +
-     &            COS( sngl(DEC) )*COS( LAT*sngl(RPD) )*COS( sngl(HA) ))
+      EL  = sngl(ASIN( SIN( DEC )*SIN( LAT*RPD ) +
+     &            COS( DEC )*COS( LAT*RPD )*COS( HA )))
 
-      AZ  = ASIN( - COS( sngl(DEC) )*SIN( sngl(HA) ) / COS( EL ) )
+      AZ  = sngl(ASIN( - COS( DEC )*SIN( HA ) / COS( EL ) ))
 
 c                    ** Put azimuth between 0 and 2*pi radians
 
@@ -449,4 +449,3 @@ c                   ** distance to sun in A.U. & diameter in degs
       RETURN
 
       END
-

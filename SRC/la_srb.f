@@ -281,15 +281,15 @@
 
          IF (rm(iz) .GT. 1.0D-100) THEN
             IF (ro2(iz) .GT. 1.D-100) THEN
-               o2xsla(iz,1) = sngl(ro2(iz))/sngl(rm(iz))
+               o2xsla(iz,1) = sngl(ro2(iz)/rm(iz))
             ELSE
                o2xsla(iz,1) = xsmin
             ENDIF
 
             IF (rm(iz+1) .GT. 0.) THEN
 
-               dto2la(iz,1) = LOG(rm(iz+1)) / secchi(iz+1)
-     $                      - LOG(rm(iz))   / secchi(iz)
+               dto2la(iz,1) = sngl(LOG(rm(iz+1)) / secchi(iz+1)
+     $                      - LOG(rm(iz))   / secchi(iz))
 
             ELSE
                dto2la(iz,1) = 1000.
@@ -305,7 +305,7 @@
 
       dto2la(nz,1) = 0.
       IF(rm(nz) .GT. 1.0-100) THEN
-         o2xsla(nz,1) = sngl(ro2(nz))/sngl(rm(nz))
+         o2xsla(nz,1) = sngl(ro2(nz)/rm(nz))
       ELSE
          o2xsla(nz,1) = xsmin
       ENDIF

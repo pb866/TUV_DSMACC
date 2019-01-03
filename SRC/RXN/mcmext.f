@@ -320,20 +320,20 @@
 
 ******** Multifunctional chromophore photochemistry
 
-*mf01.  CH3CH2COCH2NO3 -> CH3CH2COCH2O + NO2
-      CALL mf01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*pf01.  CH3CH2COCH2NO3 -> CH3CH2COCH2O + NO2
+      CALL pf01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mf02.  CH3COCH(NO3)CH3 + hv -> CH3COCH(O.)CH3 + NO2
-      CALL mf02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*pf02.  CH3COCH(NO3)CH3 + hv -> CH3COCH(O.)CH3 + NO2
+      CALL pf02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mf03.  2-oxo-cyclohexyl nitrate + hv -> RO. + NO2
-      CALL mf03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*pf03.  2-oxo-cyclohexyl nitrate + hv -> RO. + NO2
+      CALL pf03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mf04.  CH3COCH2CH2CH(OOH)CH3 + hv -> RO. + OH
-      CALL mf04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*pf04.  CH3COCH2CH2CH(OOH)CH3 + hv -> RO. + OH
+      CALL pf04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mf05.  oxohexyl-hydroperoxide + hv -> RO. + OH
-      CALL mf05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*pf05.  oxohexyl-hydroperoxide + hv -> RO. + OH
+      CALL pf05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
 ******** Criegee radical photochemistry
@@ -374,26 +374,26 @@
 *h03.  OIO + hv -> I + O2
       CALL h03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mf06.  C2ALDqy1
-!     CALL mf06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*pf06.  C2ALDqy1
+!     CALL pf06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mf07.  C3ALDqy1
- !    CALL mf07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*pf07.  C3ALDqy1
+ !    CALL pf07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mf08.  C4ALDqy1
-!     CALL mf08(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*pf08.  C4ALDqy1
+!     CALL pf08(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mf09.  C5ALDqy1
-!     CALL mf09(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*pf09.  C5ALDqy1
+!     CALL pf09(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mf10.  C6ALDqy1
-!     CALL mf10(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*pf10.  C6ALDqy1
+!     CALL pf10(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mf11.  C7ALDqy1
- !    CALL mf11(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*pf11.  C7ALDqy1
+ !    CALL pf11(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
-*mf12.  C8ALDqy1
-!     CALL mf12(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
+*pf12.  C8ALDqy1
+!     CALL pf12(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
 

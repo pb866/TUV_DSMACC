@@ -82,6 +82,8 @@ C outside the ery spectrum range
 
       END
 
+*=============================================================================*
+
       FUNCTION fo3qy2(w,t)
 
 *-----------------------------------------------------------------------------*
@@ -108,56 +110,19 @@ C outside the ery spectrum range
       q1 = 1.
       q2 = exp(-825.518/kt)
 
-      fo3qy2 = 0.0765 +
+      IF(w .LE. 305.) THEN
+         fo3qy2 = 0.90
+      ELSEIF(w .GT. 305. .AND. w .LE. 328.) THEN
+
+         fo3qy2 = 0.0765 +
      $  a(1)*             (q1/(q1+q2))*EXP(-((x(1)-w)/om(1))**4)+
      $  a(2)*(T/300.)**2 *(q2/(q1+q2))*EXP(-((x(2)-w)/om(2))**2)+
      $  a(3)*(T/300.)**1.5            *EXP(-((x(3)-w)/om(3))**2)
 
-
-      END
-
-*=============================================================================*
-
-      FUNCTION fo3qy3(w,t)
-
-*-----------------------------------------------------------------------------*
-*=  PURPOSE:                                                                 =*
-* function to calculate the quantum yield O3 + hv -> O(1D) + O2,             =*
-* according to:
-* Matsumi, Y., F. J. Comes, G. Hancock, A. Hofzumanhays, A. J. Hynes,
-* M. Kawasaki, and A. R. Ravishankara, QUantum yields for production of O(1D)
-* in the ultraviolet photolysis of ozone:  Recommendation based on evaluation
-* of laboratory data, J. Geophys. Res., 107, 10.1029/2001JD000510, 2002.
-* qy = 0.08 extended to 370nm according to IUPAC recommendation.
-*-----------------------------------------------------------------------------*
-
-      IMPLICIT NONE
-      REAL w, t, kt, fo3qy3
-      REAL A(3), X(3), om(3)
-      REAL q1, q2
-
-      DATA A/ 0.8036, 8.9061, 0.1192/
-      DATA X/ 304.225, 314.957, 310.737/
-      DATA om/ 5.576, 6.601, 2.187/
-
-      fo3qy3 = 0.
-      kt = 0.695 * t
-      q1 = 1.
-      q2 = exp(-825.518/kt)
-
-      IF(w .LE. 306.) THEN
-         fo3qy3 = 0.90
-      ELSEIF(w .GT. 306. .AND. w .LT. 328.) THEN
-
-         fo3qy3 = 0.0765 +
-     $  a(1)*             (q1/(q1+q2))*EXP(-((x(1)-w)/om(1))**4)+
-     $  a(2)*(T/300.)**2 *(q2/(q1+q2))*EXP(-((x(2)-w)/om(2))**2)+
-     $  a(3)*(T/300.)**1.5            *EXP(-((x(3)-w)/om(3))**2)
-
-      ELSEIF(w .GE. 328. .AND. w .LE. 370.) THEN
-         fo3qy3 = 0.08
-      ELSEIF(w .GT. 370.) THEN
-         fo3qy3 = 0.
+      ELSEIF(w .GT. 328. .AND. w .LE. 340.) THEN
+         fo3qy2 = 0.08
+      ELSEIF(w .GT. 340.) THEN
+         fo3qy2 = 0.
       ENDIF
 
       END
@@ -258,4 +223,3 @@ C outside the ery spectrum range
 
       RETURN
       END
-

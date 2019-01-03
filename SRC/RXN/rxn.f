@@ -346,36 +346,14 @@
 
 * JPL 2000:
 
-           IF (myld .EQ. kjpl00) THEN
+           IF (myld == kjpl00) THEN
               qy1d = fo3qy(wc(iw),tlev(i))
            ENDIF
 
-* Matsumi et al.
+* Matsumi et al. / IUPAC:
 
-           IF (myld .EQ. kmats) THEN
-              IF(wc(iw) .LE. 305.) THEN
-                qy1d = 0.90
-               ELSEIF(wc(iw) .GT. 305. .AND. wc(iw) .LE. 328.) THEN
-                qy1d = fo3qy2(wc(iw),tlev(i))
-               ELSEIF(wc(iw) .GT. 328. .AND. wc(iw) .LE. 340.) THEN
-                qy1d = 0.08
-               ELSEIF(wc(iw) .GT. 340.) THEN
-                qy1d = 0.
-              ENDIF
-           ENDIF
-
-* IUPAC recommendation
-
-           IF (myld .EQ. kiup) THEN
-             IF (wc(iw) .LT. 305.) THEN
-                qy1d = 0.9
-             ELSE IF (wc(iw) .GE. 305. .AND. wc(iw) .LE. 328.) THEN
-                qy1d = fo3qy2(wc(iw),tlev(i)) ! kmats
-             ELSE IF (wc(iw) .GT. 328. .AND. wc(iw) .LT. 370.) THEN
-                qy1d = 0.08
-             ELSE
-                qy1d = 0.
-             ENDIF
+           IF (myld == kmats .or. myld == kiup) THEN
+              qy1d = fo3qy2(wc(iw),tlev(i))
            ENDIF
 
 * compute product
@@ -682,7 +660,7 @@
 
 * cross section options
       spc = "NO3"
-      xsvers = (/3, 4, 4/) ! options for vers = 1/2/0 (TUV/MCM&GECKO-A/individual)
+      xsvers = (/3, 4, 2/) ! options for vers = 1/2/0 (TUV/MCM&GECKO-A/individual)
       logmsg(1) = "from Graham and Johnston (1978)"
       logmsg(2) = "from JPL 1994 evaluation"
       logmsg(3) = "from JPL 2011 evaluation"
@@ -690,7 +668,7 @@
       CALL set_option(4,spc,"abs",logmsg,xsvers,mabs)
 
 * quantum yield options
-      qyvers = (/2, 3, 3/) ! options for vers = 1/2/0 (TUV/MCM&GECKO-A/individual)
+      qyvers = (/2, 3, 1/) ! options for vers = 1/2/0 (TUV/MCM&GECKO-A/individual)
       logmsg(1) = "from Madronich (1988)"
       logmsg(2) = "from JPL 2011 evaluation"
       logmsg(3) = "from IUPAC & JPL recommendation"
@@ -726,7 +704,7 @@
 
          DO iw = 1, nw-1
           DO iz = 1, nz
-            xs(iz,iw) = yg1(iw)
+            xs(iz,iw) = yg(iw)
           ENDDO
          ENDDO
 
@@ -749,7 +727,6 @@
 * (use JPL94 for wavelengths longer than 600 nm)
 
          DO iw = 1, nw-1
-          IF(wl(iw) .GT. 600.) yg(iw) = yg1(iw)
           DO iz = 1, nz
             xs(iz,iw) = yg1(iw)
           ENDDO
@@ -828,7 +805,7 @@
                qy = 0.35*(wc(iw)-584.)/11.
             ENDIF
             DO i = 1, nz
-               sq(j-1,i,iw) = xs(iz,iw)*qy
+               sq(j-1,i,iw) = xs(i,iw)*qy
             ENDDO
          ENDDO
 
@@ -845,7 +822,7 @@
                qy = 1.-0.35*(wc(iw)-584.)/11.
             ENDIF
             DO i = 1, nz
-               sq(j,i,iw) = xs(iz,iw)*qy
+               sq(j,i,iw) = xs(i,iw)*qy
             ENDDO
          ENDDO
 
@@ -1023,7 +1000,6 @@
 
       REAL yg1(kw), yg2(kw)
       INTEGER i, iz, iw
-      INTEGER ierr
       REAL t, xs, dum
 
 ***************** N2O5 photolysis *************************
@@ -1996,7 +1972,7 @@ C     INTEGER n1, n2, n3, n4, n5
       REAL yg(kw), yg1(kw), yg2(kw), yg3(kw), yg4(kw), yg5(kw)
 
       real t
-      real qy
+C      real qy
 
       INTEGER i, iw
       INTEGER iz
@@ -2087,7 +2063,7 @@ C     INTEGER n1, n2, n3, n4, n5
 
 * quantum yield = 1
 
-      qy = 1.
+C      qy = 1.
       DO iw = 1, nw - 1
          DO iz = 1, nz
 
@@ -2113,7 +2089,7 @@ C     INTEGER n1, n2, n3, n4, n5
 
             endif
 
-            sq(j,iz,iw) = yg(iw)*qy
+            sq(j,iz,iw) = yg(iw)!*qy
 
          ENDDO
       ENDDO
@@ -2141,7 +2117,7 @@ C     INTEGER n1, n2, n3, n4, n5
 
 * quantum yield = 1
 
-      qy = 1.
+C      qy = 1.
       DO iw = 1, nw - 1
          DO iz = 1, nz
 
@@ -2154,7 +2130,7 @@ C     INTEGER n1, n2, n3, n4, n5
      $              (2.376+0.14757*wc(iw)))
             ENDIF
 
-            sq(j,iz,iw) = yg(iw)*qy
+            sq(j,iz,iw) = yg(iw)!*qy
          ENDDO
       ENDDO
 
@@ -9656,8 +9632,8 @@ C      qyHPALD = 1.0
       PARAMETER(kdata=580)
 
       INTEGER i, n
-      REAL x1(kdata), xs1(kdata), xs2(kdata)
-      REAL y1(kdata), ys1(kdata), ys2(kdata)
+      REAL x1(kdata)
+      REAL y1(kdata)
 
 * local
 
@@ -9699,7 +9675,7 @@ C      qyHPALD = 1.0
 * cross sections
 
       IF(mabs==2) THEN
-        OPEN(UNIT=kin,FILE='DATAJ1/MCMext/MULT/NOA_Bar93.abs',
+        OPEN(UNIT=kin,FILE='DATAJ1/MCMext/POLY/NOA_Bar93.abs',
      $       STATUS='old')
         do i = 1, 4
           read(kin,*)
@@ -9713,7 +9689,7 @@ C      qyHPALD = 1.0
         CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j),0.,0.,yg)
 
       ELSEIF(mabs==4) THEN
-        OPEN(UNIT=kin,FILE='DATAJ1/MCMext/MULT/NOA_R+F89.abs',
+        OPEN(UNIT=kin,FILE='DATAJ1/MCMext/POLY/NOA_R+F89.abs',
      $       STATUS='old')
         do i = 1, 6
           read(kin,*)
@@ -9726,7 +9702,7 @@ C      qyHPALD = 1.0
         CLOSE(kin)
         CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j),0.,0.,yg)
       ELSEIF(mabs==6) THEN
-        OPEN(UNIT=kin,FILE='DATAJ1/MCMext/MULT/NOA_mean.abs',
+        OPEN(UNIT=kin,FILE='DATAJ1/MCMext/POLY/NOA_mean.abs',
      $       STATUS='old')
         do i = 1, 9
           read(kin,*)

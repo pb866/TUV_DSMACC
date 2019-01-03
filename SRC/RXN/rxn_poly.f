@@ -1,9 +1,9 @@
 *= This file contains the following subroutines, related to reading/loading
 *= the product (cross section) x (quantum yield) for photo-reactions of
-*= organic compounds with multiple chromphores in MCM/GECKO-A,
+*= organic compounds with polyfunctional chromphores in MCM/GECKO-A,
 *= which where not yet present in TUV5.2:
 *=
-*=     mf01 through mf05
+*=     pf01 through pf05
 *=
 *=
 *= Further routines concern the calculation of generic j values, where
@@ -13,11 +13,11 @@
 *= where absorption cross sections are added up and the total
 *= quantum yield is set to 1:
 *=
-*=    mf06 through mf12
+*=    pf06 through pf12
 
 *=============================================================================*
 
-      SUBROUTINE mf01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! NMEK, nitroxymethyl ethyl ketone
+      SUBROUTINE pf01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! NMEK, nitroxymethyl ethyl ketone
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -89,7 +89,7 @@
 * cross sections
 
       IF(mabs==2) THEN
-        OPEN(UNIT=kin,FILE='DATAJ1/MCMext/MULT/NMEK_Bar93.abs',
+        OPEN(UNIT=kin,FILE='DATAJ1/MCMext/POLY/NMEK_Bar93.abs',
      $       STATUS='old')
         do i = 1, 4
           read(kin,*)
@@ -127,7 +127,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE mf02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! M1NEK, methyl 1-nitroxyethyl ketone
+      SUBROUTINE pf02(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! M1NEK, methyl 1-nitroxyethyl ketone
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -206,7 +206,7 @@
 * cross sections
 
       IF(mabs==2) THEN
-        OPEN(UNIT=kin,FILE='DATAJ1/MCMext/MULT/M1NEK_Bar93.abs',
+        OPEN(UNIT=kin,FILE='DATAJ1/MCMext/POLY/M1NEK_Bar93.abs',
      $       STATUS='old')
         do i = 1, 4
           read(kin,*)
@@ -249,7 +249,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE mf03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 2-oxo-cyclohexyl nitrate
+      SUBROUTINE pf03(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 2-oxo-cyclohexyl nitrate
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -294,9 +294,8 @@
 
 * local
 
-      REAL yg(kw), dum
+      REAL sig(kw), dum
 !     REAL qy
-      REAL sig
       INTEGER iw
 
 
@@ -324,7 +323,7 @@
 * cross sections
 
       IF(mabs==1) THEN
-        OPEN(UNIT=kin,FILE='DATAJ1/MCMext/MULT/Wangberg96.abs',
+        OPEN(UNIT=kin,FILE='DATAJ1/MCMext/POLY/Wangberg96.abs',
      $       STATUS='old')
         do i = 1, 11
           read(kin,*)
@@ -340,7 +339,7 @@
        ELSEIF(mabs==2) THEN
 
         OPEN(UNIT=kin,
-     $       FILE  ='DATAJ1/MCMext/MULT/2oxo-cHexNit_calv.abs',
+     $       FILE  ='DATAJ1/MCMext/POLY/2oxo-cHexNit_calv.abs',
      $       STATUS='old')
         do i = 1, 8
           read(kin,*)
@@ -354,7 +353,7 @@
         CLOSE(kin)
       ENDIF
 
-      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j),0.,0.,yg)
+      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j),0.,0.,sig)
 
 
 * quantum yields
@@ -364,9 +363,8 @@
 * combine:
 
       DO iw = 1, nw - 1
-        sig = yg(iw)
         DO i = 1, nz
-          sq(j,i,iw) = sig! * qy
+          sq(j,i,iw) = sig(iw)! * qy
         ENDDO
       ENDDO
 
@@ -374,7 +372,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE mf04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 2-hexanone-5-hydroperoxide
+      SUBROUTINE pf04(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! 2-hexanone-5-hydroperoxide
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -419,9 +417,8 @@
 
 * local
 
-      REAL yg(kw)
+      REAL sig(kw)
 !     REAL qy
-      REAL sig
       INTEGER iw
 
 
@@ -433,7 +430,7 @@
 
 *cross sections
 
-      OPEN(UNIT=kin,FILE='DATAJ1/MCMext/MULT/2oxo5oohHex.abs',
+      OPEN(UNIT=kin,FILE='DATAJ1/MCMext/POLY/2oxo5oohHex.abs',
      $     STATUS='old')
       do i = 1, 6
         read(kin,*)
@@ -445,7 +442,7 @@
       ENDDO
       CLOSE(kin)
 
-      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j),0.,0.,yg)
+      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j),0.,0.,sig)
 
 
 * quantum yields
@@ -455,9 +452,8 @@
 * combine
 
       DO iw = 1, nw - 1
-        sig = yg(iw)
         DO i = 1, nz
-          sq(j,i,iw) = sig! * qy
+          sq(j,i,iw) = sig(iw)! * qy
         ENDDO
       ENDDO
 
@@ -465,7 +461,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE mf05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! oxohexyl-hydroperoxide
+      SUBROUTINE pf05(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! oxohexyl-hydroperoxide
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -510,9 +506,8 @@
 
 * local
 
-      REAL yg(kw)
+      REAL sig(kw)
 !     REAL qy
-      REAL sig
       INTEGER iw
 
 
@@ -522,7 +517,7 @@
       jlabel(j) = 'oxohexyl-hydroperoxide -> RO. + OH'
 
 
-      OPEN(UNIT=kin,FILE='DATAJ1/MCMext/MULT/oxo+oohHex.abs',
+      OPEN(UNIT=kin,FILE='DATAJ1/MCMext/POLY/oxo+oohHex.abs',
      $     STATUS='old')
       do i = 1, 7
         read(kin,*)
@@ -534,7 +529,7 @@
       ENDDO
       CLOSE(kin)
 
-      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j),0.,0.,yg)
+      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j),0.,0.,sig)
 
 
 * quantum yields
@@ -543,9 +538,8 @@
 
 * combine:
       DO iw = 1, nw - 1
-        sig = yg(iw)
         DO i = 1, nz
-          sq(j,i,iw) = sig! * qy
+          sq(j,i,iw) = sig(iw)! * qy
         ENDDO
       ENDDO
 
@@ -553,7 +547,7 @@
 
 * ============================================================================*
 
-      SUBROUTINE mf06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C2ALDqy1
+      SUBROUTINE pf06(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C2ALDqy1
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -612,7 +606,7 @@
 
 * local
 
-      REAL yg(kw)
+      REAL sig(kw)
       INTEGER  iw
 
 
@@ -632,13 +626,13 @@
       ENDDO
       CLOSE(kin)
 
-      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j),0.,0.,yg)
+      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j),0.,0.,sig)
 
 
 * Map onto grid:
       DO iw = 1, nw - 1
          DO i = 1, nz
-            sq(j,i,iw) = yg(iw)
+            sq(j,i,iw) = sig(iw)
          ENDDO
       ENDDO
 
@@ -646,7 +640,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE mf07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C3ALDqy1
+      SUBROUTINE pf07(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C3ALDqy1
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -705,7 +699,7 @@
 
 * local
 
-      REAL yg(kw), ygoh(kw)
+      REAL sig(kw), sigOH(kw)
       INTEGER iw
 
 
@@ -732,15 +726,15 @@
       x1oh(:) = x1(:) - 10.
       y1oh(:) = y1(:)
       n1 = n
-      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j-1),0.,0.,yg)
+      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j-1),0.,0.,sig)
       n = n1
-      CALL interpol(x1oh,y1oh,kdata,n,nw,wl,jlabel(j),0.,0.,ygoh)
+      CALL interpol(x1oh,y1oh,kdata,n,nw,wl,jlabel(j),0.,0.,sigOH)
 
 * Map onto grid:
       DO iw = 1, nw - 1
          DO i = 1, nz
-           sq(j-1,i,iw) = yg(iw)
-           sq(j  ,i,iw) = ygoh(iw)
+           sq(j-1,i,iw) = sig(iw)
+           sq(j  ,i,iw) = sigOH(iw)
          ENDDO
       ENDDO
 
@@ -748,7 +742,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE mf08(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C4ALDqy1
+      SUBROUTINE pf08(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C4ALDqy1
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -807,8 +801,7 @@
 
 * local
 
-      REAL yg(kw),ygoh(kw)
-      REAL sig,sigoh
+      REAL sig(kw),sigOH(kw)
       INTEGER iw
 
 
@@ -837,9 +830,9 @@
       x1oh(:) = x1(:) - 10.
       y1oh(:) = y1(:)
       n1 = n
-      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j-1),0.,0.,yg)
+      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j-1),0.,0.,sig)
       n = n1
-      CALL interpol(x1oh,y1oh,kdata,n,nw,wl,jlabel(j),0.,0.,ygoh)
+      CALL interpol(x1oh,y1oh,kdata,n,nw,wl,jlabel(j),0.,0.,sigOH)
 
 
 * quantum yields: no pressure dependence
@@ -847,8 +840,8 @@
 * Map onto grid:
       DO iw = 1, nw - 1
          DO i = 1, nz
-           sq(j-1,i,iw) = yg(iw)
-           sq(j  ,i,iw) = ygoh(iw)
+           sq(j-1,i,iw) = sig(iw)
+           sq(j  ,i,iw) = sigOH(iw)
          ENDDO
       ENDDO
 
@@ -856,7 +849,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE mf09(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C5ALDqy1
+      SUBROUTINE pf09(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C5ALDqy1
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -916,7 +909,7 @@
 
 * local
 
-      REAL yg(kw), ygoh(kw), dum
+      REAL sig(kw), sigOH(kw), dum
       INTEGER iw
 
 
@@ -945,9 +938,9 @@
       x1oh(:) = x1(:) - 10.
       y1oh(:) = y1(:)
       n1 = n
-      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j-1),0.,0.,yg)
+      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j-1),0.,0.,sig)
       n = n1
-      CALL interpol(x1oh,y1oh,kdata,n,nw,wl,jlabel(j),0.,0.,ygoh)
+      CALL interpol(x1oh,y1oh,kdata,n,nw,wl,jlabel(j),0.,0.,sigOH)
 
 
 * quantum yields: no pressure dependence
@@ -955,8 +948,8 @@
 * Map onto grid:
       DO iw = 1, nw - 1
         DO i = 1, nz
-          sq(j-1,i,iw) = yg(iw)
-          sq(j  ,i,iw) = ygoh(iw)
+          sq(j-1,i,iw) = sig(iw)
+          sq(j  ,i,iw) = sigOH(iw)
         ENDDO
       ENDDO
 
@@ -964,7 +957,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE mf10(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C6ALDqy1
+      SUBROUTINE pf10(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C6ALDqy1
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -1023,7 +1016,7 @@
 
 * local
 
-      REAL yg(kw), ygoh(kw), dum
+      REAL sig(kw), sigOH(kw), dum
       INTEGER iw
 
 
@@ -1050,9 +1043,9 @@
       x1oh(:) = x1(:) - 10.
       y1oh(:) = y1(:)
       n1 = n
-      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j-1),0.,0.,yg)
+      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j-1),0.,0.,sig)
       n = n1
-      CALL interpol(x1oh,y1oh,kdata,n,nw,wl,jlabel(j),0.,0.,ygoh)
+      CALL interpol(x1oh,y1oh,kdata,n,nw,wl,jlabel(j),0.,0.,sigOH)
 
 
 * quantum yields: no pressure dependence
@@ -1060,8 +1053,8 @@
 * Map onto grid:
       DO iw = 1, nw - 1
         DO i = 1, nz
-          sq(j-1,i,iw) = yg(iw)
-          sq(j  ,i,iw) = ygoh(iw)
+          sq(j-1,i,iw) = sig(iw)
+          sq(j  ,i,iw) = sigOH(iw)
         ENDDO
       ENDDO
 
@@ -1069,7 +1062,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE mf11(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C7ALDqy1
+      SUBROUTINE pf11(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C7ALDqy1
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -1128,7 +1121,7 @@
 
 * local
 
-      REAL yg(kw), ygoh(kw)
+      REAL sig(kw), sigOH(kw)
       INTEGER iw
 
 
@@ -1155,9 +1148,9 @@
       x1oh(:) = x1(:) - 10.
       y1oh(:) = y1(:)
       n1 = n
-      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j-1),0.,0.,yg)
+      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j-1),0.,0.,sig)
       n = n1
-      CALL interpol(x1oh,y1oh,kdata,n,nw,wl,jlabel(j),0.,0.,ygoh)
+      CALL interpol(x1oh,y1oh,kdata,n,nw,wl,jlabel(j),0.,0.,sigOH)
 
 
 * quantum yields: no pressure dependence
@@ -1165,8 +1158,8 @@
 * Map onto grid:
       DO iw = 1, nw - 1
         DO i = 1, nz
-          sq(j-1,i,iw) = yg(iw)
-          sq(j  ,i,iw) = ygoh(iw)
+          sq(j-1,i,iw) = sig(iw)
+          sq(j  ,i,iw) = sigOH(iw)
         ENDDO
       ENDDO
 
@@ -1174,7 +1167,7 @@
 
 *=============================================================================*
 
-      SUBROUTINE mf12(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C8ALDqy1
+      SUBROUTINE pf12(nw,wl,wc,nz,tlev,airden,j,sq,jlabel) ! C8ALDqy1
 
 *-----------------------------------------------------------------------------*
 *=  PURPOSE:                                                                 =*
@@ -1232,8 +1225,7 @@
 
 * local
 
-      REAL yg(kw), ygoh(kw)
-      REAL sig,sigoh
+      REAL sig(kw), sigOH(kw)
       INTEGER iw
 
 
@@ -1266,9 +1258,9 @@
       y1oh(:) = y1(:)
       n1 = n
 
-      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j-7),0.,0.,yg)
+      CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j-7),0.,0.,sig)
       n = n1
-      CALL interpol(x1oh,y1oh,kdata,n,nw,wl,jlabel(j-4),0.,0.,ygoh)
+      CALL interpol(x1oh,y1oh,kdata,n,nw,wl,jlabel(j-4),0.,0.,sigOH)
 
 
 * quantum yields: no pressure dependence
@@ -1276,8 +1268,8 @@
 * Map onto grid:
       DO iw = 1, nw - 1
          DO i = 1, nz
-             sq(j-1,i,iw) = sig
-             sq(j  ,i,iw) = sigOH
+             sq(j-1,i,iw) = sig(iw)
+             sq(j  ,i,iw) = sigOH(iw)
          ENDDO
       ENDDO
 

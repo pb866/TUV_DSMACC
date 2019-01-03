@@ -343,6 +343,7 @@ c      wlabel = 'isaksen.grid'
 *-----grid option 3: automatic -----------------
 * entire grid (nz levels) in increments zincr
 
+ 2    CONTINUE
       WRITE(*,*) 'equally spaced z-grid'
       zincr = (zstop - zstart) / FLOAT(nz - 1)
       nlev = nz-1
@@ -355,6 +356,7 @@ c      wlabel = 'isaksen.grid'
 * the example provided below is high vertical resolution in
 *   snow, with atmosphere above it.
 
+ 3    CONTINUE
       WRITE(*,*) 'snow-atmosphere grid'
 * 0.-10. cm from ground, in 1 cm increments ( 1 cm = 1e-5 km):
       zincr = 1.e-5
@@ -417,6 +419,7 @@ c      wlabel = 'isaksen.grid'
 
 *-----grid option 4:  grid for Mexico City
 
+ 4    CONTINUE
       WRITE(*,*) 'mirage z-grid'
 
 * grid for mirage km: incr(range)i
@@ -447,6 +450,7 @@ c      wlabel = 'isaksen.grid'
 
 *-----grid option 5: user defined
 
+ 5    CONTINUE
 
 * insert your grid values here:
 * specify:
@@ -499,6 +503,7 @@ c      wlabel = 'isaksen.grid'
 
 * check grid for assorted improprieties:
 
+ 99   CONTINUE
       CALL gridck(kz,nz,z,ok)
 
       IF (.NOT. ok) THEN

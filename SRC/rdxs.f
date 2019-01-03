@@ -329,6 +329,8 @@
 
       INTEGER i
 
+      CHARACTER(lcl) errmsg
+
 * used for air-to-vacuum wavelength conversion
 
       REAL refrac, ri(kdata)
@@ -380,8 +382,8 @@
          x1(i) = x1(i) * ri(i)
       ENDDO
 
-      CALL interpol(x1,y1,kdata,n1,nw,wl,
-     &             'O3 xsect - Reims 295K',0.,0.,rei295)
+      errmsg = 'O3 xsect - Reims 295K'
+      CALL interpol(x1,y1,kdata,n1,nw,wl,errmsg,0.,0.,rei295)
 
       DO i = 1, n2
          ri(i) = refrac(x2(i), 2.45E19)
@@ -392,12 +394,12 @@
          x4(i) = x2(i)
       ENDDO
 
-      CALL interpol(x2,y2,kdata,n2,nw,wl,
-     &             'O3 xsect - Reims 243K',0.,0.,rei243)
-      CALL interpol(x3,y3,kdata,n3,nw,wl,
-     &             'O3 xsect - Reims 228K',0.,0.,rei228)
-      CALL interpol(x4,y4,kdata,n4,nw,wl,
-     &             'O3 xsect - Reims 243K',0.,0.,rei218)
+      errmsg = 'O3 xsect - Reims 243K'
+      CALL interpol(x2,y2,kdata,n2,nw,wl,errmsg,0.,0.,rei243)
+      errmsg = 'O3 xsect - Reims 228K'
+      CALL interpol(x3,y3,kdata,n3,nw,wl,errmsg,0.,0.,rei228)
+      errmsg = 'O3 xsect - Reims 218K'
+      CALL interpol(x4,y4,kdata,n4,nw,wl,errmsg,0.,0.,rei218)
 
 * wavelength breaks must be converted to vacuum:
 
@@ -449,6 +451,8 @@
       INTEGER i, idum
       REAL a1, a2, dum
 
+      CHARACTER(lcl) errmsg
+
 * used for air-to-vacuum wavelength conversion
 
       REAL refrac, ri(kdata)
@@ -486,11 +490,11 @@
          x2(i) = x2(i) * ri(i)
       ENDDO
 
-      CALL interpol(x1,y1,kdata,n1,nw,wl,
-     &             'O3 cross section - WMO - 203K',0.,0.,wmo203)
+      errmsg ='O3 cross section - WMO - 203K'
+      CALL interpol(x1,y1,kdata,n1,nw,wl,errmsg,0.,0.,wmo203)
 
-      CALL interpol(x2,y2,kdata,n2,nw,wl,
-     &             'O3 cross section - WMO - 273K',0.,0.,wmo273)
+      errmsg ='O3 cross section - WMO - 273K'
+      CALL interpol(x2,y2,kdata,n2,nw,wl,errmsg,0.,0.,wmo273)
 
 * wavelength breaks must be converted to vacuum:
 
@@ -543,6 +547,8 @@
       INTEGER i
       REAL dum
 
+      CHARACTER(lcl) errmsg
+
 * used for air-to-vacuum wavelength conversion
 
       REAL refrac, ri(kdata)
@@ -578,11 +584,11 @@
          x2(i) = x1(i)
       ENDDO
 
-      CALL interpol(x1,y1,kdata,n1,nw,wl,
-     &             'O3 cross section - JPL - 295K',0.,0.,jpl295)
+      errmsg = 'O3 cross section - JPL - 295K'
+      CALL interpol(x1,y1,kdata,n1,nw,wl,errmsg,0.,0.,jpl295)
 
-      CALL interpol(x2,y2,kdata,n2,nw,wl,
-     &             'O3 cross section - JPL - 218K',0.,0.,jpl218)
+      errmsg = 'O3 cross section - JPL - 218K'
+      CALL interpol(x2,y2,kdata,n2,nw,wl,errmsg,0.,0.,jpl218)
 
 * wavelength breaks must be converted to vacuum:
 
@@ -632,6 +638,8 @@
       INTEGER n1, n2, n3
       REAL x1(kdata), x2(kdata), x3(kdata)
       REAL y1(kdata), y2(kdata), y3(kdata)
+
+      CHARACTER(lcl) errmsg
 
 * used for air-to-vacuum wavelength conversion
 
@@ -699,14 +707,14 @@
 
 * interpolate to working grid
 
-      CALL interpol(x1,y1,kdata,n1,nw,wl,
-     &             'O3 xsect - 226K Molina',0.,0.,mol226)
+      errmsg = 'O3 xsect - 226K Molina'
+      CALL interpol(x1,y1,kdata,n1,nw,wl,errmsg,0.,0.,mol226)
 
-      CALL interpol(x2,y2,kdata,n2,nw,wl,
-     &             'O3 xsect - 263K Molina',0.,0.,mol263)
+      errmsg = 'O3 xsect - 263K Molina'
+      CALL interpol(x2,y2,kdata,n2,nw,wl,errmsg,0.,0.,mol263)
 
-      CALL interpol(x3,y3,kdata,n3,nw,wl,
-     &             'O3 xsect - 298K Molina',0.,0.,mol298)
+      errmsg = 'O3 xsect - 298K Molina'
+      CALL interpol(x3,y3,kdata,n3,nw,wl,errmsg,0.,0.,mol298)
 
       RETURN
       END
@@ -750,6 +758,8 @@
       INTEGER n1, n2, n3
       REAL x1(kdata), x2(kdata), x3(kdata)
       REAL y1(kdata), y2(kdata), y3(kdata)
+
+      CHARACTER(lcl) errmsg
 
 * used for air-to-vacuum wavelength conversion
 
@@ -796,14 +806,14 @@
 
 * interpolate to working grid
 
-      CALL interpol(x1,y1,kdata,n1,nw,wl,
-     &             'O3 xsect - c0 Bass',0.,0.,c0)
+      errmsg = 'O3 xsect - c0 Bass'
+      CALL interpol(x1,y1,kdata,n1,nw,wl,errmsg,0.,0.,c0)
 
-      CALL interpol(x2,y2,kdata,n2,nw,wl,
-     &             'O3 xsect - c1 Bass',0.,0.,c1)
+      errmsg = 'O3 xsect - c1 Bass'
+      CALL interpol(x2,y2,kdata,n2,nw,wl,errmsg,0.,0.,c1)
 
-      CALL interpol(x3,y3,kdata,n3,nw,wl,
-     &             'O3 xsect - c2 Bass',0.,0.,c2)
+      errmsg = 'O3 xsect - c2 Bass'
+      CALL interpol(x3,y3,kdata,n3,nw,wl,errmsg,0.,0.,c2)
 
 
       RETURN
@@ -849,6 +859,8 @@
       REAL y1(kdata), y2(kdata)
 
       INTEGER i
+
+      CHARACTER(lcl) errmsg
 
 * used for air-to-vacuum wavelength conversion
 
@@ -896,11 +908,11 @@
 
       n4 = n3
 
-      CALL interpol(x1,y1,kdata,n3,nw,wl,
-     &             'Error. O3 cross section - IUPAC',0.,0.,iup273)
+      errmsg = 'Error. O3 cross section - IUPAC'
+      CALL interpol(x1,y1,kdata,n3,nw,wl,errmsg,0.,0.,iup273)
 
-      CALL interpol(x2,y2,kdata,n4,nw,wl,
-     &             'Error. O3 cross section - IUPAC',0.,0.,iup203)
+      errmsg = 'Error. O3 cross section - IUPAC'
+      CALL interpol(x2,y2,kdata,n4,nw,wl,errmsg,0.,0.,iup203)
 
 
 * wavelength breaks must be converted to vacuum:
@@ -954,6 +966,7 @@
       PARAMETER (kdata = 200)
       REAL x1(kdata), y1(kdata)
       REAL x, y
+      Character(lcl)  errmsg
 
 *-----------------------------------------------------
 
@@ -997,7 +1010,8 @@
 * Add termination points and interpolate onto the
 *  user grid (set in subroutine gridw):
 
-      CALL interpol(x1,y1,kdata,n,nw,wl,'O2 -> O + O',y1(1),0.,o2xs1)
+      errmsg = 'O2 -> O + O'
+      CALL interpol(x1,y1,kdata,n,nw,wl,errmsg,y1(1),0.,o2xs1)
 
 *------------------------------------------------------
 
@@ -1110,7 +1124,7 @@
       REAL y1(kdata)
       REAL yg(kw)
       INTEGER i, n
-      CHARACTER*40 fil
+      CHARACTER(lcl) fil
 
 ************* NO2 absorption cross sections
 *     measurements by:
@@ -1250,6 +1264,7 @@
       INTEGER i, n
       REAL x1(kdata), y1(kdata)
       REAL yg1(kw)
+      CHARACTER(lcl) errmsg
 
 ***
 
@@ -1262,8 +1277,8 @@
          READ(kin,*) x1(i), y1(i)
       ENDDO
 
-      CALL interpol(x1,y1,kdata,n,nw,wl,
-     &     'DATAE1/NO2/NO2_Har.abs',y1(1),0.,yg1)
+      errmsg = 'DATAE1/NO2/NO2_Har.abs'
+      CALL interpol(x1,y1,kdata,n,nw,wl,errmsg,y1(1),0.,yg1)
 
       DO iw = 1, nw-1
          DO i = 1, nz
@@ -1303,6 +1318,7 @@
       REAL x1(kdata), x2(kdata), y1(kdata), y2(kdata)
       REAL dum1, dum2
       REAL yg1(kw), yg2(kw)
+      CHARACTER(lcl) errmsg
 
 * NO2 absorption cross section from JPL2006
 * with interpolation of bin midpoints
@@ -1322,11 +1338,11 @@
       CLOSE(kin)
       n2 = n1
 
-      CALL interpol(x1,y1,kdata,n1,nw,wl,
-     &     'DATAE1/NO2/NO2_jpl2006.abs',0.,0.,yg1)
+      errmsg = 'DATAE1/NO2/NO2_jpl2006.abs'
+      CALL interpol(x1,y1,kdata,n1,nw,wl,errmsg,0.,0.,yg1)
 
-      CALL interpol(x2,y2,kdata,n2,nw,wl,
-     &     'DATAE1/NO2/NO2_jpl2006.abs',0.,0.,yg2)
+      errmsg = 'DATAE1/NO2/NO2_jpl2006.abs'
+      CALL interpol(x2,y2,kdata,n2,nw,wl,errmsg,0.,0.,yg2)
 
       DO iw = 1, nw-1
          DO iz = 1, nz
@@ -1435,6 +1451,7 @@
       INTEGER i, n1, n2
       REAL x1(kdata), x2(kdata), y1(kdata), y2(kdata)
       REAL yg1(kw), yg2(kw)
+      CHARACTER(lcl) errmsg
 
 * NO2 absorption cross section from JPL2006
 * with interpolation of bin midpoints
@@ -1453,11 +1470,11 @@
       ENDDO
       CLOSE(kin)
 
-      CALL interpol(x1,y1,kdata,n1,nw,wl,
-     &     'DATAE1/NO2/NO2_IUPAC.abs',0.,0.,yg1)
+      errmsg = 'DATAE1/NO2/NO2_IUPAC.abs'
+      CALL interpol(x1,y1,kdata,n1,nw,wl,errmsg,0.,0.,yg1)
 
-      CALL interpol(x2,y2,kdata,n2,nw,wl,
-     &     'DATAE1/NO2/NO2_IUPAC.abs',0.,0.,yg2)
+      errmsg = 'DATAE1/NO2/NO2_IUPAC.abs'
+      CALL interpol(x2,y2,kdata,n2,nw,wl,errmsg,0.,0.,yg2)
 
       DO iw = 1, nw-1
          DO iz = 1, nz
@@ -1524,7 +1541,7 @@
       REAL y1(kdata)
       REAL yg(kw)
       INTEGER i, l, n
-      CHARACTER*40 fil
+      CHARACTER(lcl) fil
 *_______________________________________________________________________
 
 ************* absorption cross sections:

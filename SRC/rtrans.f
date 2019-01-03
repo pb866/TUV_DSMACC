@@ -1628,10 +1628,10 @@ c                           ** Handle 1x1 and 2x2 special cases
 
          IF( AA( 1,1 ).LT.AA( 2,2 ) ) SGN  = - 1.0
 
-         EVAL( 1 ) = 0.5*( AA( 1,1 ) + AA( 2,2 )
-     &             + sngl(SGN)*SQRT( sngl(DISCRI) ) )
-         EVAL( 2 ) = 0.5*( AA( 1,1 ) + AA( 2,2 )
-     &             - sngl(SGN)*SQRT( sngl(DISCRI) ) )
+         EVAL( 1 ) = sngl( 0.5*( AA( 1,1 ) + AA( 2,2 )
+     &             + SGN*SQRT( DISCRI ) ) )
+         EVAL( 2 ) = sngl( 0.5*( AA( 1,1 ) + AA( 2,2 )
+     &             - SGN*SQRT( DISCRI ) ) )
          EVEC( 1, 1 ) = 1.0
          EVEC( 2, 2 ) = 1.0
 
@@ -2265,7 +2265,7 @@ c                                   ** Multiply by transformation matrix
 c                           ** Interchange rows if permutations occurred
       DO 670 I = L-1, 1, -1
 
-         J  = int(WKD( I ))
+         J  = INT(WKD( I ))
 
          IF( I.NE.J ) THEN
 
@@ -2282,7 +2282,7 @@ c                           ** Interchange rows if permutations occurred
 
       DO 690 I = K + 1, M
 
-         J  = int(WKD( I ))
+         J  = INT(WKD( I ))
 
          IF( I.NE.J ) THEN
 
@@ -3437,7 +3437,7 @@ c                                              ** Check for convergence
 c                             ** Iteration finished--calculate weights,
 c                                abscissae for (-1,1)
          GMU( K ) = -sngl(X)
-         GWT( K ) = sngl(TWO) / ( sngl(TMP)*( sngl(EN)*PM2 )**2 )
+         GWT( K ) = sngl(TWO / ( TMP*( EN*PM2 )**2. ))
          GMU( NP1 - K ) = -GMU( K )
          GWT( NP1 - K ) = GWT( K )
    30 CONTINUE
@@ -3452,7 +3452,7 @@ c                                       for rules of odd order
             PROD   = PROD * K / ( K - 1 )
    40    CONTINUE
 
-         GWT( LIM + 1 ) = sngl(TWO) / sngl(PROD)**2
+         GWT( LIM + 1 ) = sngl(TWO / PROD**2.)
       END IF
 
 c                                        ** Convert from (-1,1) to (0,1)

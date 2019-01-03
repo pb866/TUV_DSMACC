@@ -1,4 +1,4 @@
-* This file contains subroutines used for calculation of quantum yields for 
+* This file contains subroutines used for calculation of quantum yields for
 * various photoreactions:
 *     qyacet - q.y. for acetone, based on Blitz et al. (2004)
 
@@ -7,9 +7,9 @@
       SUBROUTINE qyacet(w, T, M, fco, fac)
 
 * Compute acetone quantum yields according to the parameterization of:
-* Blitz, M. A., D. E. Heard, M. J. Pilling, S. R. Arnold, and M. P. Chipperfield 
-*       (2004), Pressure and temperature-dependent quantum yields for the 
-*       photodissociation of acetone between 279 and 327.5 nm, Geophys. 
+* Blitz, M. A., D. E. Heard, M. J. Pilling, S. R. Arnold, and M. P. Chipperfield
+*       (2004), Pressure and temperature-dependent quantum yields for the
+*       photodissociation of acetone between 279 and 327.5 nm, Geophys.
 *       Res. Lett., 31, L06111, doi:10.1029/2003GL018793.
 
       IMPLICIT NONE
@@ -46,7 +46,7 @@
          RETURN
       ENDIF
 
-      IF(w .GT. 327.) THEN
+      IF(w .GT. 327.5) THEN
          fco = 0.
          fac = 0.
          RETURN
@@ -74,12 +74,12 @@
          a1 = 1.600E-19 * (T/295.)**(-2.38)
          b1 = 0.55E-3   * (T/295.)**(-3.19)
          cA1 = a1 * EXP(-b1*((1.e7/w) - 33113.))
- 
+
          fac = (1. - fco) / (1 + cA1 * M)
 
       ENDIF
 
-      IF(w .GE. 302. .AND. w .LE. 327.) THEN
+      IF(w .GE. 302. .AND. w .LE. 327.5) THEN
 
          a2 = 1.62E-17 * (T/295.)**(-10.03)
          b2 = 1.79E-3  * (T/295.)**(-1.364)

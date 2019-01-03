@@ -138,7 +138,7 @@
              ELSE
                 dsj = SQRT( ga ) - sm*SQRT( gb )
              END IF
-             dsdh(i,j) = sngl(dsj) / sngl(dhj)
+             dsdh(i,j) = sngl(dsj / dhj)
  20        CONTINUE
 
            nid(i) = id

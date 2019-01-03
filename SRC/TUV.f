@@ -63,7 +63,9 @@
 
 * Ozone absorption cross section
 
-      INTEGER mabs
+      INTEGER mabs, xsvers(3)
+      CHARACTER(llog) :: logmsg(nlog)
+      CHARACTER(lspc) :: spc
       REAL o3xs(kz,kw)
 
 * O2 absorption cross section
@@ -501,50 +503,26 @@ C      zpbl = 3.
       CALL rdo2xs(nw,wl, o2xs1)
 
 
-      IF(vers==1)THEN
-        mabs = 1
-       ELSEIF(vers==2)THEN
-        mabs = 7
-       ELSEIF(vers==0) THEN
-        mabs = 7! set database used for xs and qy
-       ELSE
-        STOP "'vers' not set. Choose value between 0 and 2 in 'params'."
-      ENDIF
-
-      IF(vers.EQ.1) THEN
-        WRITE(kout,'(2A)') ' TUV standard set used for cross sections',
-     &                     ' and quantum yields.'
-       ELSEIF(vers.EQ.2) THEN
-        WRITE(kout,'(2A)') ' MCM standard set used for cross sections',
-     &                     ' and quantum yields.'
-       ELSEIF(mabs.EQ.1) THEN
-        WRITE(kout,'(2A)') ' O3 cross section for transmission',
-     &                   ' calculated with data from Reims group.'
-       ELSEIF(mabs.EQ.2) THEN
-        WRITE(kout,'(2A)') ' O3 cross section for transmission',
-     &                 ' calculated with data from JPL 2006 evaluation.'
-       ELSEIF(mabs.EQ.3) THEN
-        WRITE(kout,'(2A)') ' O3 cross section for transmission',
-     &                   ' calculated with data from Molina and Molina.'
-       ELSEIF(mabs.EQ.4) THEN
-        WRITE(kout,'(2A)') ' O3 cross section for transmission',
-     &                   ' calculated from Bass et al.'
-       ELSEIF(mabs.EQ.5) THEN
-        WRITE(kout,'(3A)') ' O3 cross section for transmission',
-     &                ' calculated with data from IUPAC recommendation',
-     &                ' and interpolated XS between 362.5 and 410nm.'
-       ELSEIF(mabs.EQ.6) THEN
-        WRITE(kout,'(3A)') ' O3 cross section for transmission',
-     &                ' calculated with data from IUPAC recommendation',
-     &                ' and forced XS to 0 between 362.5 and 410nm.'
-       ELSEIF(mabs.EQ.7) THEN
-        WRITE(kout,'(3A)') ' O3 cross section for transmission',
-     &                ' calculated with high res. data from IUPAC',
-     &                ' recommendation by Malicet et al. (1995).'
-      ENDIF
+* cross section options
+      spc = "O3"
+      xsvers = (/1, 7, 7/) ! options for vers = 1/2/0 (TUV/MCM&GECKO-A/individual)
+      logmsg(1) =
+     & "for transmission calculated with data from Reims group"
+      logmsg(2) =
+     & "for transmission calculated with data from JPL 2006 evaluation"
+      logmsg(3) =
+     & "for transmission calculated with data from Molina and Molina"
+      logmsg(4) =
+     & "for transmission calculated with data from Bass et al"
+      WRITE(logmsg(5),"(2A)") "for transmission calculated with IUPAC ",
+     & "data and interpolated XS between 362.5 and 410nm"
+      WRITE(logmsg(6),"(2A)") "for transmission calculated with IUPAC ",
+     & "data and XS forced to 0 between 362.5 and 410nm"
+      WRITE(logmsg(7),"(2A)") "for transmission calculated with with ",
+     & "high res. data by Malicet et al. (1995) (IUPAC recommended)"
+      CALL set_option(7,spc,"abs",logmsg,xsvers,mabs)
 
       CALL rdo3xs(mabs,nzm1,tlay,nw,wl, o3xs)
-
 
       CALL rdso2xs(nw,wl, so2xs)
       CALL rdno2xs(nz,tlay,nw,wl, no2xs)
