@@ -4,12 +4,11 @@ This is an updated TUV 5.2 version with additional photoreactions for the use wi
 
 Getting started
 ===============
-- Download/clone DSMACC from `https://github.com/pb866/DSMACC-testing.git`.
-- Copy all content to a folder named `TUV_5.2.1` in the DSMACC main folder.
-- compiled TUV from the DSMACC main folder by running the DSMACC make command `make tuv`
+- Download/clone [DSMACC](https://github.com/pb866/DSMACC-testing.git).
+- Initialise TUV as DSMACC git submodule and compile TUV from the DSMACC main folder by running the DSMACC make command `make new`
 - You can now use DSMACC with the new TUV version in the usual way.
 
 Further information
 ===================
 Further information about TUV can be found in the TUV _README.txt_ and the TUV _VERSION\_NOTES.txt_ as well as on the [TUV website](https://www2.acom.ucar.edu/modeling/tropospheric-ultraviolet-and-visible-tuv-radiation-model).  
-Information about changes of this model version, which is not part of the official TUV, can be found in _changelog.dat_.
+Modifications of this TUV version and further information on the use and linking it to DSMACC are provided in the [WIKI](https://github.com/pb866/TUV_DSMACC/wiki).
