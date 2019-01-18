@@ -660,7 +660,7 @@
 
 * cross section options
       spc = "NO3"
-      xsvers = (/3, 4, 2/) ! options for vers = 1/2/0 (TUV/MCM&GECKO-A/individual)
+      xsvers = (/3, 4, 1/) ! options for vers = 1/2/0 (TUV/MCM&GECKO-A/individual)
       logmsg(1) = "from Graham and Johnston (1978)"
       logmsg(2) = "from JPL 1994 evaluation"
       logmsg(3) = "from JPL 2011 evaluation"
@@ -681,7 +681,7 @@
 
 * cross sections
 
-      IF(mabs. eq. 1) then
+      IF(mabs .eq. 1 .or. mabs .eq. 2) then
 
 *     measurements of Graham and Johnston 1978
 
@@ -702,33 +702,32 @@
 
          CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j),0.,0.,yg)
 
+         IF(mabs .EQ. 2) THEN
+
+*        overwrite for w>600 nm using JPL94 values:
+
+            OPEN(UNIT=kin,FILE='DATAJ1/ABS/NO3_jpl94.abs',STATUS='old')
+            READ(kin,*) idum, n
+            DO i = 1, idum-2
+               READ(kin,*)
+            ENDDO
+            DO i = 1, n
+               READ(kin,*) x1(i), y1(i)
+               y1(i) = y1(i)*1E-20
+            ENDDO
+            CLOSE (kin)
+            CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j),0.,0.,yg1)
+
+* assign JPL94 values
+            DO iw = 1, nw-1
+              IF(wl(iw) .GT. 600.) yg(iw) = yg1(iw)
+            ENDDO
+
+         ENDIF
+
          DO iw = 1, nw-1
           DO iz = 1, nz
             xs(iz,iw) = yg(iw)
-          ENDDO
-         ENDDO
-
-      ELSEIF(mabs .EQ. 2) THEN
-
-*     cross section from JPL94:
-
-         OPEN(UNIT=kin,FILE='DATAJ1/ABS/NO3_jpl94.abs',STATUS='old')
-         READ(kin,*) idum, n
-         DO i = 1, idum-2
-            READ(kin,*)
-         ENDDO
-         DO i = 1, n
-            READ(kin,*) x1(i), y1(i)
-            y1(i) = y1(i)*1E-20
-         ENDDO
-         CLOSE (kin)
-         CALL interpol(x1,y1,kdata,n,nw,wl,jlabel(j),0.,0.,yg1)
-
-* (use JPL94 for wavelengths longer than 600 nm)
-
-         DO iw = 1, nw-1
-          DO iz = 1, nz
-            xs(iz,iw) = yg1(iw)
           ENDDO
          ENDDO
 

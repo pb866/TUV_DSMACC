@@ -318,7 +318,7 @@
       CALL mh01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
-******** Multifunctional chromophore photochemistry
+******** Polyfunctional chromophore photochemistry
 
 *pf01.  CH3CH2COCH2NO3 -> CH3CH2COCH2O + NO2
       CALL pf01(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
@@ -359,7 +359,7 @@
       CALL mn14(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)
 
 
-******** Generic j values for multifunctional chromophore photochemistry
+******** Generic j values for polyfunctional chromophore photochemistry
 
 *mk25.  lKET5 --> products
       CALL mk25(nw,wl,wc,nz,tlev,airden,j,sq,jlabel)

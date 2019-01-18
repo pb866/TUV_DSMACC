@@ -672,7 +672,7 @@
 * cross sections
 
       IF(mabs==1) THEN
-        OPEN(UNIT=kin,FILE='DATAJ1/MCMext/MULT/Wangberg96.abs',
+        OPEN(UNIT=kin,FILE='DATAJ1/MCMext/POLY/Wangberg96.abs',
      $       STATUS='old')
         do i = 1, 9
           read(kin,*)
